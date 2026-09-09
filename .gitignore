@@ -11,6 +11,9 @@
 !.yarn/versions
 
 .env
+.windsurf
+.claude
+.gitignore
 
 # testing
 /coverage
