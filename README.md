@@ -103,96 +103,99 @@ pnpm docker:prod
 # Остановка контейнера
 pnpm docker:down
 
-🚀 TaskTracker2026 — Smart Task Manager
-✨ My pet project for a portfolio.
-This app was created by AI and a human.
-I would be very grateful for structured criticism and feedback!
-https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
-https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white
-https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white
-https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
-https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
-https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white
+# 🚀 TaskTracker2026 — Smart Task Manager
 
-📋 About the Project
-TaskFlow is a full-featured web application for task management, built using a modern technology stack. The project was developed with a focus on:
+## ✨ My pet project for a portfolio.
 
-🎯 Clean architecture — separation of logic (DAL, DTO, Zod schemas)
+# This app was created by AI and a human.
+# I would be very grateful for structured criticism and feedback!
 
-🔐 Secure authentication — JWT + bcrypt
+# This app was created with AI.
+# If you want to give feedback and criticism — you are welcome!
 
-🎨 Beautiful UI — shadcn/ui components
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
 
-🗄️ Powerful database — PostgreSQL + Prisma ORM
+---
 
-📱 Responsive design — works on any device
+## 📋 About the Project
 
-🛠️ Tech Stack
-Frontend
-Technology	Purpose
-Next.js 16	React framework for SSR and routing
-TypeScript	Type safety and code reliability
-Tailwind CSS	Utility-first styling
-shadcn/ui	Component library
-framer-motion	UI animations
-Backend
-Technology	Purpose
-Next.js API Routes	Server endpoints
-Prisma 7	ORM for database access
-PostgreSQL	Relational database
-JWT + bcrypt	Authentication and hashing
-Tools
-Technology	Purpose
-pnpm	Package manager
-ESLint + Prettier	Linting and formatting
-Git	Version control
-Docker	Containerization
-✨ Features
-👤 Authentication
-Registration and login
+**TaskFlow** is a full-featured web application for task management, built using a modern technology stack. The project was developed with a focus on:
 
-JWT tokens stored in localStorage
+- 🎯 **Clean architecture** — separation of logic (DAL, DTO, Zod schemas)
+- 🔐 **Secure authentication** — JWT + bcrypt
+- 🎨 **Beautiful UI** — shadcn/ui components
+- 🗄️ **Powerful database** — PostgreSQL + Prisma ORM
+- 📱 **Responsive design** — works on any device
 
-Route protection via middleware
+---
 
-Sign out
+## 🛠️ Tech Stack
 
-📝 Task Management
-➕ Create tasks with a title and description
+### Frontend
 
-📋 View all tasks on the dashboard
+| Technology | Purpose |
+|------------|---------|
+| **Next.js 16** | React framework for SSR and routing |
+| **TypeScript** | Type safety and code reliability |
+| **Tailwind CSS** | Utility-first styling |
+| **shadcn/ui** | Component library |
+| **framer-motion** | UI animations |
 
-✏️ Edit status (TODO / IN_PROGRESS / DONE)
+### Backend
 
-🗑️ Delete tasks
+| Technology | Purpose |
+|------------|---------|
+| **Next.js API Routes** | Server endpoints |
+| **Prisma 7** | ORM for database access |
+| **PostgreSQL** | Relational database |
+| **JWT + bcrypt** | Authentication and hashing |
 
-📊 Filter by status and priority
+### Tools
 
-🏗️ Architecture
-🔄 DAL (Data Access Layer) — a separate database access layer
+| Technology | Purpose |
+|------------|---------|
+| **pnpm** | Package manager |
+| **ESLint + Prettier** | Linting and formatting |
+| **Git** | Version control |
+| **Docker** | Containerization |
 
-📦 DTO — safe data transfer
+---
 
-✅ Zod schemas — validation of all input data
+## ✨ Features
 
-🛡️ Middleware — protection for APIs and pages
+### 👤 Authentication
 
-🚀 Quick Start
-1️⃣ Clone the repository
-bash
+- Registration and login
+- JWT tokens stored in localStorage
+- Route protection via middleware
+- Sign out
+
+### 📝 Task Management
+
+- ➕ **Create** tasks with a title and description
+- 📋 **View** all tasks on the dashboard
+- ✏️ **Edit** status (TODO / IN_PROGRESS / DONE)
+- 🗑️ **Delete** tasks
+- 📊 **Filter** by status and priority
+
+### 🏗️ Architecture
+
+- 🔄 **DAL (Data Access Layer)** — a separate database access layer
+- 📦 **DTO** — safe data transfer
+- ✅ **Zod schemas** — validation of all input data
+- 🛡️ **Middleware** — protection for APIs and pages
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Clone the repository
+
+```bash
 git clone https://github.com/yourusername/taskflow.git
 cd taskflow
-🐳 Running with Docker
-Development mode
-bash
-# Build and run
-pnpm docker:dev
-
-# Build the image
-pnpm docker:build
-
-# Run the container
-pnpm docker:prod
-
-# Stop the container
-pnpm docker:down
