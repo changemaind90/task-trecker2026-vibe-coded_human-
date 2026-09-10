@@ -35,11 +35,13 @@ model Task {
   id          String   @id @default(cuid())
   title       String
   description String?
-  status      String   @default("TODO") // TODO, IN_PROGRESS, DONE
-  priority    String   @default("MEDIUM") // LOW, MEDIUM, HIGH
+  status      String   @default("TODO") 
+  priority    String   @default("LOW")
   deadline    DateTime?
   createdAt   DateTime @default(now())
+  startedAt   DateTime?
   updatedAt   DateTime @updatedAt
+  completedAt DateTime?
 
   projectId   String?
   project     Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)

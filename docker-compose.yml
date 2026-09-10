@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Сервис базы данных
+  postgres:
+    image: postgres:17-alpine
+    container_name: taskflow-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: task_manager_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - taskflow-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Сервис приложения
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: taskflow-app
+    environment:
+      DATABASE_URL: postgresql://postgres:1234@postgres:5432/task_manager_db?schema=public
+      JWT_SECRET: supersecretkey
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - taskflow-network
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: sh -c "pnpm exec prisma migrate deploy && pnpm start"
+
+volumes:
+  postgres_data:
+
+networks:
+  taskflow-network:
+    driver: bridge

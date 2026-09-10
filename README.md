@@ -1,4 +1,4 @@
-# 🚀 TaskFlow — Умный менеджер задач
+# 🚀 TaskTracker2026 — Умный менеджер задач
 
 ## ✨ Современный таск-менеджер с авторизацией, проектами и интуитивным интерфейсом
 
@@ -81,3 +81,23 @@
 ```bash
 git clone https://github.com/yourusername/taskflow.git
 cd taskflow
+
+## 🐳 Запуск через Docker
+
+### Режим разработки
+```bash
+# Сборка и запуск
+pnpm docker:dev
+
+Режим продакшена
+```bash
+# Сборка образа
+pnpm docker:build
+
+# Запуск контейнера
+```bash
+pnpm docker:prod
+
+# Остановка контейнера
+```bash
+pnpm docker:down

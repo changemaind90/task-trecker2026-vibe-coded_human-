@@ -6,6 +6,13 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 type Task = {
   id: string;
@@ -24,41 +31,45 @@ export default function DashboardPage() {
   const [error, setError] = useState("");
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDesc, setNewTaskDesc] = useState("");
+  const [newTaskStatus, setNewTaskStatus] = useState("TODO");
+  const [newTaskPriority, setNewTaskPriority] = useState("MEDIUM");
   const [isCreating, setIsCreating] = useState(false);
+  const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [editTitle, setEditTitle] = useState("");
+  const [editDesc, setEditDesc] = useState("");
 
   useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) { router.push("/login"); return; }
-      fetch("/api/tasks", {
-        headers: {Authorization: `Bearer ${token}`,"Content-Type": "application/json",},})
-        .then(async (res) => {
-          if (!res.ok) {
-            if (res.status === 401) {
-              localStorage.removeItem("token");
-              router.push("/login");
-              return; // ← ВАЖНО: выходим из then, чтобы не пытаться парсить ошибку
-            }
-            // Для других ошибок — читаем текст
-            const text = await res.text();
-            throw new Error(`HTTP ${res.status}: ${text}`);
+    const token = localStorage.getItem("token");
+    if (!token) { router.push("/login"); return; }
+    fetch("/api/tasks", {
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", },
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          if (res.status === 401) {
+            localStorage.removeItem("token");
+            router.push("/login");
+            return; // ← ВАЖНО: выходим из then, чтобы не пытаться парсить ошибку
           }
-          return res.json(); // ← Только если ответ успешный
-        })
-        .then((data) => {
-          // Если data === undefined (потому что вышли по 401) — не обновляем
-          if (data) { setTasks(data); } setLoading(false); })
-        .catch((err) => {
-          console.error("Ошибка загрузки задач:", err);
-          setError(err.message);
-          setLoading(false);
-        });
-    }, [router]);
+          // Для других ошибок — читаем текст
+          const text = await res.text();
+          throw new Error(`HTTP ${res.status}: ${text}`);
+        }
+        return res.json(); // ← Только если ответ успешный
+      })
+      .then((data) => {
+        // Если data === undefined (потому что вышли по 401) — не обновляем
+        if (data) { setTasks(data); } setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Ошибка загрузки задач:", err);
+        setError(err.message);
+        setLoading(false);
+      });
+  }, [router]);
 
   const createTask = async () => {
     if (!newTaskTitle.trim()) return; setIsCreating(true);
- 
-      
-
     const token = localStorage.getItem("token");
     const res = await fetch("/api/tasks", {
       method: "POST",
@@ -66,7 +77,10 @@ export default function DashboardPage() {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ title: newTaskTitle, description: newTaskDesc }),
+      body: JSON.stringify({
+        title: newTaskTitle, description: newTaskDesc, status: newTaskStatus,
+        priority: newTaskPriority,
+      }),
     });
 
     if (res.ok) {
@@ -74,8 +88,32 @@ export default function DashboardPage() {
       setTasks((prev) => [newTask, ...prev]);
       setNewTaskTitle("");
       setNewTaskDesc("");
+      setNewTaskStatus("TODO");
+      setNewTaskPriority("MEDIUM");
     }
     setIsCreating(false);
+  };
+
+  const saveEdit = async () => {
+    if (!editingTask) return;
+
+    const token = localStorage.getItem("token");
+    const res = await fetch(`/api/tasks/${editingTask.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ title: editTitle, description: editDesc }),
+    });
+
+    if (res.ok) {
+      const updated = await res.json();
+      setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
+      setEditingTask(null);
+    } else {
+      alert("Ошибка сохранения");
+    }
   };
 
   if (loading) return <div>Загрузка...</div>;
@@ -94,7 +132,7 @@ export default function DashboardPage() {
         <CardHeader>
           <CardTitle>Создать новую задачу</CardTitle>
         </CardHeader>
-        <CardContent style={{ display: "flex", gap: 10 }}>
+        <CardContent style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           <Input
             placeholder="Название задачи"
             value={newTaskTitle}
@@ -105,6 +143,24 @@ export default function DashboardPage() {
             value={newTaskDesc}
             onChange={(e) => setNewTaskDesc(e.target.value)}
           />
+          <select
+            value={newTaskStatus}
+            onChange={(e) => setNewTaskStatus(e.target.value)}
+            style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
+          >
+            <option value="TODO">TODO</option>
+            <option value="IN_PROGRESS">В работе</option>
+            <option value="DONE">Готово</option>
+          </select>
+          <select
+            value={newTaskPriority}
+            onChange={(e) => setNewTaskPriority(e.target.value)}
+            style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
+          >
+            <option value="LOW">🟢 Низкий</option>
+            <option value="MEDIUM">🟡 Средний</option>
+            <option value="HIGH">🔴 Высокий</option>
+          </select>
           <Button onClick={createTask} disabled={isCreating}>
             {isCreating ? "Создание..." : "Добавить"}
           </Button>
@@ -121,7 +177,8 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <p>{task.description || "Нет описания"}</p>
-              <div style={{ display: "flex", gap: 15, marginTop: 10, flexWrap: "wrap" }}>
+              <div style={{ display: "flex", gap: 15, marginTop: 10, flexWrap: "wrap", alignItems: "center" }}>
+                {/* Статус */}
                 <select
                   value={task.status}
                   onChange={async (e) => {
@@ -144,7 +201,31 @@ export default function DashboardPage() {
                   <option value="IN_PROGRESS">В работе</option>
                   <option value="DONE">Готово</option>
                 </select>
-                <span>Приоритет: {task.priority}</span>
+
+                {/* ✅ Приоритет */}
+                <select
+                  value={task.priority}
+                  onChange={async (e) => {
+                    const token = localStorage.getItem("token");
+                    const res = await fetch(`/api/tasks/${task.id}`, {
+                      method: "PUT",
+                      headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                      },
+                      body: JSON.stringify({ priority: e.target.value }),
+                    });
+                    if (res.ok) {
+                      const updated = await res.json();
+                      setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
+                    }
+                  }}
+                >
+                  <option value="LOW">🟢 Низкий</option>
+                  <option value="MEDIUM">🟡 Средний</option>
+                  <option value="HIGH">🔴 Высокий</option>
+                </select>
+
                 {task.project && <span>Проект: {task.project.name}</span>}
                 {task.deadline && (
                   <span>Дедлайн: {new Date(task.deadline).toLocaleDateString()}</span>
@@ -156,8 +237,9 @@ export default function DashboardPage() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    // TODO: открыть модалку редактирования
-                    console.log("Редактировать задачу", task.id);
+                    setEditingTask(task);
+                    setEditTitle(task.title);
+                    setEditDesc(task.description || "");
                   }}
                 >
                   ✏️ Редактировать
@@ -187,6 +269,31 @@ export default function DashboardPage() {
           </Card>
         ))
       )}
+      <Dialog open={!!editingTask} onOpenChange={(open) => !open && setEditingTask(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Редактировать задачу</DialogTitle>
+          </DialogHeader>
+          <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
+            <Input
+              placeholder="Название"
+              value={editTitle}
+              onChange={(e) => setEditTitle(e.target.value)}
+            />
+            <Input
+              placeholder="Описание"
+              value={editDesc}
+              onChange={(e) => setEditDesc(e.target.value)}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditingTask(null)}>
+              Отмена
+            </Button>
+            <Button onClick={saveEdit}>Сохранить</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
