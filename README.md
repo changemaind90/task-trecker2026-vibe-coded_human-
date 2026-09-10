@@ -103,26 +103,17 @@ pnpm docker:prod
 # Остановка контейнера
 pnpm docker:down
 
-# 🚀 TaskTracker2026 — Smart Task Manager
+🚀 TaskTracker2026 — Smart Task Manager
 
-## ✨ My pet project for a portfolio.
+✨ My pet project for a portfolio.
 
-# This app was created by AI and a human.
-# I would be very grateful for structured criticism and feedback!
+ This app was created by AI and a human.
+ I would be very grateful for structured criticism and feedback!
 
-# This app was created with AI.
-# If you want to give feedback and criticism — you are welcome!
+This app was created with AI.
+If you want to give feedback and criticism — you are welcome!
 
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
-
----
-
-## 📋 About the Project
+📋 About the Project
 
 **TaskFlow** is a full-featured web application for task management, built using a modern technology stack. The project was developed with a focus on:
 
