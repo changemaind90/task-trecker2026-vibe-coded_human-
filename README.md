@@ -91,19 +91,14 @@ cd taskflow
 ## 🐳 Запуск через Docker
 
 ### Режим разработки
-```bash
 # Сборка и запуск
 pnpm docker:dev
 
-Режим продакшена
-```bash
 # Сборка образа
 pnpm docker:build
 
 # Запуск контейнера
-```bash
 pnpm docker:prod
 
 # Остановка контейнера
-```bash
 pnpm docker:down
