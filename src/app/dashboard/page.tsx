@@ -15,14 +15,14 @@
     DialogFooter,
   } from "@/components/ui/dialog";
   import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "@/components/ui/select";
 
-import StatsPieChart from "@/components/StatsPieChart";
+  import StatsPieChart from "@/components/StatsPieChart";
 
   type Task = {
     id: string;
@@ -111,7 +111,7 @@ import StatsPieChart from "@/components/StatsPieChart";
           description: newTaskDesc,
           status: newTaskStatus,
           priority: newTaskPriority,
-          projectId: newTaskProjectId || null,
+          projectId: newTaskProjectId === "none" ? null : newTaskProjectId,
         }),
       });
 
@@ -221,9 +221,9 @@ import StatsPieChart from "@/components/StatsPieChart";
           </Card>
           <Card>
             {/* <CardContent style={{ padding: 15, textAlign: "center" }}>
-              <div style={{ fontSize: 28, fontWeight: 700, color: "#ef4444" }}>{stats.highPriority}</div>
-              <div style={{ fontSize: 12, color: "#666" }}>🔥 Срочных</div>
-            </CardContent> */}
+                <div style={{ fontSize: 28, fontWeight: 700, color: "#ef4444" }}>{stats.highPriority}</div>
+                <div style={{ fontSize: 12, color: "#666" }}>🔥 Срочных</div>
+              </CardContent> */}
             <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
           </Card>
         </div>
@@ -243,33 +243,36 @@ import StatsPieChart from "@/components/StatsPieChart";
               value={newTaskDesc}
               onChange={(e) => setNewTaskDesc(e.target.value)}
             />
-            <Select
-              value={newTaskStatus}
-              onChange={(e) => setNewTaskStatus(e.target.value)}
-              style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
-            >
-              <option value="TODO">TODO</option>
-              <option value="IN_PROGRESS">В работе</option>
-              <option value="DONE">Готово</option>
+            <Select value={newTaskStatus} onValueChange={setNewTaskStatus}>
+              <SelectTrigger className="w-[140px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="TODO">TODO</SelectItem>
+                <SelectItem value="IN_PROGRESS">В работе</SelectItem>
+                <SelectItem value="DONE">Готово</SelectItem>
+              </SelectContent>
             </Select>
-            <Select
-              value={newTaskPriority}
-              onChange={(e) => setNewTaskPriority(e.target.value)}
-              style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
-            >
-              <option value="LOW">🟢 Низкий</option>
-              <option value="MEDIUM">🟡 Средний</option>
-              <option value="HIGH">🔴 Высокий</option>
+            <Select value={newTaskPriority} onValueChange={setNewTaskPriority}>
+              <SelectTrigger className="w-[140px]">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="LOW">🟢 Низкий</SelectItem>
+                <SelectItem value="MEDIUM">🟡 Средний</SelectItem>
+                <SelectItem value="HIGH">🔴 Высокий</SelectItem>
+              </SelectContent>
             </Select>
-            <Select
-              value={newTaskProjectId}
-              onChange={(e) => setNewTaskProjectId(e.target.value)}
-              style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
-            >
-              <option value="">Без проекта</option>
-              {projects.map((p) => (
-                <option key={p.id} value={p.id}>{p.name}</option>
-              ))}
+            <Select value={newTaskProjectId} onValueChange={setNewTaskProjectId}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Без проекта" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="none">Без проекта</SelectItem>
+                {projects.map((p) => (
+                  <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                ))}
+              </SelectContent>
             </Select>
             <Button onClick={createTask} disabled={isCreating}>
               {isCreating ? "Создание..." : "Добавить"}
@@ -338,7 +341,7 @@ import StatsPieChart from "@/components/StatsPieChart";
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
               <thead>
-                <tr style={{ background: "#f5f5f5", textAlign: "left" }}>
+                <tr className="bg-muted/50 text-left">
                   <th style={thStyle}>Название</th>
                   <th style={thStyle}>Проект</th>
                   <th style={thStyle}>Статус</th>
@@ -359,9 +362,9 @@ import StatsPieChart from "@/components/StatsPieChart";
                       )}
                     </td>
                     <td style={tdStyle}>
-                      <select
-                        value={task.projectId || ""}
-                        onChange={async (e) => {
+                      <Select
+                        value={task.projectId || "none"}
+                        onValueChange={async (value) => {
                           const token = localStorage.getItem("token");
                           const res = await fetch(`/api/tasks/${task.id}`, {
                             method: "PUT",
@@ -369,25 +372,29 @@ import StatsPieChart from "@/components/StatsPieChart";
                               "Content-Type": "application/json",
                               Authorization: `Bearer ${token}`,
                             },
-                            body: JSON.stringify({ projectId: e.target.value || null }),
+                            body: JSON.stringify({ projectId: value === "none" ? null : value }),
                           });
                           if (res.ok) {
                             const updated = await res.json();
                             setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
                           }
                         }}
-                        style={{ padding: 6, borderRadius: 4, border: "1px solid #ccc" }}
                       >
-                        <option value="">Без проекта</option>
-                        {projects.map((p) => (
-                          <option key={p.id} value={p.id}>{p.name}</option>
-                        ))}
-                      </select>
+                        <SelectTrigger className="w-[180px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="none">Без проекта</SelectItem>
+                          {projects.map((p) => (
+                            <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </td>
                     <td style={tdStyle}>
-                      <select
+                      <Select
                         value={task.status}
-                        onChange={async (e) => {
+                        onValueChange={async (value) => {
                           const token = localStorage.getItem("token");
                           const res = await fetch(`/api/tasks/${task.id}`, {
                             method: "PUT",
@@ -395,7 +402,7 @@ import StatsPieChart from "@/components/StatsPieChart";
                               "Content-Type": "application/json",
                               Authorization: `Bearer ${token}`,
                             },
-                            body: JSON.stringify({ status: e.target.value }),
+                            body: JSON.stringify({ status: value }),
                           });
                           if (res.ok) {
                             const updated = await res.json();
@@ -403,15 +410,20 @@ import StatsPieChart from "@/components/StatsPieChart";
                           }
                         }}
                       >
-                        <option value="TODO">TODO</option>
-                        <option value="IN_PROGRESS">В работе</option>
-                        <option value="DONE">Готово</option>
-                      </select>
+                        <SelectTrigger className="w-[130px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="TODO">TODO</SelectItem>
+                          <SelectItem value="IN_PROGRESS">В работе</SelectItem>
+                          <SelectItem value="DONE">Готово</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </td>
                     <td style={tdStyle}>
-                      <select
+                     <Select
                         value={task.priority}
-                        onChange={async (e) => {
+                        onValueChange={async (value) => {
                           const token = localStorage.getItem("token");
                           const res = await fetch(`/api/tasks/${task.id}`, {
                             method: "PUT",
@@ -419,7 +431,7 @@ import StatsPieChart from "@/components/StatsPieChart";
                               "Content-Type": "application/json",
                               Authorization: `Bearer ${token}`,
                             },
-                            body: JSON.stringify({ priority: e.target.value }),
+                            body: JSON.stringify({ priority: value }),
                           });
                           if (res.ok) {
                             const updated = await res.json();
@@ -427,10 +439,15 @@ import StatsPieChart from "@/components/StatsPieChart";
                           }
                         }}
                       >
-                        <option value="LOW">🟢 Низкий</option>
-                        <option value="MEDIUM">🟡 Средний</option>
-                        <option value="HIGH">🔴 Высокий</option>
-                      </select>
+                        <SelectTrigger className="w-[130px]">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="LOW">🟢 Низкий</SelectItem>
+                          <SelectItem value="MEDIUM">🟡 Средний</SelectItem>
+                          <SelectItem value="HIGH">🔴 Высокий</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </td>
                     <td style={tdStyle}>{new Date(task.createdAt).toLocaleDateString("ru-RU")}</td>
                     <td style={tdStyle}>
