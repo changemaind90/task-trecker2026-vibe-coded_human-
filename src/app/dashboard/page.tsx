@@ -195,37 +195,7 @@
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 20 }}>
-          <Card>
-            <CardContent style={{ padding: 15, textAlign: "center" }}>
-              <div style={{ fontSize: 28, fontWeight: 700 }}>{stats.total}</div>
-              <div style={{ fontSize: 12, color: "#666" }}>Всего задач</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent style={{ padding: 15, textAlign: "center" }}>
-              <div style={{ fontSize: 28, fontWeight: 700, color: "#888" }}>{stats.todo}</div>
-              <div style={{ fontSize: 12, color: "#666" }}>TODO</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent style={{ padding: 15, textAlign: "center" }}>
-              <div style={{ fontSize: 28, fontWeight: 700, color: "#f59e0b" }}>{stats.inProgress}</div>
-              <div style={{ fontSize: 12, color: "#666" }}>В работе</div>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardContent style={{ padding: 15, textAlign: "center" }}>
-              <div style={{ fontSize: 28, fontWeight: 700, color: "#10b981" }}>{stats.done}</div>
-              <div style={{ fontSize: 12, color: "#666" }}>Готово</div>
-            </CardContent>
-          </Card>
-          <Card>
-            {/* <CardContent style={{ padding: 15, textAlign: "center" }}>
-                <div style={{ fontSize: 28, fontWeight: 700, color: "#ef4444" }}>{stats.highPriority}</div>
-                <div style={{ fontSize: 12, color: "#666" }}>🔥 Срочных</div>
-              </CardContent> */}
-            <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
-          </Card>
+          <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
         </div>
 
         <Card style={{ marginBottom: 20 }}>
