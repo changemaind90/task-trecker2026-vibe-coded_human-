@@ -243,7 +243,7 @@ import StatsPieChart from "@/components/StatsPieChart";
               value={newTaskDesc}
               onChange={(e) => setNewTaskDesc(e.target.value)}
             />
-            <select
+            <Select
               value={newTaskStatus}
               onChange={(e) => setNewTaskStatus(e.target.value)}
               style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -251,8 +251,8 @@ import StatsPieChart from "@/components/StatsPieChart";
               <option value="TODO">TODO</option>
               <option value="IN_PROGRESS">В работе</option>
               <option value="DONE">Готово</option>
-            </select>
-            <select
+            </Select>
+            <Select
               value={newTaskPriority}
               onChange={(e) => setNewTaskPriority(e.target.value)}
               style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -260,8 +260,8 @@ import StatsPieChart from "@/components/StatsPieChart";
               <option value="LOW">🟢 Низкий</option>
               <option value="MEDIUM">🟡 Средний</option>
               <option value="HIGH">🔴 Высокий</option>
-            </select>
-            <select
+            </Select>
+            <Select
               value={newTaskProjectId}
               onChange={(e) => setNewTaskProjectId(e.target.value)}
               style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -270,7 +270,7 @@ import StatsPieChart from "@/components/StatsPieChart";
               {projects.map((p) => (
                 <option key={p.id} value={p.id}>{p.name}</option>
               ))}
-            </select>
+            </Select>
             <Button onClick={createTask} disabled={isCreating}>
               {isCreating ? "Создание..." : "Добавить"}
             </Button>
@@ -288,7 +288,7 @@ import StatsPieChart from "@/components/StatsPieChart";
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{ minWidth: 200 }}
             />
-            <select
+            <Select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
               style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -297,8 +297,8 @@ import StatsPieChart from "@/components/StatsPieChart";
               <option value="TODO">TODO</option>
               <option value="IN_PROGRESS">В работе</option>
               <option value="DONE">Готово</option>
-            </select>
-            <select
+            </Select>
+            <Select
               value={filterPriority}
               onChange={(e) => setFilterPriority(e.target.value)}
               style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -307,8 +307,8 @@ import StatsPieChart from "@/components/StatsPieChart";
               <option value="LOW">🟢 Низкий</option>
               <option value="MEDIUM">🟡 Средний</option>
               <option value="HIGH">🔴 Высокий</option>
-            </select>
-            <select
+            </Select>
+            <Select
               value={filterProject}
               onChange={(e) => setFilterProject(e.target.value)}
               style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
@@ -317,7 +317,7 @@ import StatsPieChart from "@/components/StatsPieChart";
               {projects.map((p) => (
                 <option key={p.id} value={p.id}>{p.name}</option>
               ))}
-            </select>
+            </Select>
             <Button
               variant="outline"
               onClick={() => {
