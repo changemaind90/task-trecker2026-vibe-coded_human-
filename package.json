@@ -12,7 +12,8 @@
     "docker:down": "docker-compose down",
     "docker:dev": "docker-compose -f docker-compose.dev.yml up",
     "docker:prod": "docker-compose -f docker-compose.yml up -d",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test": "vitest"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -39,9 +40,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.0",
+    "vitest-mock-extended": "^5.1.1"
   }
 }
