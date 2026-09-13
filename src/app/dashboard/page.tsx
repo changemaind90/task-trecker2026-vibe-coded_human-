@@ -22,6 +22,8 @@
   SelectValue,
 } from "@/components/ui/select";
 
+import StatsPieChart from "@/components/StatsPieChart";
+
   type Task = {
     id: string;
     title: string;
@@ -218,10 +220,11 @@
             </CardContent>
           </Card>
           <Card>
-            <CardContent style={{ padding: 15, textAlign: "center" }}>
+            {/* <CardContent style={{ padding: 15, textAlign: "center" }}>
               <div style={{ fontSize: 28, fontWeight: 700, color: "#ef4444" }}>{stats.highPriority}</div>
               <div style={{ fontSize: 12, color: "#666" }}>🔥 Срочных</div>
-            </CardContent>
+            </CardContent> */}
+            <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
           </Card>
         </div>
 
