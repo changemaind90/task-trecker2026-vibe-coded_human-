@@ -150,9 +150,9 @@
     };
 
     const filteredTasks = tasks.filter((task) => {
-      if (filterStatus && task.status !== filterStatus) return false;
-      if (filterPriority && task.priority !== filterPriority) return false;
-      if (filterProject && task.projectId !== filterProject) return false;
+      if (filterStatus && filterStatus !== "all" && task.status !== filterStatus) return false;
+      if (filterPriority && filterPriority !== "all" && task.priority !== filterPriority) return false;
+      if (filterProject && filterProject !== "all" && task.projectId !== filterProject) return false;
       if (searchQuery && !task.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
       return true;
     });
@@ -243,7 +243,7 @@
               value={newTaskDesc}
               onChange={(e) => setNewTaskDesc(e.target.value)}
             />
-            <Select value={newTaskStatus} onValueChange={setNewTaskStatus}>
+            <Select value={newTaskStatus} onValueChange={(value) => setNewTaskStatus(value ?? "TODO")}>
               <SelectTrigger className="w-[140px]">
                 <SelectValue />
               </SelectTrigger>
@@ -253,7 +253,7 @@
                 <SelectItem value="DONE">Готово</SelectItem>
               </SelectContent>
             </Select>
-            <Select value={newTaskPriority} onValueChange={setNewTaskPriority}>
+            <Select value={newTaskPriority} onValueChange={(value) => setNewTaskPriority(value ?? "none")}>
               <SelectTrigger className="w-[140px]">
                 <SelectValue />
               </SelectTrigger>
@@ -263,7 +263,7 @@
                 <SelectItem value="HIGH">🔴 Высокий</SelectItem>
               </SelectContent>
             </Select>
-            <Select value={newTaskProjectId} onValueChange={setNewTaskProjectId}>
+            <Select value={newTaskProjectId} onValueChange={(value) => setNewTaskProjectId(value ?? "")}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="Без проекта" />
               </SelectTrigger>
@@ -285,51 +285,46 @@
             <CardTitle>Фильтры</CardTitle>
           </CardHeader>
           <CardContent style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <Input
-              placeholder="🔍 Поиск по названию"
+            <Input placeholder="🔍 Поиск по названию"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{ minWidth: 200 }}
             />
-            <Select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
-            >
-              <option value="">Все статусы</option>
-              <option value="TODO">TODO</option>
-              <option value="IN_PROGRESS">В работе</option>
-              <option value="DONE">Готово</option>
+            <Select value={filterStatus} onValueChange={(value) => setFilterStatus(value ?? "")}>
+              <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="Все статусы" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Все статусы</SelectItem>
+                <SelectItem value="TODO">TODO</SelectItem>
+                <SelectItem value="IN_PROGRESS">В работе</SelectItem>
+                <SelectItem value="DONE">Готово</SelectItem>
+              </SelectContent>
             </Select>
-            <Select
-              value={filterPriority}
-              onChange={(e) => setFilterPriority(e.target.value)}
-              style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
-            >
-              <option value="">Все приоритеты</option>
-              <option value="LOW">🟢 Низкий</option>
-              <option value="MEDIUM">🟡 Средний</option>
-              <option value="HIGH">🔴 Высокий</option>
+            <Select value={filterPriority} onValueChange={(value) => setFilterPriority(value ?? "")}>
+              <SelectTrigger className="w-[160px]">
+                <SelectValue placeholder="Все приоритеты" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Все приоритеты</SelectItem>
+                <SelectItem value="LOW">🟢 Низкий</SelectItem>
+                <SelectItem value="MEDIUM">🟡 Средний</SelectItem>
+                <SelectItem value="HIGH">🔴 Высокий</SelectItem>
+              </SelectContent>
             </Select>
-            <Select
-              value={filterProject}
-              onChange={(e) => setFilterProject(e.target.value)}
-              style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
-            >
-              <option value="">Все проекты</option>
-              {projects.map((p) => (
-                <option key={p.id} value={p.id}>{p.name}</option>
-              ))}
+            <Select value={filterProject} onValueChange={(value) => setFilterProject(value ?? "")}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Все проекты" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Все проекты</SelectItem>
+                {projects.map((p) => (
+                  <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                ))}
+              </SelectContent>
             </Select>
-            <Button
-              variant="outline"
-              onClick={() => {
-                setFilterStatus("");
-                setFilterPriority("");
-                setFilterProject("");
-                setSearchQuery("");
-              }}
-            >
+            <Button variant="outline"
+              onClick={() => { setFilterStatus(""); setFilterPriority(""); setFilterProject(""); setSearchQuery(""); }} >
               Сбросить
             </Button>
           </CardContent>
