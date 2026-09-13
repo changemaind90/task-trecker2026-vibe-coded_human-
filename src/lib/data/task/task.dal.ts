@@ -6,10 +6,19 @@ export async function getTasksByUser(userId: string): Promise<TaskDto[]> {
     where: { userId },
     include: { project: true },
   });
-  return tasks.map(task => ({
+  return tasks.map((task) => ({
     id: task.id,
     title: task.title,
+    description: task.description,
     status: task.status,
-    projectName: task.project?.name,
+    priority: task.priority,
+    deadline: task.deadline ? task.deadline.toISOString() : null,
+    startedAt: task.startedAt ? task.startedAt.toISOString() : null,
+    completedAt: task.completedAt ? task.completedAt.toISOString() : null,
+    createdAt: task.createdAt.toISOString(),
+    projectId: task.projectId,
+    project: task.project
+      ? { id: task.project.id, name: task.project.name }
+      : null,
   }));
 }
