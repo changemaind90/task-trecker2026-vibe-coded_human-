@@ -128,7 +128,6 @@ If you want to give feedback and criticism — you are welcome!
 ## 🛠️ Tech Stack
 
 ### Frontend
-
 | Technology | Purpose |
 |------------|---------|
 | **Next.js 16** | React framework for SSR and routing |
@@ -138,7 +137,6 @@ If you want to give feedback and criticism — you are welcome!
 | **framer-motion** | UI animations |
 
 ### Backend
-
 | Technology | Purpose |
 |------------|---------|
 | **Next.js API Routes** | Server endpoints |

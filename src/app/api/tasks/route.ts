@@ -60,9 +60,10 @@ export async function POST(request: NextRequest) {
       status: status || "TODO",
       priority: priority || "MEDIUM",
       deadline: deadline ? new Date(deadline) : undefined,
-      projectId,
+      projectId: projectId || null,
       userId: payload.userId,
     },
+    include: { project: true },
   });
 
   return NextResponse.json(task, { status: 201 });
