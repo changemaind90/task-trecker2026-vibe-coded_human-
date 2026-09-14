@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
     // Формируем ссылку на Telegram-бота
     const botUsername = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME;
-    const telegramLink = `https://t.me/${botUsername}?start=${user.id}`;
+    const telegramLink = `https://telegram.me/${botUsername}?start=${user.id}`;
 
     return NextResponse.json(
       {
