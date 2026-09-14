@@ -6,7 +6,6 @@ export async function POST(request: Request) {
   try {
     const { email, password, name } = await request.json();
 
-    // ✅ Валидация
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email и пароль обязательны" },
@@ -21,7 +20,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ Проверка на существующего пользователя
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
@@ -33,8 +31,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // ✅ Создание пользователя
     const hashedPassword = await hashPassword(password);
+
     const user = await prisma.user.create({
       data: {
         email,
@@ -43,10 +41,15 @@ export async function POST(request: Request) {
       },
     });
 
+    // Формируем ссылку на Telegram-бота
+    const botUsername = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME;
+    const telegramLink = `https://t.me/${botUsername}?start=${user.id}`;
+
     return NextResponse.json(
       {
-        message: "Пользователь успешно создан",
+        message: "Пользователь успешно создан. Подтвердите аккаунт в Telegram.",
         userId: user.id,
+        telegramLink,
       },
       { status: 201 }
     );
