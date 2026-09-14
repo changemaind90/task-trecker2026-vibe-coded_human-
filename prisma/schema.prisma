@@ -17,6 +17,7 @@
     tasks     Task[]
     projects  Project[]
     emailVerified     Boolean  @default(false)
+    telegramChatId    String?  @unique 
   }
 
   model Project {

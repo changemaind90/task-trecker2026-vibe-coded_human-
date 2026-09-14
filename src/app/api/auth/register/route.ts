@@ -49,7 +49,7 @@ export async function POST(request: Request) {
       {
         message: "Пользователь успешно создан. Подтвердите аккаунт в Telegram.",
         userId: user.id,
-        telegramLink,
+        telegramLink: `https://t.me/MyRiskyBot?start=${user.id}`
       },
       { status: 201 }
     );
