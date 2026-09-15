@@ -362,69 +362,39 @@
               <tbody>
                 {filteredTasks.map((task) => (
                   <tr key={task.id} style={{ borderBottom: "1px solid #eee" }}>
-                    {/* <td style={tdStyle}>
-                      <div style={{ fontWeight: 500 }}>{task.title}</div>
-                      {task.description && (
-                        <div style={{ fontSize: 12, color: "#888" }}>{task.description}</div>
-                      )}
-                    </td> */}
                     <td style={tdStyle}>
                       <div style={{ fontWeight: 500 }}>{task.title}</div>
                     </td>
 
                     <td style={tdStyle}>
-                      <Select
-                        value={task.projectId || "none"}
+                      <Select value={task.projectId || "none"}
                         onValueChange={async (value) => {
                           const token = localStorage.getItem("token");
                           const res = await fetch(`/api/tasks/${task.id}`, {
-                            method: "PUT",
-                            headers: {
-                              "Content-Type": "application/json",
-                              Authorization: `Bearer ${token}`,
-                            },
-                            body: JSON.stringify({ projectId: value === "none" ? null : value }),
-                          });
-                          if (res.ok) {
-                            const updated = await res.json();
-                            setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
-                          }
-                        }}
-                      >
+                            method: "PUT", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
+                            body: JSON.stringify({ projectId: value === "none" ? null : value }), });
+                          if (res.ok) { const updated = await res.json();
+                            setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t))); }}}>
                         <SelectTrigger className="w-[180px]">
-                          <span>
-                            {task.projectId
-                              ? projects.find((p) => p.id === task.projectId)?.name || "—"
-                              : "Без проекта"}
-                          </span>
+                          <span>{task.projectId ? projects.find((p) => p.id === task.projectId)?.name || "—" : "Без проекта"}</span>
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="none">Без проекта</SelectItem>
-                          {projects.map((p) => (
-                            <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
-                          ))}
+                          {projects.map((p) => (<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>))}
                         </SelectContent>
                       </Select>
                     </td>
                     <td style={tdStyle}>
-                      <Select
-                        value={task.status}
+                      <Select value={task.status}
                         onValueChange={async (value) => {
                           const token = localStorage.getItem("token");
                           const res = await fetch(`/api/tasks/${task.id}`, {
-                            method: "PUT",
-                            headers: {
-                              "Content-Type": "application/json",
-                              Authorization: `Bearer ${token}`,
-                            },
+                            method: "PUT", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
                             body: JSON.stringify({ status: value }),
                           });
-                          if (res.ok) {
-                            const updated = await res.json();
+                          if (res.ok) { const updated = await res.json();
                             setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
-                          }
-                        }}
-                      >
+                          }}}>
                         <SelectTrigger className="w-[130px]">
                           <span>
                             {task.status === "TODO" && "📋 Не назначена"}
@@ -440,23 +410,14 @@
                       </Select>
                     </td>
                     <td style={tdStyle}>
-                     <Select
-                        value={task.priority}
+                     <Select value={task.priority}
                         onValueChange={async (value) => {
                           const token = localStorage.getItem("token");
                           const res = await fetch(`/api/tasks/${task.id}`, {
-                            method: "PUT",
-                            headers: {
-                              "Content-Type": "application/json",
-                              Authorization: `Bearer ${token}`,
-                            },
+                            method: "PUT", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
                             body: JSON.stringify({ priority: value }),
                           });
-                          if (res.ok) {
-                            const updated = await res.json();
-                            setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
-                          }
-                        }}
+                          if (res.ok) { const updated = await res.json(); setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));}}}
                       >
                         <SelectTrigger className="w-[130px]">
                           <span>
@@ -473,43 +434,21 @@
                       </Select>
                     </td>
                     <td style={tdStyle}>{new Date(task.createdAt).toLocaleDateString("ru-RU")}</td>
-                    <td style={tdStyle}>
-                      {task.startedAt ? new Date(task.startedAt).toLocaleDateString("ru-RU") : "—"}
-                    </td>
-                    <td style={tdStyle}>
-                      {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"}
-                    </td>
+                    <td style={tdStyle}>{task.startedAt ? new Date(task.startedAt).toLocaleDateString("ru-RU") : "—"}</td>
+                    <td style={tdStyle}> {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"} </td>
                     <td style={tdStyle}>
                       <div style={{ display: "flex", gap: 5 }}>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => {
-                            setEditingTask(task);
-                            setEditTitle(task.title);
-                            setEditDesc(task.description || "");
-                          }}
-                        >
-                          ✏️
-                        </Button>
-                        <Button
-                          variant="destructive"
+                        <Button variant="outline" size="sm" onClick={() => { setEditingTask(task); setEditTitle(task.title); setEditDesc(task.description || "");
+                          }}>✏️</Button>
+                        <Button variant="destructive"
                           size="sm"
                           onClick={async () => {
                             if (window.confirm("Удалить задачу?")) {
                               const token = localStorage.getItem("token");
                               const res = await fetch(`/api/tasks/${task.id}`, {
-                                method: "DELETE",
-                                headers: { Authorization: `Bearer ${token}` },
-                              });
-                              if (res.ok) {
-                                setTasks((prev) => prev.filter((t) => t.id !== task.id));
-                              }
-                            }
-                          }}
-                        >
-                          🗑️
-                        </Button>
+                                method: "DELETE", headers: { Authorization: `Bearer ${token}`},});
+                              if (res.ok) {setTasks((prev) => prev.filter((t) => t.id !== task.id));
+                              }}}}>🗑️</Button>
                       </div>
                     </td>
                   </tr>
@@ -520,26 +459,12 @@
         )}
 
         <Dialog open={!!editingTask} onOpenChange={(open) => !open && setEditingTask(null)}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Редактировать задачу</DialogTitle>
-            </DialogHeader>
+          <DialogContent> <DialogHeader> <DialogTitle>Редактировать задачу</DialogTitle> </DialogHeader>
             <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
-              <Input
-                placeholder="Название"
-                value={editTitle}
-                onChange={(e) => setEditTitle(e.target.value)}
-              />
-              <textarea
-                placeholder="Описание"
-                value={editDesc}
-                onChange={(e) => setEditDesc(e.target.value)}
-              />
+              <Input placeholder="Название" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} />
+              <textarea placeholder="Описание" value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
             </div>
-            <DialogFooter>
-              <Button variant="outline" onClick={() => setEditingTask(null)}>
-                Отмена
-              </Button>
+            <DialogFooter> <Button variant="outline" onClick={() => setEditingTask(null)}> Отмена </Button>
               <Button onClick={saveEdit}>Сохранить</Button>
             </DialogFooter>
           </DialogContent>
