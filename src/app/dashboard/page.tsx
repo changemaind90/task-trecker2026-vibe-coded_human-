@@ -199,15 +199,9 @@
         </div>
 
         <Card style={{ marginBottom: 20 }}>
-          <CardHeader>
-            <CardTitle>Создать новую задачу</CardTitle>
-          </CardHeader>
-          <CardContent style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <Input
-              placeholder="Название задачи"
-              value={newTaskTitle}
-              onChange={(e) => setNewTaskTitle(e.target.value)}
-            />
+          <CardHeader> <CardTitle>Создать новую задачу</CardTitle> </CardHeader>
+          {/* <CardContent style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+            <Input placeholder="Название задачи" value={newTaskTitle} onChange={(e) => setNewTaskTitle(e.target.value)} />
             <textarea placeholder="Описание" value={newTaskDesc} onChange={(e) => setNewTaskDesc(e.target.value)} />
             <Select value={newTaskStatus} onValueChange={(value) => setNewTaskStatus(value ?? "TODO")}>
               <SelectTrigger className="w-[140px]"> <SelectValue /> </SelectTrigger>
@@ -237,6 +231,59 @@
             <Button onClick={createTask} disabled={isCreating}>
               {isCreating ? "Создание..." : "Добавить"}
             </Button>
+          </CardContent> */}
+          <CardContent style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <Input
+                placeholder="Название задачи"
+                value={newTaskTitle}
+                onChange={(e) => setNewTaskTitle(e.target.value)}
+              />
+              <Select value={newTaskStatus} onValueChange={(value) => setNewTaskStatus(value ?? "TODO")}>
+                <SelectTrigger className="w-[160px]"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="TODO">📋 Не назначена</SelectItem>
+                  <SelectItem value="IN_PROGRESS">⚙️ В работе</SelectItem>
+                  <SelectItem value="DONE">✅ Готово</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={newTaskPriority} onValueChange={(value) => setNewTaskPriority(value ?? "MEDIUM")}>
+                <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="LOW">🟢 Низкий</SelectItem>
+                  <SelectItem value="MEDIUM">🟡 Средний</SelectItem>
+                  <SelectItem value="HIGH">🔴 Высокий</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={newTaskProjectId} onValueChange={(value) => setNewTaskProjectId(value ?? "")}>
+                <SelectTrigger className="w-[180px]"><SelectValue placeholder="Без проекта" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="none">Без проекта</SelectItem>
+                  {projects.map((p) => (
+                    <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <textarea
+              placeholder="Описание"
+              value={newTaskDesc}
+              onChange={(e) => setNewTaskDesc(e.target.value)}
+              rows={3}
+              style={{
+                width: "100%",
+                padding: 10,
+                borderRadius: 6,
+                border: "1px solid #ccc",
+                resize: "vertical",
+                minHeight: 80,
+                fontFamily: "inherit",
+                background: "transparent",
+              }}
+            />
+            <Button onClick={createTask} disabled={isCreating} style={{ alignSelf: "flex-start" }}>
+              {isCreating ? "Создание..." : "Добавить"}
+            </Button>
           </CardContent>
         </Card>
 
@@ -253,7 +300,7 @@
             <Select value={filterStatus} onValueChange={(value) => setFilterStatus(value ?? "")}>
               <SelectTrigger className="w-[150px]">
                 <span>
-                  {filterStatus === "" || filterStatus === "all" ? "Все статусы" : ""}
+                  {(!filterStatus || filterStatus === "all") && "Все статусы"}
                   {filterStatus === "TODO" && "📋 Не назначена"}
                   {filterStatus === "IN_PROGRESS" && "⚙️ В работе"}
                   {filterStatus === "DONE" && "✅ Готово"}
