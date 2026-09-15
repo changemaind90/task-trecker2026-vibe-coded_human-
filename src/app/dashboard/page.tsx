@@ -208,25 +208,17 @@
               value={newTaskTitle}
               onChange={(e) => setNewTaskTitle(e.target.value)}
             />
-            <Input
-              placeholder="Описание"
-              value={newTaskDesc}
-              onChange={(e) => setNewTaskDesc(e.target.value)}
-            />
+            <textarea placeholder="Описание" value={newTaskDesc} onChange={(e) => setNewTaskDesc(e.target.value)} />
             <Select value={newTaskStatus} onValueChange={(value) => setNewTaskStatus(value ?? "TODO")}>
-              <SelectTrigger className="w-[140px]">
-                <SelectValue />
-              </SelectTrigger>
+              <SelectTrigger className="w-[140px]"> <SelectValue /> </SelectTrigger>
               <SelectContent>
-                <SelectItem value="TODO">TODO</SelectItem>
+                <SelectItem value="TODO">Не назначена</SelectItem>
                 <SelectItem value="IN_PROGRESS">В работе</SelectItem>
                 <SelectItem value="DONE">Готово</SelectItem>
               </SelectContent>
             </Select>
             <Select value={newTaskPriority} onValueChange={(value) => setNewTaskPriority(value ?? "none")}>
-              <SelectTrigger className="w-[140px]">
-                <SelectValue />
-              </SelectTrigger>
+              <SelectTrigger className="w-[140px]"> <SelectValue /> </SelectTrigger>
               <SelectContent>
                 <SelectItem value="LOW">🟢 Низкий</SelectItem>
                 <SelectItem value="MEDIUM">🟡 Средний</SelectItem>
@@ -234,9 +226,7 @@
               </SelectContent>
             </Select>
             <Select value={newTaskProjectId} onValueChange={(value) => setNewTaskProjectId(value ?? "")}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Без проекта" />
-              </SelectTrigger>
+              <SelectTrigger className="w-[180px]"> <SelectValue placeholder="Без проекта" /> </SelectTrigger>
               <SelectContent>
                 <SelectItem value="none">Без проекта</SelectItem>
                 {projects.map((p) => (
@@ -262,13 +252,18 @@
             />
             <Select value={filterStatus} onValueChange={(value) => setFilterStatus(value ?? "")}>
               <SelectTrigger className="w-[150px]">
-                <SelectValue placeholder="Все статусы" />
+                <span>
+                  {filterStatus === "" || filterStatus === "all" ? "Все статусы" : ""}
+                  {filterStatus === "TODO" && "📋 Не назначена"}
+                  {filterStatus === "IN_PROGRESS" && "⚙️ В работе"}
+                  {filterStatus === "DONE" && "✅ Готово"}
+                </span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Все статусы</SelectItem>
-                <SelectItem value="TODO">TODO</SelectItem>
-                <SelectItem value="IN_PROGRESS">В работе</SelectItem>
-                <SelectItem value="DONE">Готово</SelectItem>
+                <SelectItem value="TODO">📋 Не назначена</SelectItem>
+                <SelectItem value="IN_PROGRESS">⚙️ В работе</SelectItem>
+                <SelectItem value="DONE">✅ Готово</SelectItem>
               </SelectContent>
             </Select>
             <Select value={filterPriority} onValueChange={(value) => setFilterPriority(value ?? "")}>
@@ -320,12 +315,16 @@
               <tbody>
                 {filteredTasks.map((task) => (
                   <tr key={task.id} style={{ borderBottom: "1px solid #eee" }}>
-                    <td style={tdStyle}>
+                    {/* <td style={tdStyle}>
                       <div style={{ fontWeight: 500 }}>{task.title}</div>
                       {task.description && (
                         <div style={{ fontSize: 12, color: "#888" }}>{task.description}</div>
                       )}
+                    </td> */}
+                    <td style={tdStyle}>
+                      <div style={{ fontWeight: 500 }}>{task.title}</div>
                     </td>
+
                     <td style={tdStyle}>
                       <Select
                         value={task.projectId || "none"}
@@ -346,7 +345,11 @@
                         }}
                       >
                         <SelectTrigger className="w-[180px]">
-                          <SelectValue />
+                          <span>
+                            {task.projectId
+                              ? projects.find((p) => p.id === task.projectId)?.name || "—"
+                              : "Без проекта"}
+                          </span>
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="none">Без проекта</SelectItem>
@@ -376,10 +379,14 @@
                         }}
                       >
                         <SelectTrigger className="w-[130px]">
-                          <SelectValue />
+                          <span>
+                            {task.status === "TODO" && "📋 Не назначена"}
+                            {task.status === "IN_PROGRESS" && "⚙️ В работе"}
+                            {task.status === "DONE" && "✅ Готово"}
+                          </span>
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="TODO">TODO</SelectItem>
+                          <SelectItem value="TODO">Не назначена</SelectItem>
                           <SelectItem value="IN_PROGRESS">В работе</SelectItem>
                           <SelectItem value="DONE">Готово</SelectItem>
                         </SelectContent>
@@ -405,7 +412,11 @@
                         }}
                       >
                         <SelectTrigger className="w-[130px]">
-                          <SelectValue />
+                          <span>
+                            {task.priority === "LOW" && "🟢 Низкий"}
+                            {task.priority === "MEDIUM" && "🟡 Средний"}
+                            {task.priority === "HIGH" && "🔴 Высокий"}
+                          </span>
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="LOW">🟢 Низкий</SelectItem>
@@ -472,7 +483,7 @@
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
               />
-              <Input
+              <textarea
                 placeholder="Описание"
                 value={editDesc}
                 onChange={(e) => setEditDesc(e.target.value)}
