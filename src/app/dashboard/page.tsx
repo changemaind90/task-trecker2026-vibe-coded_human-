@@ -1,27 +1,14 @@
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "@/components/ui/select";
 import StatsPieChart from "@/components/StatsPieChart";
 
 type Task = {
@@ -87,9 +74,7 @@ export default function DashboardPage() {
         setLoading(false);
       });
 
-    fetch("/api/projects", { // загрузка проектов
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    fetch("/api/projects",{headers: {Authorization: `Bearer ${token}`},})
       .then((res) => (res.ok ? res.json() : []))
       .then((data) => setProjects(data))
       .catch(() => setProjects([]));
@@ -102,18 +87,14 @@ export default function DashboardPage() {
     const token = localStorage.getItem("token");
     const res = await fetch("/api/tasks", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
       body: JSON.stringify({
         title: newTaskTitle,
         description: newTaskDesc,
         status: newTaskStatus,
         priority: newTaskPriority,
         projectId: newTaskProjectId === "none" ? null : newTaskProjectId,
-      }),
-    });
+      }),});
 
     if (res.ok) {
       const newTask = await res.json();
@@ -133,10 +114,7 @@ export default function DashboardPage() {
     const token = localStorage.getItem("token");
     const res = await fetch(`/api/tasks/${editingTask.id}`, {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
       body: JSON.stringify({ title: editTitle, description: editDesc }),
     });
 
@@ -149,13 +127,23 @@ export default function DashboardPage() {
     }
   };
 
-  const filteredTasks = tasks.filter((task) => {
+  /* const filteredTasks = tasks.filter((task) => {
+    if (filterStatus && filterStatus !== "all" && task.status !== filterStatus) return false;
+    if (filterPriority && filterPriority !== "all" && task.priority !== filterPriority) return false;
+    if (filterProject && filterProject !== "all" && task.projectId !== filterProject) return false;
+    if (searchQuery && !task.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+    return true;
+  }); */
+
+  const filteredTasks = useMemo(() => {
+  return tasks.filter((task) => {
     if (filterStatus && filterStatus !== "all" && task.status !== filterStatus) return false;
     if (filterPriority && filterPriority !== "all" && task.priority !== filterPriority) return false;
     if (filterProject && filterProject !== "all" && task.projectId !== filterProject) return false;
     if (searchQuery && !task.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     return true;
   });
+}, [tasks, filterStatus, filterPriority, filterProject, searchQuery]);
 
   const stats = {
     total: tasks.length,
@@ -333,15 +321,11 @@ export default function DashboardPage() {
             <SelectTrigger className="w-[180px]">
               <span>
                 {(!filterProject || filterProject === "all")
-                  ? "Все проекты"
-                  : projects.find((p) => p.id === filterProject)?.name || "—"}
+                  ? "Все проекты" : projects.find((p) => p.id === filterProject)?.name || "—"}
               </span>
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Все проекты</SelectItem>
-              {projects.map((p) => (
-                <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
-              ))}
+            <SelectContent><SelectItem value="all">Все проекты</SelectItem>
+              {projects.map((p) => (<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>))}
             </SelectContent>
           </Select>
           <Button variant="outline"
