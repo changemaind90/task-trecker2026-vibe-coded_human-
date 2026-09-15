@@ -331,7 +331,11 @@ export default function DashboardPage() {
           </Select>
           <Select value={filterProject} onValueChange={(value) => setFilterProject(value ?? "")}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Все проекты" />
+              <span>
+                {(!filterProject || filterProject === "all")
+                  ? "Все проекты"
+                  : projects.find((p) => p.id === filterProject)?.name || "—"}
+              </span>
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Все проекты</SelectItem>
