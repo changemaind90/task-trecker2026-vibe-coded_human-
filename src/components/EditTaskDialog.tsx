@@ -1,0 +1,105 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+
+type Task = {
+  id: string;
+  title: string;
+  description: string | null;
+};
+
+type Props = {
+  task: Task | null;
+  onClose: () => void;
+  onUpdated: (task: any) => void;
+};
+
+export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Заполняем поля при открытии
+  useEffect(() => {
+    if (task) {
+      setTitle(task.title);
+      setDescription(task.description || "");
+    }
+  }, [task]);
+
+  const saveEdit = async () => {
+    if (!task) return;
+    setIsSaving(true);
+
+    const token = localStorage.getItem("token");
+    const res = await fetch(`/api/tasks/${task.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ title, description }),
+    });
+
+    if (res.ok) {
+      const updated = await res.json();
+      onUpdated(updated);
+      onClose();
+    } else {
+      alert("Ошибка сохранения");
+    }
+    setIsSaving(false);
+  };
+
+  return (
+    <Dialog open={!!task} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Редактировать задачу</DialogTitle>
+        </DialogHeader>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
+          <Input
+            placeholder="Название"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            placeholder="Описание"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={3}
+            style={{
+              width: "100%",
+              padding: 10,
+              borderRadius: 6,
+              border: "1px solid #ccc",
+              resize: "vertical",
+              minHeight: 80,
+              fontFamily: "inherit",
+              background: "transparent",
+            }}
+          />
+        </div>
+
+        <DialogFooter>
+          <Button variant="outline" onClick={onClose}>
+            Отмена
+          </Button>
+          <Button onClick={saveEdit} disabled={isSaving}>
+            {isSaving ? "Сохранение..." : "Сохранить"}
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
