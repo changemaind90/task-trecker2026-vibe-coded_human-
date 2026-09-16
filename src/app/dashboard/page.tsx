@@ -228,7 +228,13 @@ export default function DashboardPage() {
               onChange={(e) => setNewTaskTitle(e.target.value)}
             />
             <Select value={newTaskStatus} onValueChange={(value) => setNewTaskStatus(value ?? "TODO")}>
-              <SelectTrigger className="w-[160px]"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-[160px]">
+                <span>
+                  {newTaskStatus === "TODO" && "📋 Не назначена"}
+                  {newTaskStatus === "IN_PROGRESS" && "⚙️ В работе"}
+                  {newTaskStatus === "DONE" && "✅ Готово"}
+                </span>
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="TODO">📋 Не назначена</SelectItem>
                 <SelectItem value="IN_PROGRESS">⚙️ В работе</SelectItem>
@@ -236,7 +242,13 @@ export default function DashboardPage() {
               </SelectContent>
             </Select>
             <Select value={newTaskPriority} onValueChange={(value) => setNewTaskPriority(value ?? "MEDIUM")}>
-              <SelectTrigger className="w-[140px]"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-[140px]">
+                <span>
+                  {newTaskPriority === "LOW" && "🟢 Низкий"}
+                  {newTaskPriority === "MEDIUM" && "🟡 Средний"}
+                  {newTaskPriority === "HIGH" && "🔴 Высокий"}
+                </span>
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="LOW">🟢 Низкий</SelectItem>
                 <SelectItem value="MEDIUM">🟡 Средний</SelectItem>
@@ -244,7 +256,13 @@ export default function DashboardPage() {
               </SelectContent>
             </Select>
             <Select value={newTaskProjectId} onValueChange={(value) => setNewTaskProjectId(value ?? "")}>
-              <SelectTrigger className="w-[180px]"><SelectValue placeholder="Без проекта" /></SelectTrigger>
+              <SelectTrigger className="w-[180px]">
+                <span>
+                  {!newTaskProjectId || newTaskProjectId === "none"
+                    ? "Без проекта"
+                    : projects.find((p) => p.id === newTaskProjectId)?.name || "—"}
+                </span>
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="none">Без проекта</SelectItem>
                 {projects.map((p) => (
