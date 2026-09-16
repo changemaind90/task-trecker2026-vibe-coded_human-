@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,6 +22,9 @@ export default function LandingPage() {
         textAlign: "center",
         background: "linear-gradient(135deg, var(--background) 0%, var(--muted) 100%)",
       }}>
+        <div style={{ position: "absolute", top: 20, right: 20 }}>
+          <ThemeToggle />
+        </div>
         <h1 style={{ fontSize: "clamp(32px, 6vw, 64px)", fontWeight: 800, marginBottom: 20, lineHeight: 1.1 }}>
           TaskFlow — твой <span style={{ color: "#6366f1" }}>умный</span> менеджер задач
         </h1>
