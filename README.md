@@ -103,6 +103,15 @@ pnpm docker:prod
 # Остановка контейнера
 pnpm docker:down
 
+## 🧪 Тесты
+
+```bash
+# Watch-режим (для разработки)
+pnpm test
+
+# Один прогон (для CI)
+pnpm test:run
+
 🚀 TaskTracker2026 — Smart Task Manager
 
 ✨ My pet project for a portfolio.

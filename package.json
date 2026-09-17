@@ -13,7 +13,8 @@
     "docker:dev": "docker-compose -f docker-compose.dev.yml up",
     "docker:prod": "docker-compose -f docker-compose.yml up -d",
     "postinstall": "prisma generate",
-    "test": "vitest"
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
