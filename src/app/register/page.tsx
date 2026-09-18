@@ -30,18 +30,17 @@ export default function RegisterPage() {
   };
 
   return (
-    <div style={{ maxWidth: 400, margin: "50px auto" }}>
+    <div className="max-w-[400px] mx-auto text-center my-[50px] font-sans">
       <h1>Регистрация</h1>
 
       {success ? (
-        <div style={{ color: "green", padding: 20, border: "1px solid green", borderRadius: 8 }}>
+        <div className="text-green-500 p-4" style={{ border: "1px solid green", borderRadius: 8 }}>
           <p>✅ Регистрация успешна!</p>
           <p>Осталось подтвердить аккаунт в Telegram:</p>
           <a href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block", padding: "12px 24px", background: "#0088cc", color: "#fff", textDecoration: "none",
+            style={{ display: "inline-block", padding: "12px 24px", background: "#0088cc", color: "#fff", textDecoration: "none",
               borderRadius: 6, marginTop: 10,
             }} >
             🤖 Подтвердить в Telegram

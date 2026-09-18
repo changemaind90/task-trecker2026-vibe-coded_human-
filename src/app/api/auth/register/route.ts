@@ -20,6 +20,20 @@ export async function POST(request: Request) {
       );
     }
 
+    if (!password.trim()) {
+      return NextResponse.json(
+        { error: "Пароль не может состоять только из пробелов" },
+        { status: 400 }
+      );
+    }
+
+    if (!/[a-zA-Zа-яА-Я]/.test(password) || !/\d/.test(password)) {
+      return NextResponse.json(
+        { error: "Пароль должен содержать хотя бы одну букву и одну цифру" },
+        { status: 400 }
+      );
+    }
+
     const existingUser = await prisma.user.findUnique({
       where: { email },
     });
