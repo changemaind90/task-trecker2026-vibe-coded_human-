@@ -2,11 +2,10 @@
 
 # 🚀 TaskTracker2026 — (пет-проект) менеджер задач
 
-# Это приложение создано при помощи ИИ и человека.
-# Буду очень благодарен за структурированную критику и фидбек!
-
-# This app created with AI.
-# If you want some feedback and critic - you are welcome!
+## Это приложение создано при помощи ИИ и человека.
+## Буду очень благодарен за структурированную критику и фидбек!
+## This app created with AI.
+## If you want some feedback and critic - you are welcome!
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
