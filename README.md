@@ -1,6 +1,6 @@
-# 🚀 TaskTracker2026 — (пет-проект для мидл портфолио) менеджер задач
+![Tests](https://github.com/changemaind90/task-trecker2026-vibe-coded_human-/actions/workflows/test.yml/badge.svg)
 
-## ✨ Мои пет-проект для портфолио.
+# 🚀 TaskTracker2026 — (пет-проект) менеджер задач
 
 # Это приложение создано при помощи ИИ и человека.
 # Буду очень благодарен за структурированную критику и фидбек!
