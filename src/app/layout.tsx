@@ -24,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="ru" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="taskflow-theme" disableTransitionOnChange >
           <Navbar/>
           {children}
         </ThemeProvider>

@@ -107,7 +107,7 @@ export default function DashboardPage() {
         <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
       </div>
 
-      <Button onClick={() => setIsCreateDialogOpen(true)}>
+      <Button style={{ marginBottom: 20 }} onClick={() => setIsCreateDialogOpen(true)}>
         ➕ Создать задачу
       </Button>
 

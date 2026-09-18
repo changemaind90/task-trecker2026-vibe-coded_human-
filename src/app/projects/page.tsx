@@ -5,6 +5,13 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 type Project = {
   id: string;
@@ -21,6 +28,9 @@ export default function ProjectsPage() {
   const [newName, setNewName] = useState("");
   const [newDesc, setNewDesc] = useState("");
   const [isCreating, setIsCreating] = useState(false);
+  const [editingProject, setEditingProject] = useState<Project | null>(null);
+  const [editName, setEditName] = useState("");
+  const [editDesc, setEditDesc] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -113,6 +123,20 @@ export default function ProjectsPage() {
                 {new Date(project.createdAt).toLocaleDateString("ru-RU")}
               </p>
               <div style={{ marginTop: 10 }}>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setEditingProject(project);
+                    setEditName(project.name);
+                    setEditDesc(project.description || "");
+                  }}
+                  style={{ marginRight: 8 }}
+                >
+                  ✏️ Редактировать
+                </Button>
+
                 <Button
                   variant="destructive"
                   size="sm"
@@ -135,6 +159,56 @@ export default function ProjectsPage() {
           </Card>
         ))
       )}
+
+      <Dialog open={!!editingProject} onOpenChange={(open) => !open && setEditingProject(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Редактировать проект</DialogTitle>
+          </DialogHeader>
+          <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
+            <Input
+              placeholder="Название"
+              value={editName}
+              onChange={(e) => setEditName(e.target.value)}
+            />
+            <Input
+              placeholder="Описание"
+              value={editDesc}
+              onChange={(e) => setEditDesc(e.target.value)}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setEditingProject(null)}>
+              Отмена
+            </Button>
+            <Button
+              onClick={async () => {
+                if (!editingProject) return;
+                const token = localStorage.getItem("token");
+                const res = await fetch(`/api/projects/${editingProject.id}`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
+                  body: JSON.stringify({ name: editName, description: editDesc }),
+                });
+                if (res.ok) {
+                  const updated = await res.json();
+                  setProjects((prev) =>
+                    prev.map((p) =>
+                      p.id === updated.id ? { ...updated, tasks: p.tasks } : p
+                    )
+                  );
+                  setEditingProject(null);
+                }
+              }}
+            >
+              Сохранить
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
