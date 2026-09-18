@@ -103,11 +103,11 @@ export default function DashboardPage() {
         <h1>Мои задачи</h1>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 20 }}>
+      <div className="display-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 20 }}>
         <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
       </div>
 
-      <Button style={{ marginBottom: 20 }} onClick={() => setIsCreateDialogOpen(true)}>
+      <Button className="mb-5" onClick={() => setIsCreateDialogOpen(true)}>
         ➕ Создать задачу
       </Button>
 
@@ -126,8 +126,8 @@ export default function DashboardPage() {
       {filteredTasks.length === 0 ? (
         <p>{tasks.length === 0 ? "Задач пока нет" : "Ничего не найдено по фильтрам"}</p>
       ) : (
-        <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14 }}>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/50 text-left">
                 <th style={thStyle}>Название</th>

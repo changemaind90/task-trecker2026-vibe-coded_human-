@@ -30,11 +30,9 @@ export default function LoginPage() {
         return;
       }
 
-      // ✅ Сохраняем токен в localStorage и cookie
       localStorage.setItem("token", data.token);
       document.cookie = `token=${data.token}; path=/; max-age=604800`; // 7 дней
 
-      // ✅ Редирект на дашборд
       router.push("/dashboard");
     } catch (err) {
       setError("Ошибка соединения с сервером");
@@ -46,7 +44,7 @@ export default function LoginPage() {
   return (
     <div style={{ maxWidth: 400, margin: "50px auto" }}>
       <h1>Вход</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20, }}>
         <input
           type="email"
           placeholder="Email"

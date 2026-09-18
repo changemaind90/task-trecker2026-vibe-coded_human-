@@ -9,12 +9,10 @@ export function middleware(request: NextRequest) {
   const isDashboard = request.nextUrl.pathname.startsWith("/dashboard");
   const isApi = request.nextUrl.pathname.startsWith("/api");
 
-  // Если пользователь на странице входа и уже авторизован — редирект на дашборд
   if (isAuthPage && token && verifyToken(token)) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
-  // Защищаем дашборд и API (кроме /api/auth)
   if ((isDashboard || (isApi && !request.nextUrl.pathname.startsWith("/api/auth"))) && !token) {
     return NextResponse.redirect(new URL("/login", request.url));
   }

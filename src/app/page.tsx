@@ -15,7 +15,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div style={{ width: "100%" }}>
+    <div className="w-full">
       {/* HERO */}
       <section style={{
         padding: "80px 30px 60px",
