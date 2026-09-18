@@ -44,7 +44,7 @@ export default function LoginPage() {
   return (
     <div style={{ maxWidth: 400, margin: "50px auto" }}>
       <h1>Вход</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20, }}>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="email"
           placeholder="Email"
@@ -62,7 +62,7 @@ export default function LoginPage() {
         <button type="submit" disabled={loading}>
           {loading ? "Вход..." : "Войти"}
         </button>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className="text-red-500">{error}</p>}
       </form>
       <p>
         Нет аккаунта? <Link href="/register">Зарегистрироваться</Link>

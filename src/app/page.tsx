@@ -17,37 +17,33 @@ export default function LandingPage() {
   return (
     <div className="w-full">
       {/* HERO */}
-      <section style={{
-        padding: "80px 30px 60px",
-        textAlign: "center",
-        background: "linear-gradient(135deg, var(--background) 0%, var(--muted) 100%)",
-      }}>
-        <div style={{ position: "absolute", top: 20, right: 20 }}>
+      <section className="p-[80px_30px_60px] text-center bg-[linear-gradient(135deg,var(--background)_0%,var(--muted)_100%)]">
+        <div className="absolute top-5 right-5">
           <ThemeToggle />
         </div>
-        <h1 style={{ fontSize: "clamp(32px, 6vw, 64px)", fontWeight: 800, marginBottom: 20, lineHeight: 1.1 }}>
+        <h1 className="text-[clamp(32px,6vw,64px)] font-bold mb-5 leading-[1.1]">
           TaskFlow — твой <span style={{ color: "#6366f1" }}>умный</span> менеджер задач
         </h1>
-        <p style={{ fontSize: "clamp(16px, 2vw, 20px)", maxWidth: 700, margin: "0 auto 40px", color: "var(--muted-foreground)" }}>
+        <p className="text-[clamp(16px,2vw,20px)] max-w-[700px] mx-auto mb-10 text-[var(--muted-foreground)]">
           Управляй задачами, проектами и приоритетами в одном месте. Фильтруй, сортируй, анализируй — и всё это в красивом интерфейсе с тёмной темой.
         </p>
 
-        <div style={{ display: "flex", gap: 15, justifyContent: "center", flexWrap: "wrap" }}>
+        <div className="flex gap-3.75 justify-center flex-wrap">
           {isLoggedIn ? (
             <Link href="/dashboard">
-              <Button size="lg" style={{ fontSize: 16, padding: "12px 32px" }}>
+              <Button size="lg" className="text-base px-8 py-3">
                 🚀 Перейти к задачам
               </Button>
             </Link>
           ) : (
             <>
               <Link href="/register">
-                <Button size="lg" style={{ fontSize: 16, padding: "12px 32px" }}>
+                <Button size="lg" className="text-base px-8 py-3">
                   🚀 Начать бесплатно
                 </Button>
               </Link>
               <Link href="/login">
-                <Button size="lg" variant="outline" style={{ fontSize: 16, padding: "12px 32px" }}>
+                <Button size="lg" variant="outline" className="text-base px-8 py-3">
                   Войти
                 </Button>
               </Link>
@@ -57,12 +53,12 @@ export default function LandingPage() {
       </section>
 
       {/* FEATURES */}
-      <section style={{ padding: "60px 30px", maxWidth: 1200, margin: "0 auto" }}>
-        <h2 style={{ fontSize: "clamp(24px, 4vw, 40px)", textAlign: "center", marginBottom: 40 }}>
+      <section className="p-[60px_30px] max-w-[1200px] mx-auto">
+        <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
           ✨ Что умеет TaskFlow
         </h2>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
           <Card>
             <CardHeader>
               <CardTitle>📋 Задачи</CardTitle>
@@ -119,42 +115,34 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section style={{ padding: "60px 30px", maxWidth: 1200, margin: "0 auto" }}>
-        <h2 style={{ fontSize: "clamp(24px, 4vw, 40px)", textAlign: "center", marginBottom: 40 }}>
+      <section className="p-[60px_30px] max-w-[1200px] mx-auto">
+        <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
           📸 Как это выглядит
         </h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }}>
-          <img src="/screenshots/dashboard.png" alt="Дашборд" style={{ width: "100%", borderRadius: 12, border: "1px solid var(--border)" }} />
-          <img src="/screenshots/create-task.png" alt="Создание задачи" style={{ width: "100%", borderRadius: 12, border: "1px solid var(--border)" }} />
-          <img src="/screenshots/stats.png" alt="Статистика" style={{ width: "100%", borderRadius: 12, border: "1px solid var(--border)" }} />
-          <img src="/screenshots/dark-theme.png" alt="Тёмная тема" style={{ width: "100%", borderRadius: 12, border: "1px solid var(--border)" }} />
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
+          <img src="/screenshots/dashboard.png" alt="Дашборд" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
+          <img src="/screenshots/create-task.png" alt="Создание задачи" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
+          <img src="/screenshots/stats.png" alt="Статистика" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
+          <img src="/screenshots/dark-theme.png" alt="Тёмная тема" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
         </div>
       </section>
 
       {/* TECH STACK */}
-      <section style={{ padding: "60px 30px", background: "var(--muted)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <h2 style={{ fontSize: "clamp(24px, 4vw, 40px)", textAlign: "center", marginBottom: 40 }}>
+      <section className="p-[60px_30px] bg-[var(--muted)]">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
             🛠️ Технологии
           </h2>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
+          <div className="flex flex-wrap gap-3 justify-center">
             {[
               "Next.js 16", "TypeScript", "PostgreSQL", "Prisma 7",
               "Tailwind CSS", "shadcn/ui", "JWT + bcrypt", "Vercel",
               "Docker", "Recharts", "Zod", "Telegram Bot"
             ].map((tech) => (
-              <span
-                key={tech}
-                style={{
-                  padding: "8px 16px",
-                  background: "var(--background)",
-                  border: "1px solid var(--border)",
-                  borderRadius: 20,
-                  fontSize: 14,
-                  fontWeight: 500,
-                }}
-              >
+              <span key={tech}
+              className="p-[8px_16px]  bg-[var(--background)] border-[1px] border-solid border-[var(--border)] rounded-[20px] text-[14px] font-medium"
+                >
                 {tech}
               </span>
             ))}
@@ -163,17 +151,17 @@ export default function LandingPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: "80px 30px", textAlign: "center" }}>
-        <h2 style={{ fontSize: "clamp(24px, 4vw, 40px)", marginBottom: 20 }}>
+      <section className="p-[80px_30px] text-center">
+        <h2 className="text-[clamp(24px,4vw,40px)] mb-5">
           Готов навести порядок в задачах? 🎯
         </h2>
-        <p style={{ fontSize: 18, color: "var(--muted-foreground)", marginBottom: 30 }}>
+        <p className="text-[18px] text-[var(--muted-foreground)] mb-7.5">
           Регистрация занимает 10 секунд. Бесплатно. Без карты.
         </p>
 
         {!isLoggedIn && (
           <Link href="/register">
-            <Button size="lg" style={{ fontSize: 16, padding: "12px 32px" }}>
+            <Button size="lg" className="text-base px-8 py-3">
               Создать аккаунт
             </Button>
           </Link>
@@ -181,20 +169,9 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer style={{
-        padding: "30px",
-        textAlign: "center",
-        borderTop: "1px solid var(--border)",
-        fontSize: 14,
-        color: "var(--muted-foreground)",
-      }}>
-        <p>
-          TaskFlow © 2026 · Сделано с ❤️ на Next.js ·{" "}
-          <a
-            href="https://github.com/changemaind90/task-trecker2026-vibe-coded_human-"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#6366f1", textDecoration: "underline" }}
+      <footer > <p> TaskFlow © 2026 · Сделано с ❤️ на Next.js ·{" "}
+          <a href="https://github.com/changemaind90/task-trecker2026-vibe-coded_human-"
+            target="_blank" rel="noopener noreferrer" className="text-[#6366f1] underline"
           >
             GitHub
           </a>

@@ -98,12 +98,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div style={{ width: "100%", padding: "20px 30px" }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
+    <div className="w-full p-20/30">
+      <div className="flex justify-between items-center mb-20">
         <h1>Мои задачи</h1>
       </div>
 
-      <div className="display-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: 10, marginBottom: 20 }}>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2.5 mb-5">
         <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
       </div>
 
@@ -225,7 +225,7 @@ export default function DashboardPage() {
                   <td style={tdStyle}>{task.startedAt ? new Date(task.startedAt).toLocaleDateString("ru-RU") : "—"}</td>
                   <td style={tdStyle}> {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"} </td>
                   <td style={tdStyle}>
-                    <div style={{ display: "flex", gap: 5 }}>
+                    <div className="flex gap-1.25">
                       <Button variant="outline" size="sm" onClick={() => setEditingTask(task)}>✏️</Button>
                       <Button variant="destructive" size="sm" onClick={async () => {
                           if (window.confirm("Удалить задачу?")) {
