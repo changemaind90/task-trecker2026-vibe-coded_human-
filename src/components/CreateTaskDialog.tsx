@@ -70,18 +70,10 @@ export default function CreateTaskDialog({ open, onOpenChange, projects, onCreat
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Создать новую задачу</DialogTitle>
-        </DialogHeader>
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "10px 0" }}>
-          <Input
-            placeholder="Название задачи"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <DialogHeader> <DialogTitle>Создать новую задачу</DialogTitle></DialogHeader>
+        <div className="flex flex-col gap-[10px] py-[10px]">
+          <Input placeholder="Название задачи" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <div className="flex flex-wrap gap-[10px]">
             <Select value={status} onValueChange={(v) => setStatus(v ?? "TODO")}>
               <SelectTrigger className="w-[160px]">
                 <span>
@@ -114,36 +106,18 @@ export default function CreateTaskDialog({ open, onOpenChange, projects, onCreat
 
             <Select value={projectId} onValueChange={(v) => setProjectId(v ?? "none")}>
               <SelectTrigger className="w-[180px]">
-                <span>
-                  {projectId === "none"
-                    ? "Без проекта"
-                    : projects.find((p) => p.id === projectId)?.name || "—"}
+                <span> {projectId === "none" ? "Без проекта" : projects.find((p) => p.id === projectId)?.name || "—"}
                 </span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="none">Без проекта</SelectItem>
-                {projects.map((p) => (
-                  <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
-                ))}
+                {projects.map((p) => (<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem> ))}
               </SelectContent>
             </Select>
           </div>
 
-          <textarea
-            placeholder="Описание"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            style={{
-              width: "100%",
-              padding: 10,
-              borderRadius: 6,
-              border: "1px solid #ccc",
-              resize: "vertical",
-              minHeight: 80,
-              fontFamily: "inherit",
-              background: "transparent",
-            }}
+          <textarea placeholder="Описание" value={description} onChange={(e) => setDescription(e.target.value)} rows={3}
+            className="w-full p-2 rounded-[6px] border border-[#ccc] resize-y min-h-[80px] font-[inherit] bg-transparent"
           />
         </div>
 

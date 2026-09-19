@@ -169,7 +169,7 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer > <p> TaskFlow © 2026 · Сделано с ❤️ на Next.js ·{" "}
+      <footer > <p> TaskTracker © 2026 · Сделано с ❤️ на Next.js ·{" "}
           <a href="https://github.com/changemaind90/task-trecker2026-vibe-coded_human-"
             target="_blank" rel="noopener noreferrer" className="text-[#6366f1] underline"
           >

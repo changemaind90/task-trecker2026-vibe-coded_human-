@@ -40,15 +40,14 @@ export default function RegisterPage() {
           <a href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ display: "inline-block", padding: "12px 24px", background: "#0088cc", color: "#fff", textDecoration: "none",
-              borderRadius: 6, marginTop: 10,
-            }} >
+            className="inline-block px-6 py-3 bg-[#0088cc] text-white no-underline rounded-md mt-2.5"
+            >
             🤖 Подтвердить в Telegram
           </a>
-          <p style={{ marginTop: 15, fontSize: 13, color: "#888" }}> После подтверждения войдите с email и паролем. </p>
+          <p className="mt-4 text-sm text-gray-500">После подтверждения войдите с email и паролем. </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
           <input
             type="text"
             placeholder="Имя (необязательно)"
@@ -73,7 +72,7 @@ export default function RegisterPage() {
           <button type="submit" disabled={loading}>
             {loading ? "Регистрация..." : "Зарегистрироваться"}
           </button>
-          {error && <p style={{ color: "red" }}>{error}</p>}
+          {error && <p className="test-red">{error}</p>}
         </form>
       )}
 

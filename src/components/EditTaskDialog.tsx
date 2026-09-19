@@ -62,42 +62,16 @@ export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
 
   return (
     <Dialog open={!!task} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Редактировать задачу</DialogTitle>
-        </DialogHeader>
-
+      <DialogContent><DialogHeader><DialogTitle>Редактировать задачу</DialogTitle></DialogHeader>
         <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
-          <Input
-            placeholder="Название"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            placeholder="Описание"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            style={{
-              width: "100%",
-              padding: 10,
-              borderRadius: 6,
-              border: "1px solid #ccc",
-              resize: "vertical",
-              minHeight: 80,
-              fontFamily: "inherit",
-              background: "transparent",
-            }}
+          <Input placeholder="Название" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <textarea placeholder="Описание" value={description} onChange={(e) => setDescription(e.target.value)}rows={3}
+            className="w-full p-[10px] rounded-[6px] border border-[#ccc] resize-y min-h-[80px] font-[inherit] bg-transparent"
           />
         </div>
-
         <DialogFooter>
-          <Button variant="outline" onClick={onClose}>
-            Отмена
-          </Button>
-          <Button onClick={saveEdit} disabled={isSaving}>
-            {isSaving ? "Сохранение..." : "Сохранить"}
-          </Button>
+          <Button variant="outline" onClick={onClose}>Отмена</Button>
+          <Button onClick={saveEdit} disabled={isSaving}>{isSaving ? "Сохранение..." : "Сохранить"}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

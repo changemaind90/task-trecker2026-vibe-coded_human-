@@ -143,9 +143,9 @@ export default function DashboardPage() {
 
             <tbody>
               {filteredTasks.map((task) => (
-                <tr key={task.id} style={{ borderBottom: "1px solid #eee" }}>
+                <tr key={task.id} className="border-b border-[#eee]">
                   <td style={tdStyle}>
-                    <div style={{ fontWeight: 500 }}>{task.title}</div>
+                    <div className="font-medium">{task.title}</div>
                   </td>
 
                   <td style={tdStyle}>

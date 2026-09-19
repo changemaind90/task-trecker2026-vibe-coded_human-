@@ -9,30 +9,17 @@
     const router = useRouter();
     const pathname = usePathname();
 
-    if (pathname === "/" || pathname === "/login" || pathname === "/register") {
-      return null;
-    }
+    if (pathname === "/" || pathname === "/login" || pathname === "/register"){return null;}
 
     return (
-      <nav style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "10px 20px",
-        borderBottom: "1px solid var(--border)",
-        marginBottom: 20,
-      }}>
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+      <nav className="flex items-center justify-between px-[20px] py-[10px] border-b border-[var(--border)] mb-5">
+        <div className="flex items-center gap-[10px]">
           <Button variant="outline" onClick={() => router.push("/dashboard")}>📋 Задачи</Button>
           <Button variant="outline" onClick={() => router.push("/projects")}>📁 Проекты</Button>
         </div>
-        <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+        <div className="flex items-center gap-[10px]">
           <ThemeToggle />
-          <Button variant="outline" onClick={() => {
-            localStorage.removeItem("token");
-            router.push("/login");
-          }}>Выйти
-          </Button>
+          <Button variant="outline" onClick={() =>{localStorage.removeItem("token");router.push("/login");}}>Выйти</Button>
         </div>
       </nav>
     );

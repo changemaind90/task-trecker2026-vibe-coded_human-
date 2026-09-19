@@ -59,16 +59,13 @@ export default function LoginPage() {
             <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"></span>
             Вход...
           </>
-        ) : (
-          "Войти"
-        )}
+        ) : ("Войти")}
         </button>
         {error && <p className="text-red-500">{error}</p>}
       </form>
       <p className="text-sm text-[var(--muted-foreground)]">
         Нет аккаунта?
-        <Link href="/register"
-          className="text-[#6366f1] underline hover:text-[#4f46ba]">
+        <Link href="/register" className="text-[#6366f1] underline hover:text-[#4f46ba]">
           Зарегистрироваться
         </Link>
       </p>

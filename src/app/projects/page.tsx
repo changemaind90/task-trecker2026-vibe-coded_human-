@@ -79,32 +79,20 @@ export default function ProjectsPage() {
   if (loading) return <div>Загрузка...</div>;
 
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: 20 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 20 }}>
+    <div className="max-w-[800px] mx-auto p-5">
+      <div className="flex justify-between mb-5">
         <h1>Проекты</h1>
         <Button variant="outline" onClick={() => router.push("/dashboard")}>
           ← К задачам
         </Button>
       </div>
 
-      <Card style={{ marginBottom: 20 }}>
-        <CardHeader>
-          <CardTitle>Создать проект</CardTitle>
-        </CardHeader>
-        <CardContent style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          <Input
-            placeholder="Название проекта"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-          />
-          <Input
-            placeholder="Описание"
-            value={newDesc}
-            onChange={(e) => setNewDesc(e.target.value)}
-          />
-          <Button onClick={createProject} disabled={isCreating}>
-            {isCreating ? "Создание..." : "Добавить"}
-          </Button>
+      <Card className="mb-5">
+        <CardHeader> <CardTitle>Создать проект</CardTitle> </CardHeader>
+        <CardContent className="flex flex-wrap gap-2.5">
+          <Input placeholder="Название проекта" value={newName} onChange={(e) => setNewName(e.target.value)} />
+          <Input placeholder="Описание" value={newDesc} onChange={(e) => setNewDesc(e.target.value)} />
+          <Button onClick={createProject} disabled={isCreating}> {isCreating ? "Создание..." : "Добавить"} </Button>
         </CardContent>
       </Card>
 
@@ -118,38 +106,29 @@ export default function ProjectsPage() {
             </CardHeader>
             <CardContent>
               <p>{project.description || "Нет описания"}</p>
-              <p style={{ fontSize: 12, color: "#888", marginTop: 10 }}>
+              <p className="text-[12px] text-[#888] mt-2.5">
                 Задач: {project.tasks.length} • Создан:{" "}
                 {new Date(project.createdAt).toLocaleDateString("ru-RU")}
               </p>
-              <div style={{ marginTop: 10 }}>
+              <div className="mt-2.5">
 
-                <Button
-                  variant="outline"
-                  size="sm"
+                <Button variant="outline" size="sm"
                   onClick={() => {
                     setEditingProject(project);
                     setEditName(project.name);
                     setEditDesc(project.description || "");
                   }}
-                  style={{ marginRight: 8 }}
-                >
-                  ✏️ Редактировать
+                  className="mr-2"
+                > ✏️ Редактировать
                 </Button>
 
-                <Button
-                  variant="destructive"
-                  size="sm"
+                <Button variant="destructive" size="sm"
                   onClick={async () => {
                     if (!window.confirm("Удалить проект?")) return;
                     const token = localStorage.getItem("token");
                     const res = await fetch(`/api/projects/${project.id}`, {
-                      method: "DELETE",
-                      headers: { Authorization: `Bearer ${token}` },
-                    });
-                    if (res.ok) {
-                      setProjects((prev) => prev.filter((p) => p.id !== project.id));
-                    }
+                      method: "DELETE", headers: { Authorization: `Bearer ${token}` }, });
+                    if (res.ok) { setProjects((prev) => prev.filter((p) => p.id !== project.id)); }
                   }}
                 >
                   🗑️ Удалить
@@ -165,32 +144,18 @@ export default function ProjectsPage() {
           <DialogHeader>
             <DialogTitle>Редактировать проект</DialogTitle>
           </DialogHeader>
-          <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
-            <Input
-              placeholder="Название"
-              value={editName}
-              onChange={(e) => setEditName(e.target.value)}
-            />
-            <Input
-              placeholder="Описание"
-              value={editDesc}
-              onChange={(e) => setEditDesc(e.target.value)}
-            />
+          <div className="flex flex-col gap-[15px] py-[10px]">
+            <Input placeholder="Название" value={editName} onChange={(e) => setEditName(e.target.value)} />
+            <Input placeholder="Описание" value={editDesc} onChange={(e) => setEditDesc(e.target.value)} />
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setEditingProject(null)}>
-              Отмена
-            </Button>
-            <Button
-              onClick={async () => {
+            <Button variant="outline" onClick={() => setEditingProject(null)}> Отмена </Button>
+            <Button onClick={async () => {
                 if (!editingProject) return;
                 const token = localStorage.getItem("token");
                 const res = await fetch(`/api/projects/${editingProject.id}`, {
                   method: "PUT",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                  },
+                  headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
                   body: JSON.stringify({ name: editName, description: editDesc }),
                 });
                 if (res.ok) {
