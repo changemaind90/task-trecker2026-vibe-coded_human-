@@ -31,7 +31,7 @@ export default function TaskFilters({
   projects,
 }: Props) {
   return (
-    <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 20 }}>
+    <div className="flex flex-wrap gap-[10px] mb-5">
       <Input
         placeholder="🔍 Поиск по названию"
         value={searchQuery}
@@ -76,29 +76,17 @@ export default function TaskFilters({
       <Select value={filterProject} onValueChange={(v) => setFilterProject(v ?? "")}>
         <SelectTrigger className="w-[180px]">
           <span>
-            {(!filterProject || filterProject === "all")
-              ? "Все проекты"
-              : projects.find((p) => p.id === filterProject)?.name || "—"}
+            {(!filterProject || filterProject === "all") ? "Все проекты" : projects.find((p) => p.id === filterProject)?.name || "—"}
           </span>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">Все проекты</SelectItem>
-          {projects.map((p) => (
-            <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
-          ))}
+          {projects.map((p) =>(<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>))}
         </SelectContent>
       </Select>
 
-      <Button
-        variant="outline"
-        onClick={() => {
-          setFilterStatus("");
-          setFilterPriority("");
-          setFilterProject("");
-          setSearchQuery("");
-        }}
-      >
-        Сбросить
+      <Button variant="outline" onClick={() => { setFilterStatus(""); setFilterPriority(""); setFilterProject(""); setSearchQuery("");
+        }}>Сбросить
       </Button>
     </div>
   );

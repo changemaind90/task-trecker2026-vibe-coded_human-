@@ -29,20 +29,14 @@ export default function StatsPieChart({ todo, inProgress, done }: {
               animationDuration={1800}
               animationEasing="ease-in-out"
               label
-            >
-              {data.map((entry, i) => (
-                <Cell key={i} fill={COLORS[i]} />
-              ))}
+            >{data.map((entry, i)=>(<Cell key={i} fill={COLORS[i]}/>))}
             </Pie>
           </PieChart>
         </ResponsiveContainer>
-        <div style={{ display: "flex", justifyContent: "center", gap: 15, marginTop: 10, flexWrap: "wrap" }}>
+        <div className="flex flex-wrap justify-center gap-[15px] mt-[10px]">
           {data.map((entry) => (
-            <div key={entry.name} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13 }}>
-              <span style={{
-                width: 12, height: 12, borderRadius: "50%",
-                background: entry.color, display: "inline-block"
-              }} />
+            <div key={entry.name} className="flex items-center gap-[6px] text-[13px]">
+              <span className="inline-block w-3 h-3 rounded-full" style={{background: entry.color}}/>
               <span>{entry.name}: <strong>{entry.value}</strong></span>
             </div>
           ))}
