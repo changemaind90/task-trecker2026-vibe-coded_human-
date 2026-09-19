@@ -86,31 +86,17 @@ export default function DashboardPage() {
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div style={{ color: "red" }}>Ошибка: {error}</div>;
 
-  const thStyle: React.CSSProperties = {
-    padding: "10px 12px",
-    borderBottom: "2px solid #ddd",
-    fontWeight: 600,
-  };
-
-  const tdStyle: React.CSSProperties = {
-    padding: "10px 12px",
-    verticalAlign: "top",
-  };
+  const thStyle: React.CSSProperties = {padding: "10px 12px", borderBottom: "2px solid #ddd", fontWeight: 600,};
+  const tdStyle: React.CSSProperties = {padding: "10px 12px", verticalAlign: "top",};
 
   return (
     <div className="w-full p-20/30">
-      <div className="flex justify-between items-center mb-20">
-        <h1>Мои задачи</h1>
-      </div>
-
       <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2.5 mb-5">
         <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
       </div>
-
       <Button className="mb-5" onClick={() => setIsCreateDialogOpen(true)}>
         ➕ Создать задачу
       </Button>
-
       <TaskFilters
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -122,7 +108,9 @@ export default function DashboardPage() {
         setFilterProject={setFilterProject}
         projects={projects}
       />
-
+      <div className="flex justify-center items-center mb-4">
+        <h1>Мои задачи</h1>
+      </div>
       {filteredTasks.length === 0 ? (
         <p>{tasks.length === 0 ? "Задач пока нет" : "Ничего не найдено по фильтрам"}</p>
       ) : (
