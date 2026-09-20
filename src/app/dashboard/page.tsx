@@ -1,70 +1,27 @@
 
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react"; 
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, } from "@/components/ui/select";
 import StatsPieChart from "@/components/StatsPieChart";
 import CreateTaskDialog from "@/components/CreateTaskDialog";
 import TaskFilters from "@/components/TaskFilters";
 import EditTaskDialog from "@/components/EditTaskDialog";
+import { useTasks, type Task } from "@/hooks/useTasks";
 
-type Task = {
-  id: string;
-  title: string;
-  description: string | null;
-  status: string;
-  priority: string;
-  deadline: string | null;
-  startedAt: string | null;
-  completedAt: string | null;
-  createdAt: string;
-  projectId: string | null;
-  project: { id: string; name: string } | null;
-};
+import { useProjects } from "@/hooks/useProjects";
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");  
-  const [projects, setProjects] = useState<{ id: string; name: string }[]>([]);  
   const [filterStatus, setFilterStatus] = useState("");
   const [filterPriority, setFilterPriority] = useState("");
   const [filterProject, setFilterProject] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) { router.push("/login"); return; }
-    fetch("/api/tasks", { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json", },
-    }).then(async (res) => {
-        if (!res.ok) {
-          if (res.status === 401) {
-            localStorage.removeItem("token");
-            router.push("/login");
-            return;
-          }
-          const text = await res.text();
-          throw new Error(`HTTP ${res.status}: ${text}`);
-        }
-        return res.json(); })
-      .then((data) => { if (data) { setTasks(data); } setLoading(false); })
-      .catch((err) => {
-        console.error("Ошибка загрузки задач:", err);
-        setError(err.message);
-        setLoading(false);
-      });
-
-    fetch("/api/projects",{headers: {Authorization: `Bearer ${token}`},})
-      .then((res) => (res.ok ? res.json() : []))
-      .then((data) => setProjects(data))
-      .catch(() => setProjects([]));
-  }, [router]);
-
+  
+  const { projects } = useProjects();
+  const { tasks, isLoading: loading, error, updateTask, deleteTask, createTask, refetch } = useTasks();
   const filteredTasks = useMemo(() => {
     return tasks.filter((task) => {
       if (filterStatus && filterStatus !== "all" && task.status !== filterStatus) return false;
@@ -84,13 +41,10 @@ export default function DashboardPage() {
   };
 
   if (loading) return <div>Загрузка...</div>;
-  if (error) return <div style={{ color: "red" }}>Ошибка: {error}</div>;
-
-  const thStyle: React.CSSProperties = {padding: "10px 12px", borderBottom: "2px solid #ddd", fontWeight: 600,};
-  const tdStyle: React.CSSProperties = {padding: "10px 12px", verticalAlign: "top",};
+  if (error) return <div className="text-red">Ошибка: {error.message}</div>;
 
   return (
-    <div className="w-full p-20/30">
+    <div className="w-full px-8 py-5">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2.5 mb-5">
         <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
       </div>
@@ -118,37 +72,27 @@ export default function DashboardPage() {
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/50 text-left">
-                <th style={thStyle}>Название</th>
-                <th style={thStyle}>Проект</th>
-                <th style={thStyle}>Статус</th>
-                <th style={thStyle}>Приоритет</th>
-                <th style={thStyle}>Создана</th>
-                <th style={thStyle}>Начата</th>
-                <th style={thStyle}>Завершена</th>
-                <th style={thStyle}>Действия</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Название</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Проект</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Статус</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Приоритет</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Создана</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Начата</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Завершена</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Действия</th>
               </tr>
             </thead>
 
             <tbody>
               {filteredTasks.map((task) => (
-                <tr key={task.id} className="border-b border-[#eee]">
-                  <td style={tdStyle}>
+                <tr key={task.id} className="border-b border-border">
+                  <td className="px-3 py-2.5 align-top">
                     <div className="font-medium">{task.title}</div>
                   </td>
 
-                  <td style={tdStyle}>
+                  <td className="px-3 py-2.5 align-top">
                     <Select value={task.projectId || "none"}
-                      onValueChange={async (value) => {
-                        const token = localStorage.getItem("token");
-                        const res = await fetch(`/api/tasks/${task.id}`, {
-                          method: "PUT", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
-                          body: JSON.stringify({ projectId: value === "none" ? null : value }),
-                        });
-                        if (res.ok) {
-                          const updated = await res.json();
-                          setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
-                        }
-                      }}>
+                      onValueChange={(value) => updateTask({id: task.id, data: { projectId: value === "none" ? null : value }})}>
                       <SelectTrigger className="w-[180px]">
                         <span>{task.projectId ? projects.find((p) => p.id === task.projectId)?.name || "—" : "Без проекта"}</span>
                       </SelectTrigger>
@@ -157,19 +101,10 @@ export default function DashboardPage() {
                         {projects.map((p) => (<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>))}
                       </SelectContent>
                     </Select>
+
                   </td>
-                  <td style={tdStyle}>
-                    <Select value={task.status}
-                      onValueChange={async (value) => {
-                        const token = localStorage.getItem("token");
-                        const res = await fetch(`/api/tasks/${task.id}`, {
-                          method: "PUT", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
-                          body: JSON.stringify({ status: value }),
-                        });
-                        if (res.ok) { const updated = await res.json();
-                          setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
-                        }
-                      }}>
+                  <td className="px-3 py-2.5 align-top">
+                    <Select value={task.status} onValueChange={(value) => updateTask({ id: task.id, data: { status: value ?? "TODO" } })}>
                       <SelectTrigger className="w-[130px]">
                         <span>
                           {task.status === "TODO" && "📋 Не назначена"}
@@ -184,17 +119,8 @@ export default function DashboardPage() {
                       </SelectContent>
                     </Select>
                   </td>
-                  <td style={tdStyle}>
-                    <Select value={task.priority}
-                      onValueChange={async (value) => {
-                        const token = localStorage.getItem("token");
-                        const res = await fetch(`/api/tasks/${task.id}`, {
-                          method: "PUT", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}`, },
-                          body: JSON.stringify({ priority: value }),
-                        });
-                        if (res.ok) { const updated = await res.json(); setTasks((prev) => prev.map((t) =>
-                           (t.id === updated.id ? updated : t))); }
-                      }}>
+                  <td className="px-3 py-2.5 align-top">
+                    <Select value={task.priority} onValueChange={(value)=>updateTask({id: task.id, data:{priority: value ?? "MEDIUM"}})}>
                       <SelectTrigger className="w-[130px]">
                         <span>
                           {task.priority === "LOW" && "🟢 Низкий"}
@@ -209,20 +135,16 @@ export default function DashboardPage() {
                       </SelectContent>
                     </Select>
                   </td>
-                  <td style={tdStyle}>{new Date(task.createdAt).toLocaleDateString("ru-RU")}</td>
-                  <td style={tdStyle}>{task.startedAt ? new Date(task.startedAt).toLocaleDateString("ru-RU") : "—"}</td>
-                  <td style={tdStyle}> {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"} </td>
-                  <td style={tdStyle}>
-                    <div className="flex gap-1.25">
-                      <Button variant="outline" size="sm" onClick={() => setEditingTask(task)}>✏️</Button>
-                      <Button variant="destructive" size="sm" onClick={async () => {
-                          if (window.confirm("Удалить задачу?")) {
-                            const token = localStorage.getItem("token");
-                            const res = await fetch(`/api/tasks/${task.id}`, {
-                              method: "DELETE", headers: { Authorization: `Bearer ${token}` },
-                            });
-                            if (res.ok) { setTasks((prev) => prev.filter((t) => t.id !== task.id));}
-                          }}}>🗑️</Button>
+                  <td className="px-3 py-2.5 align-top">{new Date(task.createdAt).toLocaleDateString("ru-RU")}</td>
+                  <td className="px-3 py-2.5 align-top">{task.startedAt ? new Date(task.startedAt).toLocaleDateString("ru-RU") : "—"}</td>
+                  <td className="px-3 py-2.5 align-top"> {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"} </td>
+                  <td className="px-3 py-2.5 align-top">
+                    <div className="flex gap-1.5">
+                      <Button variant="outline" size="sm" onClick={() => setEditingTask(task)}>✏️ Редактировать</Button>
+                      <Button variant="destructive" size="sm" onClick={() => {
+                        if (window.confirm("Удалить задачу?")){deleteTask(task.id); } }}>
+                        🗑️ Удалить
+                      </Button>
                     </div>
                   </td>
                 </tr>
@@ -231,21 +153,8 @@ export default function DashboardPage() {
           </table>
         </div>
       )}
-
-      <CreateTaskDialog
-        open={isCreateDialogOpen}
-        onOpenChange={setIsCreateDialogOpen}
-        projects={projects}
-        onCreated={(newTask) => setTasks((prev) => [newTask, ...prev])}
-      />     
-
-      <EditTaskDialog
-        task={editingTask}
-        onClose={() => setEditingTask(null)}
-        onUpdated={(updated) =>
-          setTasks((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
-        }
-      />
+     <CreateTaskDialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen} projects={projects} onCreated={() => refetch()} />
+      <EditTaskDialog task={editingTask} onClose={() => setEditingTask(null)} onUpdated={() => refetch()}/>
     </div>
   );
 }
