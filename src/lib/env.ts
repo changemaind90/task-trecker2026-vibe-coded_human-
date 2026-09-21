@@ -8,23 +8,24 @@ const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
 });
 
-let cached: z.infer<typeof EnvSchema> | null = null;
+// В CI переменных нет — подставляем заглушки, не валидируем
+const isCI = process.env.CI === "true";
 
-export function getEnv() {
-  if (cached) return cached;
+let envData: z.infer<typeof EnvSchema>;
 
+if (isCI) {
+  envData = {
+    DATABASE_URL: "postgresql://ci:ci@ci:5432/ci",
+    JWT_SECRET: "ci-secret-key-min-10-chars",
+    NODE_ENV: "test",
+  };
+} else {
   const parsed = EnvSchema.safeParse(process.env);
   if (!parsed.success) {
     console.error("❌ Ошибка в переменных окружения:", parsed.error.issues);
-    throw new Error("Некорректные переменные окружения");
+    throw new Error("Некорректные переменные окружения. Проверь .env");
   }
-
-  cached = parsed.data;
-  return cached;
+  envData = parsed.data;
 }
 
-export const env = new Proxy({} as z.infer<typeof EnvSchema>, {
-  get(_, key: string) {
-    return getEnv()[key as keyof z.infer<typeof EnvSchema>];
-  },
-});
+export const env = envData;
