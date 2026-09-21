@@ -1,8 +1,9 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { prisma } from "./prisma";
+/* import { prisma } from "./prisma"; */
+import { env } from "./env";
 
-const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
+const JWT_SECRET = env.JWT_SECRET;
 
 export async function hashPassword(password: string) {
   return await bcrypt.hash(password, 10);

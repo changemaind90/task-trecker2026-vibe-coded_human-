@@ -18,9 +18,8 @@
 
   async function fetchTasks(): Promise<Task[]> {
     const token = localStorage.getItem("token");
-    const res = await fetch("/api/tasks", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    if (!token) {throw new Error("Нет токена — нужен вход");}
+    const res = await fetch("/api/tasks",{headers: { Authorization: `Bearer ${token}`},});
     if (!res.ok) throw new Error("Ошибка загрузки задач");
     return res.json();
   }
@@ -28,11 +27,7 @@
   async function createTask(data: Partial<Task>) {
     const token = localStorage.getItem("token");
     const res = await fetch("/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      method:"POST",headers:{"Content-Type": "application/json",Authorization: `Bearer ${token}`,},
       body: JSON.stringify(data),
     });
     if (!res.ok) throw new Error("Ошибка создания");
@@ -42,13 +37,8 @@
   async function updateTask(id: string, data: Partial<Task>) {
     const token = localStorage.getItem("token");
     const res = await fetch(`/api/tasks/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
+      method: "PUT",headers:{"Content-Type": "application/json",Authorization: `Bearer ${token}`,},
+      body: JSON.stringify(data),});
     if (!res.ok) throw new Error("Ошибка обновления");
     return res.json();
   }
