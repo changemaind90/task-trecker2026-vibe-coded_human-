@@ -1,12 +1,12 @@
 import { z } from "zod";
 
-export const TaskSchema = z.object({
-  title: z.string().min(1, "Название обязательно").max(255),
-  description: z.string().optional(),
+export const CreateTaskSchema = z.object({
+  title: z.string().min(1, "Название обязательно").max(255, "Максимум 255 символов"),
+  description: z.string().optional().nullable(),
   status: z.enum(["TODO", "IN_PROGRESS", "DONE"]).default("TODO"),
   priority: z.enum(["LOW", "MEDIUM", "HIGH"]).default("MEDIUM"),
-  deadline: z.string().datetime().optional(),
-  projectId: z.string().optional(),
+  deadline: z.string().datetime().optional().nullable(),
+  projectId: z.string().optional().nullable(),
 });
 
-export type TaskInput = z.infer<typeof TaskSchema>;
+export const UpdateTaskSchema = CreateTaskSchema.partial();

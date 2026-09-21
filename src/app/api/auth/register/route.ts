@@ -1,38 +1,24 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/auth";
+import { RegisterSchema } from "@/lib/schemas/auth";
 
 export async function POST(request: Request) {
   try {
-    const { email, password, name } = await request.json();
+    const body = await request.json();
+    const result = RegisterSchema.safeParse(body);
 
-    if (!email || !password) {
+    if (!result.success) {
       return NextResponse.json(
-        { error: "Email и пароль обязательны" },
+        {
+          error: "Неверные данные",
+          details: result.error.issues,
+        },
         { status: 400 }
       );
     }
 
-    if (password.length < 6) {
-      return NextResponse.json(
-        { error: "Пароль должен быть минимум 6 символов" },
-        { status: 400 }
-      );
-    }
-
-    if (!password.trim()) {
-      return NextResponse.json(
-        { error: "Пароль не может состоять только из пробелов" },
-        { status: 400 }
-      );
-    }
-
-    if (!/[a-zA-Zа-яА-Я]/.test(password) || !/\d/.test(password)) {
-      return NextResponse.json(
-        { error: "Пароль должен содержать хотя бы одну букву и одну цифру" },
-        { status: 400 }
-      );
-    }
+    const { email, password, name } = result.data;
 
     const existingUser = await prisma.user.findUnique({
       where: { email },
@@ -55,7 +41,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // Формируем ссылку на Telegram-бота
     const botUsername = process.env.NEXT_PUBLIC_TELEGRAM_BOT_USERNAME;
     const telegramLink = `https://telegram.me/${botUsername}?start=${user.id}`;
 
@@ -63,7 +48,7 @@ export async function POST(request: Request) {
       {
         message: "Пользователь успешно создан. Подтвердите аккаунт в Telegram.",
         userId: user.id,
-        telegramLink: `https://t.me/MyRiskyBot?start=${user.id}`
+        telegramLink,
       },
       { status: 201 }
     );
