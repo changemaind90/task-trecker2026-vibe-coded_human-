@@ -1,11 +1,21 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyPassword, generateToken } from "@/lib/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const ip = request.headers.get("x-forwarded-for") || "unknown";
+    const limit = rateLimit(`login:${ip}`, { max: 5, windowMs: 60 * 1000 });
 
+    if (!limit.success) {
+      return NextResponse.json(
+        { error: "Слишком много попыток входа. Попробуйте через минуту." },
+        { status: 429 }
+      );
+    }
+
+    const { email, password } = await request.json();
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email и пароль обязательны" },

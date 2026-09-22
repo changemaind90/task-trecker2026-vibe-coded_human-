@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import HomeButton from "@/components/HomeButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,6 +44,9 @@ export default function LoginPage() {
 
   return (
     <div className="max-w-[400px] mx-auto my-[50px]">
+      <div style={{ marginBottom: 20 }}>
+        <HomeButton />
+      </div>
       <h1 className="text-center mb-1">Вход</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required

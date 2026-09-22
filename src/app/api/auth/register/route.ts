@@ -2,12 +2,22 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { hashPassword } from "@/lib/auth";
 import { RegisterSchema } from "@/lib/schemas/auth";
+import { rateLimit } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get("x-forwarded-for") || "unknown";
+    const limit = rateLimit(`register:${ip}`, { max: 3, windowMs: 60 * 60 * 1000 });
+
+    if (!limit.success) {
+      return NextResponse.json(
+        { error: "Слишком много попыток регистрации. Попробуйте позже." },
+        { status: 429 }
+      );
+    }
+
     const body = await request.json();
     const result = RegisterSchema.safeParse(body);
-
     if (!result.success) {
       return NextResponse.json(
         {
