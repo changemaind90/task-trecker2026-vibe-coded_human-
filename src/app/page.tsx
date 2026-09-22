@@ -140,9 +140,8 @@ export default function LandingPage() {
               "Tailwind CSS", "shadcn/ui", "JWT + bcrypt", "Vercel",
               "Docker", "Recharts", "Zod", "Telegram Bot"
             ].map((tech) => (
-              <span key={tech}
-              className="p-[8px_16px]  bg-[var(--background)] border-[1px] border-solid border-[var(--border)] rounded-[20px] text-[14px] font-medium"
-                >
+              <span key={tech} className="p-[8px_16px]  bg-[var(--background)] border-[1px] border-solid border-[var(--border)] 
+                    rounded-[20px] text-[14px] font-medium">
                 {tech}
               </span>
             ))}

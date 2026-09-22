@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /projects
+Disallow: /api
+
+Sitemap: https://task-trecker2026-vibe-human-25j7jzn8y-changemaind90.vercel.app/
