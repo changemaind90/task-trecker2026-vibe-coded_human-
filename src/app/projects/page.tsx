@@ -179,7 +179,7 @@ export default function ProjectsPage() {
             />
             <textarea
               placeholder="Описание"
-              value={newDesc}
+              value={editDesc}
               onChange={(e) => {
                 setNewDesc(e.target.value);
                 e.target.style.height = "auto";
