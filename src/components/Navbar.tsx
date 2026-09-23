@@ -1,14 +1,11 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 import NavButton from "./NavButton";
 
 export default function Navbar() {
-  const router = useRouter();
   const pathname = usePathname();
-
   if (pathname === "/" || pathname === "/login" || pathname === "/register") {
     return null;
   }

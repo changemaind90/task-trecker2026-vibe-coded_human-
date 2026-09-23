@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import HomeButton from "@/components/HomeButton";
+import NavButton from "@/components/NavButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function LoginPage() {
   return (
     <div className="max-w-[400px] mx-auto my-[50px]">
       <div style={{ marginBottom: 20 }}>
-        <HomeButton />
+        <NavButton label="На главную" icon="🏠" href="/" />
       </div>
       <h1 className="text-center mb-1">Вход</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
