@@ -114,7 +114,8 @@ export default function LandingPage() {
           </Card>
         </div>
       </section>
-
+      
+      {/* SCREENSHOTS */}
       <section className="p-[60px_30px] max-w-[1200px] mx-auto">
         <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
           📸 Как это выглядит

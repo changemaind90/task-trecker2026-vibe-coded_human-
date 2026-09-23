@@ -16,6 +16,10 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
     type: "website",
   },
+   twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
