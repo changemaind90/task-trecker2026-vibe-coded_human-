@@ -2,6 +2,8 @@
 
 import { Pie, PieChart, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const COLORS = ["#888", "#f59e0b", "#10b981"];
 
@@ -14,6 +16,11 @@ export default function StatsPieChart({
   inProgress: number;
   done: number;
 }) {
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const isDark = mounted && theme === "dark";
+
   const data = [
     { name: "TODO", value: todo, color: COLORS[0] },
     { name: "В работе", value: inProgress, color: COLORS[1] },
@@ -48,11 +55,21 @@ export default function StatsPieChart({
             </Pie>
             <Tooltip
               contentStyle={{
-                background: "rgba(255,255,255,0.9)",
-                border: "1px solid rgba(0,0,0,0.1)",
-                borderRadius: 8,
-                padding: "8px 12px",
+                background: isDark
+                  ? "rgba(20, 20, 30, 0.95)"
+                  : "rgba(255, 255, 255, 0.95)",
+                border: isDark
+                  ? "2px solid rgba(255, 255, 255, 0.3)"
+                  : "2px solid rgba(0, 0, 0, 0.2)",
+                borderRadius: 10,
+                padding: "10px 14px",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: isDark ? "#fff" : "#000",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
               }}
+              itemStyle={{ color: isDark ? "#fff" : "#000" }}
+              labelStyle={{ color: isDark ? "#fff" : "#000", fontWeight: 600 }}
               formatter={(value, name) => [
                 `${value ?? 0} задач`,
                 name as string,
