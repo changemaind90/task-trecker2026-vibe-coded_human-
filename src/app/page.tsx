@@ -5,9 +5,43 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import Image from "next/image";
+
+const screenshots = [
+  {
+    src: "/screenshots/dashboard.png",
+    alt: "Дашборд",
+    width: 1920,
+    height: 1080,
+  },
+  {
+    src: "/screenshots/create-task.png",
+    alt: "Создание задачи",
+    width: 1920,
+    height: 1080,
+  },
+  {
+    src: "/screenshots/statistic.png",
+    alt: "Статистика",
+    width: 1920,
+    height: 1080,
+  },
+  {
+    src: "/screenshots/dark-theme.png",
+    alt: "Тёмная тема",
+    width: 1920,
+    height: 1080,
+  },
+];
 
 export default function LandingPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  } | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -136,28 +170,53 @@ export default function LandingPage() {
           📸 Как это выглядит
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <img
-            src="/screenshots/dashboard.png"
-            alt="Дашборд"
-            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
-          />
-          <img
-            src="/screenshots/create-task.png"
-            alt="Создание задачи"
-            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
-          />
-          <img
-            src="/screenshots/stats.png"
-            alt="Статистика"
-            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
-          />
-          <img
-            src="/screenshots/dark-theme.png"
-            alt="Тёмная тема"
-            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
-          />
+          {screenshots.map((image) => (
+            <button
+              key={image.alt}
+              type="button"
+              onClick={() => setSelectedImage(image)}
+              className="group relative aspect-video overflow-hidden rounded-[12px] border border-solid border-[var(--border)]"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition duration-300 group-hover:scale-105"
+              />
+
+              <span className="absolute inset-0 flex items-center justify-center bg-black/0 text-white opacity-0 transition group-hover:bg-black/30 group-hover:opacity-100">
+                Увеличить
+              </span>
+            </button>
+          ))}
         </div>
       </section>
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedImage(null)}
+            className="absolute right-5 top-5 z-10 text-3xl text-white"
+            aria-label="Закрыть изображение"
+          >
+            ×
+          </button>
+
+          <Image
+            src={selectedImage.src}
+            alt={selectedImage.alt}
+            width={selectedImage.width}
+            height={selectedImage.height}
+            className="max-h-[90vh] max-w-[95vw] h-auto w-auto rounded-lg object-contain"
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      )}
 
       {/* TECH STACK */}
       <section className="p-[60px_30px] backdrop-blur-sm bg-white/20 dark:bg-white/5 border-y border-white/20 dark:border-white/10">
@@ -233,7 +292,6 @@ export default function LandingPage() {
       <footer className="mt-20 border-t border-border/50 backdrop-blur-xl bg-white/40 dark:bg-black/20">
         <div className="max-w-6xl mx-auto px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            {/* Левая — бренд */}
             <div>
               <a
                 href="#"
@@ -246,7 +304,6 @@ export default function LandingPage() {
               </p>
             </div>
 
-            {/* Центр — навигация */}
             <div>
               <h4 className="font-semibold mb-3">Навигация</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
@@ -277,7 +334,6 @@ export default function LandingPage() {
               </ul>
             </div>
 
-            {/* Правая — контакты */}
             <div>
               <h4 className="font-semibold mb-3">Контакты</h4>
               <ul className="space-y-2 text-sm">
