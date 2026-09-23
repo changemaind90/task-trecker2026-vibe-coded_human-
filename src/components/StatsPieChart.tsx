@@ -1,6 +1,6 @@
 "use client";
 
-import { Pie, PieChart, Cell, ResponsiveContainer } from "recharts";
+import { Pie, PieChart, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const COLORS = ["#888", "#f59e0b", "#10b981"];
@@ -46,6 +46,18 @@ export default function StatsPieChart({
                 />
               ))}
             </Pie>
+            <Tooltip
+              contentStyle={{
+                background: "rgba(255,255,255,0.9)",
+                border: "1px solid rgba(0,0,0,0.1)",
+                borderRadius: 8,
+                padding: "8px 12px",
+              }}
+              formatter={(value, name) => [
+                `${value ?? 0} задач`,
+                name as string,
+              ]}
+            />
           </PieChart>
         </ResponsiveContainer>
 

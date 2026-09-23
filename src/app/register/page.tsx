@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import AuthButton from "@/components/AuthButton";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -69,6 +70,7 @@ export default function RegisterPage() {
             placeholder="Имя (необязательно)"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-lg border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
           />
           <input
             type="email"
@@ -76,6 +78,7 @@ export default function RegisterPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="w-full rounded-lg border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
           />
           <input
             type="password"
@@ -84,10 +87,13 @@ export default function RegisterPage() {
             onChange={(e) => setPassword(e.target.value)}
             required
             minLength={6}
+            className="w-full rounded-lg border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
           />
-          <button type="submit" disabled={loading}>
-            {loading ? "Регистрация..." : "Зарегистрироваться"}
-          </button>
+          <AuthButton
+            loading={loading}
+            loadingText="Регистрация..."
+            text="Зарегистрироваться"
+          />
           {error && <p className="test-red">{error}</p>}
         </form>
       )}

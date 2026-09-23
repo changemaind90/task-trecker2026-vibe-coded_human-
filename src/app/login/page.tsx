@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import NavButton from "@/components/NavButton";
+import AuthButton from "@/components/AuthButton";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -55,33 +56,17 @@ export default function LoginPage() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="border-[1px] border-solid"
+          className="w-full rounded-lg border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
         />
         <input
           type="password"
           placeholder="Пароль"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="border-[1px] border-solid"
+          className="w-full rounded-lg border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
           required
         />
-        <button
-          type="submit"
-          disabled={loading}
-          className="mb-2 group relative w-full flex items-center justify-center rounded-lg bg-[#6366f1] px-1 py-1 
-            text-sm font-medium text-white shadow-md hover:bg-[#4f46ba] active:scale-[0.99] 
-            transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:shadow-none"
-        >
-          {" "}
-          {loading ? (
-            <>
-              <span className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"></span>
-              Вход...
-            </>
-          ) : (
-            "Войти"
-          )}
-        </button>
+        <AuthButton loading={loading} loadingText="Вход..." text="Войти" />
         {error && <p className="text-red-500">{error}</p>}
       </form>
       <p className="text-sm text-[var(--muted-foreground)]">
