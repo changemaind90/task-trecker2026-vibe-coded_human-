@@ -13,7 +13,9 @@
     if (pathname === "/" || pathname === "/login" || pathname === "/register"){return null;}
 
     return (
-      <nav className="flex items-center justify-between px-[20px] py-[10px] border-b border-[var(--border)] mb-5">
+      <nav className="sticky top-0 z-50 flex items-center justify-between 
+                      px-5 py-3 backdrop-blur-xl bg-white/60 dark:bg-black/40 border-b border-white/40 
+                      dark:border-white/10">
         <div className="flex items-center gap-[10px]">
           <HomeButton />
           <Button variant="outline" onClick={() => router.push("/dashboard")}>📋 Задачи</Button>
