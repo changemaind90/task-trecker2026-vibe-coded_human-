@@ -128,7 +128,10 @@
     @apply font-sans;
   }
 
-  @keyframes fadeIn {
+  
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(8px);
@@ -140,6 +143,13 @@
 }
 
 .animate-page-in {
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeInUp 0.3s ease-out;
 }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-custom {
+  animation: spin 0.8s linear infinite;
 }

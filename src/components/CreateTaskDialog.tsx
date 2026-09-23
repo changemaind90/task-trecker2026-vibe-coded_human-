@@ -115,18 +115,23 @@ export default function CreateTaskDialog({ open, onOpenChange, projects, onCreat
               </SelectContent>
             </Select>
           </div>
-
           <textarea placeholder="Описание" value={description} onChange={(e) => setDescription(e.target.value)} rows={3}
             className="w-full p-2 rounded-[6px] border border-[#ccc] resize-y min-h-[80px] font-[inherit] bg-transparent"
           />
         </div>
-
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
             Отмена
           </Button>
           <Button onClick={createTask} disabled={isCreating}>
-            {isCreating ? "Создание..." : "Создать"}
+            {isCreating ? (
+              <>
+                <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
+                Создание...
+              </>
+            ) : (
+              "Создать"
+            )}
           </Button>
         </DialogFooter>
       </DialogContent>

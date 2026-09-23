@@ -96,6 +96,9 @@ export default function ProjectsPage() {
         </CardContent>
       </Card>
 
+
+      
+
       {projects.length === 0 ? (
         <p>Проектов пока нет</p>
       ) : (

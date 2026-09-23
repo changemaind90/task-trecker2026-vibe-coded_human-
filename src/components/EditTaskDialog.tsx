@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 type Task = {
   id: string;
@@ -55,7 +56,7 @@ export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
       onUpdated(updated);
       onClose();
     } else {
-      alert("Ошибка сохранения");
+      toast.error("Не удалось сохранить задачу");
     }
     setIsSaving(false);
   };
@@ -65,13 +66,22 @@ export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
       <DialogContent><DialogHeader><DialogTitle>Редактировать задачу</DialogTitle></DialogHeader>
         <div style={{ display: "flex", flexDirection: "column", gap: 15, padding: "10px 0" }}>
           <Input placeholder="Название" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <textarea placeholder="Описание" value={description} onChange={(e) => setDescription(e.target.value)}rows={3}
+          <textarea placeholder="Описание" value={description} onChange={(e) => setDescription(e.target.value)} rows={3}
             className="w-full p-[10px] rounded-[6px] border border-[#ccc] resize-y min-h-[80px] font-[inherit] bg-transparent"
           />
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={onClose}>Отмена</Button>
-          <Button onClick={saveEdit} disabled={isSaving}>{isSaving ? "Сохранение..." : "Сохранить"}</Button>
+          <Button onClick={saveEdit} disabled={isSaving}>
+            {isSaving ? (
+              <>
+                <span className="inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
+                Сохранение...
+              </>
+            ) : (
+              "Сохранить"
+            )}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

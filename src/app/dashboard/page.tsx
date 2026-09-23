@@ -9,8 +9,8 @@ import CreateTaskDialog from "@/components/CreateTaskDialog";
 import TaskFilters from "@/components/TaskFilters";
 import EditTaskDialog from "@/components/EditTaskDialog";
 import { useTasks, type Task } from "@/hooks/useTasks";
-
 import { useProjects } from "@/hooks/useProjects";
+import ConfirmDialog from "@/components/ConfirmDialog";
 
 export default function DashboardPage() {
   const [filterStatus, setFilterStatus] = useState("");
@@ -19,6 +19,7 @@ export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
   
   const { projects } = useProjects();
   const { tasks, isLoading: loading, error, updateTask, deleteTask, createTask, refetch } = useTasks();
@@ -66,7 +67,24 @@ export default function DashboardPage() {
         <h1>Мои задачи</h1>
       </div>
       {filteredTasks.length === 0 ? (
-        <p>{tasks.length === 0 ? "Задач пока нет" : "Ничего не найдено по фильтрам"}</p>
+        <div className="flex flex-col items-center justify-center py-20 text-center">
+          <div className="text-6xl mb-4">
+            {tasks.length === 0 ? "📋" : "🔍"}
+          </div>
+          <h3 className="text-xl font-semibold mb-2">
+            {tasks.length === 0 ? "Пока задач нет" : "Ничего не найдено"}
+          </h3>
+          <p className="text-muted-foreground max-w-md mb-6">
+            {tasks.length === 0
+              ? "Создайте первую задачу, чтобы начать работу"
+              : "Попробуйте изменить фильтры или поисковый запрос"}
+          </p>
+          {tasks.length === 0 && (
+            <Button onClick={() => setIsCreateDialogOpen(true)}>
+              ➕ Создать первую задачу
+            </Button>
+          )}
+        </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
@@ -140,11 +158,10 @@ export default function DashboardPage() {
                   <td className="px-3 py-2.5 align-top"> {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"} </td>
                   <td className="px-3 py-2.5 align-top">
                     <div className="flex gap-1.5">
-                      <Button variant="outline" size="sm" onClick={() => setEditingTask(task)}>✏️ Редактировать</Button>
-                      <Button variant="destructive" size="sm" onClick={() => {
-                        if (window.confirm("Удалить задачу?")){deleteTask(task.id); } }}>
-                        🗑️ Удалить
-                      </Button>
+                    <Button variant="outline" size="sm" onClick={() => setEditingTask(task)}>✏️ Редактировать</Button>
+                    <Button variant="destructive" size="sm" onClick={() => setDeleteTaskId(task.id)}>
+                      🗑️ Удалить
+                    </Button>
                     </div>
                   </td>
                 </tr>
@@ -153,8 +170,20 @@ export default function DashboardPage() {
           </table>
         </div>
       )}
-     <CreateTaskDialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen} projects={projects} onCreated={() => refetch()} />
+      <CreateTaskDialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen} projects={projects} onCreated={() => refetch()} />
       <EditTaskDialog task={editingTask} onClose={() => setEditingTask(null)} onUpdated={() => refetch()}/>
+      <ConfirmDialog
+        open={!!deleteTaskId}
+        onOpenChange={(open) => !open && setDeleteTaskId(null)}
+        title="Удалить задачу?"
+        description="Это действие нельзя отменить. Задача будет удалена навсегда."
+        onConfirm={() => {
+          if (deleteTaskId) {
+            deleteTask(deleteTaskId);
+            setDeleteTaskId(null);
+          }
+        }}
+      />
     </div>
   );
 }

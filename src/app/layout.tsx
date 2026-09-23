@@ -4,6 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({ variable: "--font-geist-sans",subsets: ["latin"], });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], });
@@ -28,8 +29,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="taskflow-theme" disableTransitionOnChange >
           <Providers>
-          <Navbar/>
-          {children}
+          <Navbar/> 
+          <main className="animate-page-in flex-1">
+            {children}
+          </main>
           </Providers>
         </ThemeProvider>
         </body>
