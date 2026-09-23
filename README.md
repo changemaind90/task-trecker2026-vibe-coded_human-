@@ -2,6 +2,11 @@
 
 # 🚀 TaskTracker2026 — (пет-проект) менеджер задач
 
+![CI](https://github.com/changemaind90/task-trecker2026-vibe-coded_human-/actions/workflows/test.yml/badge.svg)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
+
+🔗 **Live Demo:** [task-trecker2026-vibe-human.vercel.app](https://task-trecker2026-vibe-human.vercel.app)
+
 ## Это приложение создано при помощи ИИ и человека.
 ## Буду очень благодарен за структурированную критику и фидбек!
 ## This app created with AI.
