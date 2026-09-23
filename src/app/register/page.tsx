@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import AuthButton from "@/components/AuthButton";
+import NavButton from "@/components/NavButton";
 
 export default function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -42,7 +43,10 @@ export default function RegisterPage() {
 
   return (
     <div className="max-w-[400px] mx-auto text-center my-[50px] font-sans">
-      <h1>Регистрация</h1>
+      <div className="flex items-center gap-2 justify-start mb-3">
+        <NavButton label="На главную" icon="🏠" href="/" />
+      </div>
+      <h1 className="text-3xl font-bold text-center mb-3">Регистрация</h1>
 
       {success ? (
         <div
@@ -97,10 +101,15 @@ export default function RegisterPage() {
           {error && <p className="test-red">{error}</p>}
         </form>
       )}
-
-      <p>
-        Уже есть аккаунт? <Link href="/login">Войти</Link>
-      </p>
+      <div className="text-sm text-center text-muted-foreground mt-2">
+        Уже есть аккаунт?{" "}
+        <Link
+          href="/login"
+          className="text-[#6366f8] font-medium hover:text-[#4f46ba] hover:underline transition-colors"
+        >
+          Войти
+        </Link>
+      </div>
     </div>
   );
 }

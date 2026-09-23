@@ -48,7 +48,7 @@ export default function LoginPage() {
       <div style={{ marginBottom: 20 }}>
         <NavButton label="На главную" icon="🏠" href="/" />
       </div>
-      <h1 className="text-center mb-1">Вход</h1>
+      <h1 className="text-2xl font-bold text-center mb-3">Вход</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-5">
         <input
           type="email"
@@ -69,15 +69,15 @@ export default function LoginPage() {
         <AuthButton loading={loading} loadingText="Вход..." text="Войти" />
         {error && <p className="text-red-500">{error}</p>}
       </form>
-      <p className="text-sm text-[var(--muted-foreground)]">
-        Нет аккаунта?
+      <div className="text-sm text-center text-muted-foreground mt-2">
+        Нет аккаунта?{" "}
         <Link
           href="/register"
-          className="text-[#6366f1] underline hover:text-[#4f46ba]"
+          className="text-[#6366f1] font-medium hover:text-[#4f46ba] hover:underline transition-colors"
         >
           Зарегистрироваться
         </Link>
-      </p>
+      </div>
     </div>
   );
 }
