@@ -215,3 +215,218 @@ MIT
 **Автор:** Роман Богданов
 **GitHub:** [@changemaind90](https://github.com/changemaind90)
 **Telegram:** [@Roman_4udo](https://t.me/Roman_4udo)
+
+
+---
+
+# 🇬🇧 English Version
+
+# 🚀 TaskTracker2026 — Task Manager
+
+![Tests](https://github.com/changemaind90/task-trecker2026-vibe-coded_human-/actions/workflows/test.yml/badge.svg)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
+
+🔗 **Live Demo:** [task-trecker2026-vibe-human.vercel.app](https://task-trecker2026-vibe-human.vercel.app)
+
+> 🧠 **This is a pet project created by AI and a human.**
+> Feedback and structured criticism are welcome!
+
+---
+
+## 📋 About the Project
+
+**TaskTracker** is a full-featured task management web app built on a modern stack. The project focuses on:
+
+- 🎯 **Clean architecture** — DAL, DTO, Zod schemas
+- 🔐 **Secure authentication** — JWT + bcrypt + rate limiting
+- 🎨 **Beautiful UI** — shadcn/ui, dark theme, animations
+- 🗄️ **Powerful database** — PostgreSQL + Prisma 7
+- 📱 **Responsive design** — works on any device
+- ⚙️ **CI/CD** — GitHub Actions, Docker, Vercel
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| **Next.js 16** | React framework for SSR and routing |
+| **React 19** | UI library |
+| **TypeScript** | Type safety |
+| **Tailwind CSS 4** | Utility-first styling |
+| **shadcn/ui** | Component library |
+| **React Query** | Server state management |
+| **Zod** | Form and API validation |
+| **sonner** | Toast notifications |
+
+### Backend
+| Technology | Purpose |
+|------------|---------|
+| **Next.js API Routes** | Server endpoints |
+| **Prisma 7** | ORM for database access |
+| **PostgreSQL (Neon)** | Relational database |
+| **JWT + bcrypt** | Authentication and hashing |
+| **Rate limiting** | Brute-force protection |
+
+### Tools
+| Technology | Purpose |
+|------------|---------|
+| **pnpm** | Package manager |
+| **Vitest** | Unit tests |
+| **ESLint + Prettier** | Linting and formatting |
+| **Docker** | Containerization |
+| **GitHub Actions** | CI (tests on push) |
+| **Vercel** | Hosting |
+
+---
+
+## ✨ Features
+
+### 👤 Authentication
+- Registration with password validation (Zod)
+- JWT tokens, bcrypt hashing
+- Route protection via middleware
+- Rate limiting on login (5/min) and register (3/hour)
+- Account confirmation via Telegram bot
+
+### 📝 Task Management
+- ➕ Create tasks with title and description
+- 📋 View all tasks on dashboard
+- ✏️ Edit tasks
+- 🗑️ Delete with confirmation
+- 📊 Statuses: TODO / IN_PROGRESS / DONE
+- 🎯 Priorities: LOW / MEDIUM / HIGH
+- ⏱️ Auto-set start and completion dates
+- 🔍 Filters and search
+
+### 📁 Projects
+- Create, edit, delete projects
+- Link tasks to projects
+- Task counter per project
+
+### 🎨 UX
+- Dark theme with persistence
+- Toast notifications (sonner)
+- Page transition animations
+- Button spinners
+- Empty states
+- Responsive landing page
+
+### 🏗️ Architecture
+- 🔄 **DAL** — separate data access layer
+- 📦 **DTO** — safe data transfer
+- ✅ **Zod schemas** — validation of all input
+- 🛡️ **Middleware** — API and page protection
+- ⚡ **React Query** — caching, auto-refresh, retry
+
+---
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/changemaind90/task-trecker2026-vibe-coded_human-.git
+cd task-trecker2026-vibe-coded_human-
+pnpm install
+cp .env.example .env
+# Fill in DATABASE_URL and JWT_SECRET
+pnpm exec prisma migrate dev --name init
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000).
+
+---
+
+## 🧪 Tests
+
+```bash
+pnpm test        # watch mode
+pnpm test:run    # single run (for CI)
+```
+
+---
+
+## 🐳 Docker
+
+### Development mode
+
+```bash
+pnpm docker:dev
+```
+
+### Production mode
+
+```bash
+pnpm docker:build
+pnpm docker:prod
+```
+
+### Stop containers
+
+```bash
+pnpm docker:down
+```
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── app/
+│   ├── api/            # API Routes (auth, tasks, projects, telegram)
+│   ├── dashboard/      # Tasks
+│   ├── projects/       # Projects
+│   ├── login/          # Sign in
+│   ├── register/       # Sign up
+│   ├── layout.tsx      # Root layout + metadata
+│   ├── error.tsx       # Error Boundary
+│   ├── loading.tsx     # Loading UI
+│   └── page.tsx        # Landing
+├── components/
+│   ├── ui/             # shadcn/ui components
+│   ├── Navbar.tsx
+│   ├── CreateTaskDialog.tsx
+│   ├── EditTaskDialog.tsx
+│   ├── TaskFilters.tsx
+│   ├── ConfirmDialog.tsx
+│   ├── StatsPieChart.tsx
+│   ├── ThemeToggle.tsx
+│   └── HomeButton.tsx
+├── hooks/
+│   ├── useTasks.ts
+│   └── useProjects.ts
+├── lib/
+│   ├── auth.ts
+│   ├── env.ts
+│   ├── prisma.ts
+│   ├── rate-limit.ts
+│   └── schemas/        # Zod schemas
+└── tests/              # Vitest tests
+```
+
+---
+
+## 🔐 Security
+
+- **Passwords:** bcrypt (10 rounds)
+- **Session:** JWT with 7-day expiry
+- **Validation:** Zod on all API routes
+- **Rate limiting:** login (5/min), register (3/hour)
+- **Security headers:** HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy
+- **Middleware:** protection for `/dashboard`, `/projects`, `/api/*`
+
+---
+
+## 📄 License
+
+MIT
+
+---
+
+## 📞 Contacts
+
+**Author:** Roman Bogdanov
+**GitHub:** [@changemaind90](https://github.com/changemaind90)
+**Telegram:** [@Roman_4udo](https://t.me/Roman_4udo)
