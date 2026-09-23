@@ -20,7 +20,7 @@ describe("getTasksByUser", () => {
         userId: "user-1",
         project: null,
       },
-    ]as any);
+    ] as any);
 
     const result = await getTasksByUser("user-1");
 

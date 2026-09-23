@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
     console.error("❌ GET /api/tasks error:", error);
     return NextResponse.json(
       { error: "Ошибка загрузки задач" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -53,11 +53,12 @@ export async function POST(request: NextRequest) {
     if (!result.success) {
       return NextResponse.json(
         { error: "Неверные данные", details: result.error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const { title, description, status, priority, deadline, projectId } = result.data;
+    const { title, description, status, priority, deadline, projectId } =
+      result.data;
 
     const now = new Date();
     const taskData: any = {
@@ -88,7 +89,7 @@ export async function POST(request: NextRequest) {
     console.error("❌ POST /api/tasks error:", error);
     return NextResponse.json(
       { error: "Ошибка создания задачи" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

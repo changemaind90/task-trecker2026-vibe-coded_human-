@@ -14,7 +14,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             refetchOnWindowFocus: false, // не перезапрашивать при возврате на вкладку
           },
         },
-      })
+      }),
   );
 
   return (

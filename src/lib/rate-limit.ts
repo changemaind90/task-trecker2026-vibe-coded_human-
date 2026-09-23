@@ -12,7 +12,7 @@ type RateLimitOptions = {
 
 export function rateLimit(
   identifier: string,
-  { max, windowMs }: RateLimitOptions
+  { max, windowMs }: RateLimitOptions,
 ): { success: boolean; remaining: number; resetAt: number } {
   const now = Date.now();
   const entry = store.get(identifier);
@@ -31,17 +31,24 @@ export function rateLimit(
 
   // Иначе — увеличиваем счётчик
   entry.count += 1;
-  return { success: true, remaining: max - entry.count, resetAt: entry.resetAt };
+  return {
+    success: true,
+    remaining: max - entry.count,
+    resetAt: entry.resetAt,
+  };
 }
 
 // Периодическая очистка старых записей (раз в 5 минут)
 if (typeof setInterval !== "undefined") {
-  setInterval(() => {
-    const now = Date.now();
-    for (const [key, entry] of store.entries()) {
-      if (now > entry.resetAt) {
-        store.delete(key);
+  setInterval(
+    () => {
+      const now = Date.now();
+      for (const [key, entry] of store.entries()) {
+        if (now > entry.resetAt) {
+          store.delete(key);
+        }
       }
-    }
-  }, 5 * 60 * 1000);
+    },
+    5 * 60 * 1000,
+  );
 }

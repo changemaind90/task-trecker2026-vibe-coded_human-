@@ -24,10 +24,14 @@ type Props = {
 };
 
 export default function TaskFilters({
-  searchQuery, setSearchQuery,
-  filterStatus, setFilterStatus,
-  filterPriority, setFilterPriority,
-  filterProject, setFilterProject,
+  searchQuery,
+  setSearchQuery,
+  filterStatus,
+  setFilterStatus,
+  filterPriority,
+  setFilterPriority,
+  filterProject,
+  setFilterProject,
   projects,
 }: Props) {
   return (
@@ -39,7 +43,10 @@ export default function TaskFilters({
         style={{ minWidth: 200 }}
       />
 
-      <Select value={filterStatus} onValueChange={(v) => setFilterStatus(v ?? "")}>
+      <Select
+        value={filterStatus}
+        onValueChange={(v) => setFilterStatus(v ?? "")}
+      >
         <SelectTrigger className="w-[160px]">
           <span>
             {(!filterStatus || filterStatus === "all") && "Все статусы"}
@@ -56,7 +63,10 @@ export default function TaskFilters({
         </SelectContent>
       </Select>
 
-      <Select value={filterPriority} onValueChange={(v) => setFilterPriority(v ?? "")}>
+      <Select
+        value={filterPriority}
+        onValueChange={(v) => setFilterPriority(v ?? "")}
+      >
         <SelectTrigger className="w-[170px]">
           <span>
             {(!filterPriority || filterPriority === "all") && "Все приоритеты"}
@@ -73,20 +83,37 @@ export default function TaskFilters({
         </SelectContent>
       </Select>
 
-      <Select value={filterProject} onValueChange={(v) => setFilterProject(v ?? "")}>
+      <Select
+        value={filterProject}
+        onValueChange={(v) => setFilterProject(v ?? "")}
+      >
         <SelectTrigger className="w-[180px]">
           <span>
-            {(!filterProject || filterProject === "all") ? "Все проекты" : projects.find((p) => p.id === filterProject)?.name || "—"}
+            {!filterProject || filterProject === "all"
+              ? "Все проекты"
+              : projects.find((p) => p.id === filterProject)?.name || "—"}
           </span>
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">Все проекты</SelectItem>
-          {projects.map((p) =>(<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>))}
+          {projects.map((p) => (
+            <SelectItem key={p.id} value={p.id}>
+              {p.name}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
 
-      <Button variant="outline" onClick={() => { setFilterStatus(""); setFilterPriority(""); setFilterProject(""); setSearchQuery("");
-        }}>Сбросить
+      <Button
+        variant="outline"
+        onClick={() => {
+          setFilterStatus("");
+          setFilterPriority("");
+          setFilterProject("");
+          setSearchQuery("");
+        }}
+      >
+        Сбросить
       </Button>
     </div>
   );

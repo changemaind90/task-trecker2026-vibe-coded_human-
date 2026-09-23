@@ -3,18 +3,29 @@ import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { UpdateProjectSchema } from "@/lib/schemas/project";
 
-export async function PUT(request: NextRequest,{params }:{params: Promise<{id:string}>}){
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
-    if (!token){return NextResponse.json({error: "Не авторизован" },{status: 401});}
+    if (!token) {
+      return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
+    }
     const payload = verifyToken(token);
-    if(!payload){return NextResponse.json({ error: "Неверный токен" }, { status: 401 });}
+    if (!payload) {
+      return NextResponse.json({ error: "Неверный токен" }, { status: 401 });
+    }
     const body = await request.json();
     const result = UpdateProjectSchema.safeParse(body);
-    if (!result.success){return NextResponse.json({error:"Неверные данные",details:result.error.issues},
-        { status: 400});}
+    if (!result.success) {
+      return NextResponse.json(
+        { error: "Неверные данные", details: result.error.issues },
+        { status: 400 },
+      );
+    }
     const { name, description } = result.data;
     const existing = await prisma.project.findUnique({ where: { id } });
     if (!existing || existing.userId !== payload.userId) {
@@ -27,22 +38,38 @@ export async function PUT(request: NextRequest,{params }:{params: Promise<{id:st
     return NextResponse.json(project);
   } catch (error) {
     console.error("Update project error:", error);
-    return NextResponse.json({ error: "Ошибка обновления проекта" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Ошибка обновления проекта" },
+      { status: 500 },
+    );
   }
 }
-export async function DELETE(request: NextRequest,{params}:{params: Promise<{ id: string }>}){
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
   try {
     const { id } = await params;
     const authHeader = request.headers.get("authorization");
     const token = authHeader?.split(" ")[1];
-    if(!token){return NextResponse.json({error: "Не авторизован"},{status: 401});}
+    if (!token) {
+      return NextResponse.json({ error: "Не авторизован" }, { status: 401 });
+    }
     const payload = verifyToken(token);
-    if (!payload){return NextResponse.json({error: "Неверный токен"},{status: 401});}
+    if (!payload) {
+      return NextResponse.json({ error: "Неверный токен" }, { status: 401 });
+    }
     const existing = await prisma.project.findUnique({ where: { id } });
-    if(!existing || existing.userId !== payload.userId){return NextResponse.json({error: "Проект не найден"},{status: 404});}
+    if (!existing || existing.userId !== payload.userId) {
+      return NextResponse.json({ error: "Проект не найден" }, { status: 404 });
+    }
     await prisma.project.delete({ where: { id } });
     return NextResponse.json({ message: "Проект удалён" });
-  } catch(error){console.error("Delete project error:",error);
-    return NextResponse.json({ error: "Ошибка удаления проекта" }, { status: 500 });
+  } catch (error) {
+    console.error("Delete project error:", error);
+    return NextResponse.json(
+      { error: "Ошибка удаления проекта" },
+      { status: 500 },
+    );
   }
 }

@@ -22,7 +22,9 @@ export default function Error({
         Не удалось загрузить страницу. Возможно, проблема временная.
       </p>
       {error.digest && (
-        <p className="text-xs text-muted-foreground">Код ошибки: {error.digest}</p>
+        <p className="text-xs text-muted-foreground">
+          Код ошибки: {error.digest}
+        </p>
       )}
       <div className="flex gap-3">
         <Button onClick={reset}>Попробовать снова</Button>

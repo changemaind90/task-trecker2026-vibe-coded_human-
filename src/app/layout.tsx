@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
     type: "website",
   },
-   twitter: {
+  twitter: {
     card: "summary_large_image",
     images: ["/og-image.png"],
   },
@@ -34,17 +34,25 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ru" suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}>
+    <html
+      lang="ru"
+      suppressHydrationWarning
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="taskflow-theme" disableTransitionOnChange >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          storageKey="taskflow-theme"
+          disableTransitionOnChange
+        >
           <Providers>
-          <Navbar/> 
-          <main className="animate-page-in flex-1">
-            {children}
-          </main>
+            <Navbar />
+            <main className="animate-page-in flex-1">{children}</main>
           </Providers>
         </ThemeProvider>
-        </body>
+      </body>
     </html>
   );
 }

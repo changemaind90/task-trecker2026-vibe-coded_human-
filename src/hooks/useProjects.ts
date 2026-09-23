@@ -28,7 +28,10 @@ async function createProject(data: { name: string; description?: string }) {
   return res.json();
 }
 
-async function updateProject(id: string, data: { name?: string; description?: string }) {
+async function updateProject(
+  id: string,
+  data: { name?: string; description?: string },
+) {
   const token = localStorage.getItem("token");
   const res = await fetch(`/api/projects/${id}`, {
     method: "PUT",
@@ -70,8 +73,13 @@ export function useProjects() {
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: { name?: string; description?: string } }) =>
-      updateProject(id, data),
+    mutationFn: ({
+      id,
+      data,
+    }: {
+      id: string;
+      data: { name?: string; description?: string };
+    }) => updateProject(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["projects"] });
       toast.success("Проект обновлён");

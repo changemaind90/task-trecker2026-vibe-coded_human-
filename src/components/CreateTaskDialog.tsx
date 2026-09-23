@@ -26,7 +26,12 @@ type Props = {
   onCreated: (task: any) => void;
 };
 
-export default function CreateTaskDialog({ open, onOpenChange, projects, onCreated }: Props) {
+export default function CreateTaskDialog({
+  open,
+  onOpenChange,
+  projects,
+  onCreated,
+}: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("TODO");
@@ -70,11 +75,21 @@ export default function CreateTaskDialog({ open, onOpenChange, projects, onCreat
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
-        <DialogHeader> <DialogTitle>Создать новую задачу</DialogTitle></DialogHeader>
+        <DialogHeader>
+          {" "}
+          <DialogTitle>Создать новую задачу</DialogTitle>
+        </DialogHeader>
         <div className="flex flex-col gap-[10px] py-[10px]">
-          <Input placeholder="Название задачи" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <Input
+            placeholder="Название задачи"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <div className="flex flex-wrap gap-[10px]">
-            <Select value={status} onValueChange={(v) => setStatus(v ?? "TODO")}>
+            <Select
+              value={status}
+              onValueChange={(v) => setStatus(v ?? "TODO")}
+            >
               <SelectTrigger className="w-[160px]">
                 <span>
                   {status === "TODO" && "📋 Не назначена"}
@@ -89,7 +104,10 @@ export default function CreateTaskDialog({ open, onOpenChange, projects, onCreat
               </SelectContent>
             </Select>
 
-            <Select value={priority} onValueChange={(v) => setPriority(v ?? "MEDIUM")}>
+            <Select
+              value={priority}
+              onValueChange={(v) => setPriority(v ?? "MEDIUM")}
+            >
               <SelectTrigger className="w-[140px]">
                 <span>
                   {priority === "LOW" && "🟢 Низкий"}
@@ -104,18 +122,33 @@ export default function CreateTaskDialog({ open, onOpenChange, projects, onCreat
               </SelectContent>
             </Select>
 
-            <Select value={projectId} onValueChange={(v) => setProjectId(v ?? "none")}>
+            <Select
+              value={projectId}
+              onValueChange={(v) => setProjectId(v ?? "none")}
+            >
               <SelectTrigger className="w-[180px]">
-                <span> {projectId === "none" ? "Без проекта" : projects.find((p) => p.id === projectId)?.name || "—"}
+                <span>
+                  {" "}
+                  {projectId === "none"
+                    ? "Без проекта"
+                    : projects.find((p) => p.id === projectId)?.name || "—"}
                 </span>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="none">Без проекта</SelectItem>
-                {projects.map((p) => (<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem> ))}
+                {projects.map((p) => (
+                  <SelectItem key={p.id} value={p.id}>
+                    {p.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
-          <textarea placeholder="Описание" value={description} onChange={(e) => setDescription(e.target.value)} rows={3}
+          <textarea
+            placeholder="Описание"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            rows={3}
             className="w-full p-2 rounded-[6px] border border-[#ccc] resize-y min-h-[80px] font-[inherit] bg-transparent"
           />
         </div>

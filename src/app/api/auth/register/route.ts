@@ -7,12 +7,15 @@ import { rateLimit } from "@/lib/rate-limit";
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for") || "unknown";
-    const limit = rateLimit(`register:${ip}`, { max: 3, windowMs: 60 * 60 * 1000 });
+    const limit = rateLimit(`register:${ip}`, {
+      max: 3,
+      windowMs: 60 * 60 * 1000,
+    });
 
     if (!limit.success) {
       return NextResponse.json(
         { error: "Слишком много попыток регистрации. Попробуйте позже." },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -24,7 +27,7 @@ export async function POST(request: Request) {
           error: "Неверные данные",
           details: result.error.issues,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -37,7 +40,7 @@ export async function POST(request: Request) {
     if (existingUser) {
       return NextResponse.json(
         { error: "Пользователь с таким email уже существует" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -60,13 +63,13 @@ export async function POST(request: Request) {
         userId: user.id,
         telegramLink,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Registration error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

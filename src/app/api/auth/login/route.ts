@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     if (!limit.success) {
       return NextResponse.json(
         { error: "Слишком много попыток входа. Попробуйте через минуту." },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email и пароль обязательны" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     if (!user) {
       return NextResponse.json(
         { error: "Неверный email или пароль" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     if (!isValid) {
       return NextResponse.json(
         { error: "Неверный email или пароль" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
     console.error("Login error:", error);
     return NextResponse.json(
       { error: "Внутренняя ошибка сервера" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

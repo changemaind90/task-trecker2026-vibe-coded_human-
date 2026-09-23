@@ -15,18 +15,30 @@ export default function RegisterPage() {
   const [telegramLink, setTelegramLink] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault(); setError(""); setSuccess(false); setLoading(true);
+    e.preventDefault();
+    setError("");
+    setSuccess(false);
+    setLoading(true);
 
     try {
       const res = await fetch("/api/auth/register", {
-        method: "POST", headers: { "Content-Type": "application/json" },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password, name }),
       });
 
       const data = await res.json();
-      if (!res.ok) { setError(data.error || "Ошибка регистрации"); return; }
-      setSuccess(true); setTelegramLink(data.telegramLink);
-    } catch (err) { setError("Ошибка соединения с сервером"); } finally { setLoading(false); }
+      if (!res.ok) {
+        setError(data.error || "Ошибка регистрации");
+        return;
+      }
+      setSuccess(true);
+      setTelegramLink(data.telegramLink);
+    } catch (err) {
+      setError("Ошибка соединения с сервером");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,17 +46,23 @@ export default function RegisterPage() {
       <h1>Регистрация</h1>
 
       {success ? (
-        <div className="text-green-500 p-4" style={{ border: "1px solid green", borderRadius: 8 }}>
+        <div
+          className="text-green-500 p-4"
+          style={{ border: "1px solid green", borderRadius: 8 }}
+        >
           <p>✅ Регистрация успешна!</p>
           <p>Осталось подтвердить аккаунт в Telegram:</p>
-          <a href={telegramLink}
+          <a
+            href={telegramLink}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-6 py-3 bg-[#0088cc] text-white no-underline rounded-md mt-2.5"
-            >
+          >
             🤖 Подтвердить в Telegram
           </a>
-          <p className="mt-4 text-sm text-gray-500">После подтверждения войдите с email и паролем. </p>
+          <p className="mt-4 text-sm text-gray-500">
+            После подтверждения войдите с email и паролем.{" "}
+          </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">

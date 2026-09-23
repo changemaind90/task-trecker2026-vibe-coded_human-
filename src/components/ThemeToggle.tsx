@@ -13,7 +13,11 @@ export default function ThemeToggle() {
   if (!mounted) return null;
 
   return (
-    <Button variant="outline" size="sm" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+    <Button
+      variant="outline"
+      size="sm"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
       {theme === "dark" ? "☀️" : "🌙"}
     </Button>
   );

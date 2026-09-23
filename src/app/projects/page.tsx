@@ -18,19 +18,18 @@ import { toast } from "sonner";
 
 export default function ProjectsPage() {
   const router = useRouter();
-  const {
-    projects,
-    isLoading,
-    createProject,
-    updateProject,
-    deleteProject,
-  } = useProjects();
+  const { projects, isLoading, createProject, updateProject, deleteProject } =
+    useProjects();
 
   const [newName, setNewName] = useState("");
   const [newDesc, setNewDesc] = useState("");
   const [isCreating, setIsCreating] = useState(false);
 
-  const [editingProject, setEditingProject] = useState<{ id: string; name: string; description: string | null } | null>(null);
+  const [editingProject, setEditingProject] = useState<{
+    id: string;
+    name: string;
+    description: string | null;
+  } | null>(null);
   const [editName, setEditName] = useState("");
   const [editDesc, setEditDesc] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -60,26 +59,43 @@ export default function ProjectsPage() {
     if (!editingProject) return;
     setIsSaving(true);
     try {
-      await updateProject({ id: editingProject.id, data: { name: editName, description: editDesc } });
+      await updateProject({
+        id: editingProject.id,
+        data: { name: editName, description: editDesc },
+      });
       setEditingProject(null);
-    } catch (e) { 
+    } catch (e) {
     } finally {
       setIsSaving(false);
     }
-  }; 
-  if (isLoading) return <div>Загрузка...</div>; 
+  };
+  if (isLoading) return <div>Загрузка...</div>;
   return (
     <div className="max-w-[800px] mx-auto p-5">
       <div className="flex justify-between mb-5">
         <h1>Проекты</h1>
-        <Button variant="outline" onClick={() => router.push("/dashboard")}> ← К задачам </Button>
+        <Button variant="outline" onClick={() => router.push("/dashboard")}>
+          {" "}
+          ← К задачам{" "}
+        </Button>
       </div>
 
       <Card className="mb-5">
-        <CardHeader> <CardTitle>Создать проект</CardTitle> </CardHeader>
+        <CardHeader>
+          {" "}
+          <CardTitle>Создать проект</CardTitle>{" "}
+        </CardHeader>
         <CardContent className="flex flex-wrap gap-2.5">
-          <Input placeholder="Название проекта" value={newName} onChange={(e) => setNewName(e.target.value)} />
-          <Input placeholder="Описание" value={newDesc} onChange={(e) => setNewDesc(e.target.value)} />
+          <Input
+            placeholder="Название проекта"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+          />
+          <Input
+            placeholder="Описание"
+            value={newDesc}
+            onChange={(e) => setNewDesc(e.target.value)}
+          />
           <Button onClick={handleCreate} disabled={isCreating}>
             {isCreating ? (
               <>
@@ -97,15 +113,23 @@ export default function ProjectsPage() {
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <div className="text-6xl mb-4">📁</div>
           <h3 className="text-xl font-semibold mb-2">Проектов пока нет</h3>
-          <p className="text-muted-foreground max-w-md mb-6"> Создайте первый проект, чтобы группировать задачи </p>
+          <p className="text-muted-foreground max-w-md mb-6">
+            {" "}
+            Создайте первый проект, чтобы группировать задачи{" "}
+          </p>
         </div>
-      ) : ( projects.map((project) => (
+      ) : (
+        projects.map((project) => (
           <Card key={project.id} className="mb-2.5">
-            <CardHeader> <CardTitle>{project.name}</CardTitle> </CardHeader>
+            <CardHeader>
+              {" "}
+              <CardTitle>{project.name}</CardTitle>{" "}
+            </CardHeader>
             <CardContent>
               <p>{project.description || "Нет описания"}</p>
               <p className="text-xs text-muted-foreground mt-2.5">
-                Задач: {"tasks" in project ? (project as any).tasks?.length ?? 0 : 0}
+                Задач:{" "}
+                {"tasks" in project ? ((project as any).tasks?.length ?? 0) : 0}
               </p>
               <div className="mt-2.5 flex gap-2">
                 <Button

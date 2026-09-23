@@ -1,9 +1,13 @@
-
 "use client";
 
-import { useMemo, useState } from "react"; 
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
 import StatsPieChart from "@/components/StatsPieChart";
 import CreateTaskDialog from "@/components/CreateTaskDialog";
 import TaskFilters from "@/components/TaskFilters";
@@ -20,15 +24,42 @@ export default function DashboardPage() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
-  
+
   const { projects } = useProjects();
-  const { tasks, isLoading: loading, error, updateTask, deleteTask, createTask, refetch } = useTasks();
+  const {
+    tasks,
+    isLoading: loading,
+    error,
+    updateTask,
+    deleteTask,
+    createTask,
+    refetch,
+  } = useTasks();
   const filteredTasks = useMemo(() => {
     return tasks.filter((task) => {
-      if (filterStatus && filterStatus !== "all" && task.status !== filterStatus) return false;
-      if (filterPriority && filterPriority !== "all" && task.priority !== filterPriority) return false;
-      if (filterProject && filterProject !== "all" && task.projectId !== filterProject) return false;
-      if (searchQuery && !task.title.toLowerCase().includes(searchQuery.toLowerCase())) return false;
+      if (
+        filterStatus &&
+        filterStatus !== "all" &&
+        task.status !== filterStatus
+      )
+        return false;
+      if (
+        filterPriority &&
+        filterPriority !== "all" &&
+        task.priority !== filterPriority
+      )
+        return false;
+      if (
+        filterProject &&
+        filterProject !== "all" &&
+        task.projectId !== filterProject
+      )
+        return false;
+      if (
+        searchQuery &&
+        !task.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+        return false;
       return true;
     });
   }, [tasks, filterStatus, filterPriority, filterProject, searchQuery]);
@@ -38,7 +69,9 @@ export default function DashboardPage() {
     todo: tasks.filter((t) => t.status === "TODO").length,
     inProgress: tasks.filter((t) => t.status === "IN_PROGRESS").length,
     done: tasks.filter((t) => t.status === "DONE").length,
-    highPriority: tasks.filter((t) => t.priority === "HIGH" && t.status !== "DONE").length,
+    highPriority: tasks.filter(
+      (t) => t.priority === "HIGH" && t.status !== "DONE",
+    ).length,
   };
 
   if (loading) return <div>Загрузка...</div>;
@@ -47,7 +80,11 @@ export default function DashboardPage() {
   return (
     <div className="w-full px-8 py-5">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2.5 mb-5">
-        <StatsPieChart todo={stats.todo} inProgress={stats.inProgress} done={stats.done} />
+        <StatsPieChart
+          todo={stats.todo}
+          inProgress={stats.inProgress}
+          done={stats.done}
+        />
       </div>
       <Button className="mb-5" onClick={() => setIsCreateDialogOpen(true)}>
         ➕ Создать задачу
@@ -90,14 +127,30 @@ export default function DashboardPage() {
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="bg-muted/50 text-left">
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Название</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Проект</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Статус</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Приоритет</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Создана</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Начата</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Завершена</th>
-                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">Действия</th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Название
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Проект
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Статус
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Приоритет
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Создана
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Начата
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Завершена
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Действия
+                </th>
               </tr>
             </thead>
 
@@ -109,20 +162,43 @@ export default function DashboardPage() {
                   </td>
 
                   <td className="px-3 py-2.5 align-top">
-                    <Select value={task.projectId || "none"}
-                      onValueChange={(value) => updateTask({id: task.id, data: { projectId: value === "none" ? null : value }})}>
+                    <Select
+                      value={task.projectId || "none"}
+                      onValueChange={(value) =>
+                        updateTask({
+                          id: task.id,
+                          data: { projectId: value === "none" ? null : value },
+                        })
+                      }
+                    >
                       <SelectTrigger className="w-[180px]">
-                        <span>{task.projectId ? projects.find((p) => p.id === task.projectId)?.name || "—" : "Без проекта"}</span>
+                        <span>
+                          {task.projectId
+                            ? projects.find((p) => p.id === task.projectId)
+                                ?.name || "—"
+                            : "Без проекта"}
+                        </span>
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="none">Без проекта</SelectItem>
-                        {projects.map((p) => (<SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>))}
+                        {projects.map((p) => (
+                          <SelectItem key={p.id} value={p.id}>
+                            {p.name}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
-
                   </td>
                   <td className="px-3 py-2.5 align-top">
-                    <Select value={task.status} onValueChange={(value) => updateTask({ id: task.id, data: { status: value ?? "TODO" } })}>
+                    <Select
+                      value={task.status}
+                      onValueChange={(value) =>
+                        updateTask({
+                          id: task.id,
+                          data: { status: value ?? "TODO" },
+                        })
+                      }
+                    >
                       <SelectTrigger className="w-[130px]">
                         <span>
                           {task.status === "TODO" && "📋 Не назначена"}
@@ -138,7 +214,15 @@ export default function DashboardPage() {
                     </Select>
                   </td>
                   <td className="px-3 py-2.5 align-top">
-                    <Select value={task.priority} onValueChange={(value)=>updateTask({id: task.id, data:{priority: value ?? "MEDIUM"}})}>
+                    <Select
+                      value={task.priority}
+                      onValueChange={(value) =>
+                        updateTask({
+                          id: task.id,
+                          data: { priority: value ?? "MEDIUM" },
+                        })
+                      }
+                    >
                       <SelectTrigger className="w-[130px]">
                         <span>
                           {task.priority === "LOW" && "🟢 Низкий"}
@@ -153,15 +237,36 @@ export default function DashboardPage() {
                       </SelectContent>
                     </Select>
                   </td>
-                  <td className="px-3 py-2.5 align-top">{new Date(task.createdAt).toLocaleDateString("ru-RU")}</td>
-                  <td className="px-3 py-2.5 align-top">{task.startedAt ? new Date(task.startedAt).toLocaleDateString("ru-RU") : "—"}</td>
-                  <td className="px-3 py-2.5 align-top"> {task.completedAt ? new Date(task.completedAt).toLocaleDateString("ru-RU") : "—"} </td>
+                  <td className="px-3 py-2.5 align-top">
+                    {new Date(task.createdAt).toLocaleDateString("ru-RU")}
+                  </td>
+                  <td className="px-3 py-2.5 align-top">
+                    {task.startedAt
+                      ? new Date(task.startedAt).toLocaleDateString("ru-RU")
+                      : "—"}
+                  </td>
+                  <td className="px-3 py-2.5 align-top">
+                    {" "}
+                    {task.completedAt
+                      ? new Date(task.completedAt).toLocaleDateString("ru-RU")
+                      : "—"}{" "}
+                  </td>
                   <td className="px-3 py-2.5 align-top">
                     <div className="flex gap-1.5">
-                    <Button variant="outline" size="sm" onClick={() => setEditingTask(task)}>✏️ Редактировать</Button>
-                    <Button variant="destructive" size="sm" onClick={() => setDeleteTaskId(task.id)}>
-                      🗑️ Удалить
-                    </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setEditingTask(task)}
+                      >
+                        ✏️ Редактировать
+                      </Button>
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={() => setDeleteTaskId(task.id)}
+                      >
+                        🗑️ Удалить
+                      </Button>
                     </div>
                   </td>
                 </tr>
@@ -170,8 +275,17 @@ export default function DashboardPage() {
           </table>
         </div>
       )}
-      <CreateTaskDialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen} projects={projects} onCreated={() => refetch()} />
-      <EditTaskDialog task={editingTask} onClose={() => setEditingTask(null)} onUpdated={() => refetch()}/>
+      <CreateTaskDialog
+        open={isCreateDialogOpen}
+        onOpenChange={setIsCreateDialogOpen}
+        projects={projects}
+        onCreated={() => refetch()}
+      />
+      <EditTaskDialog
+        task={editingTask}
+        onClose={() => setEditingTask(null)}
+        onUpdated={() => refetch()}
+      />
       <ConfirmDialog
         open={!!deleteTaskId}
         onOpenChange={(open) => !open && setDeleteTaskId(null)}

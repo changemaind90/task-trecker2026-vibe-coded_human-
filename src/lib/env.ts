@@ -5,7 +5,9 @@ const EnvSchema = z.object({
   JWT_SECRET: z.string().min(10),
   TELEGRAM_BOT_TOKEN: z.string().optional(),
   NEXT_PUBLIC_TELEGRAM_BOT_USERNAME: z.string().optional(),
-  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+  NODE_ENV: z
+    .enum(["development", "production", "test"])
+    .default("development"),
 });
 
 // В CI переменных нет — подставляем заглушки, не валидируем

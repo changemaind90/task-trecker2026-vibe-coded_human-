@@ -22,10 +22,12 @@ export default function LandingPage() {
           <ThemeToggle />
         </div>
         <h1 className="text-[clamp(32px,6vw,64px)] font-bold mb-5 leading-[1.1]">
-          TaskFlow — твой <span style={{ color: "#6366f1" }}>умный</span> менеджер задач
+          TaskFlow — твой <span style={{ color: "#6366f1" }}>умный</span>{" "}
+          менеджер задач
         </h1>
         <p className="text-[clamp(16px,2vw,20px)] max-w-[700px] mx-auto mb-10 text-[var(--muted-foreground)]">
-          Управляй задачами, проектами и приоритетами в одном месте. Фильтруй, сортируй, анализируй — и всё это в красивом интерфейсе с тёмной темой.
+          Управляй задачами, проектами и приоритетами в одном месте. Фильтруй,
+          сортируй, анализируй — и всё это в красивом интерфейсе с тёмной темой.
         </p>
 
         <div className="flex gap-3.75 justify-center flex-wrap">
@@ -43,7 +45,11 @@ export default function LandingPage() {
                 </Button>
               </Link>
               <Link href="/login">
-                <Button size="lg" variant="outline" className="text-base px-8 py-3">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-base px-8 py-3"
+                >
                   Войти
                 </Button>
               </Link>
@@ -64,7 +70,8 @@ export default function LandingPage() {
               <CardTitle>📋 Задачи</CardTitle>
             </CardHeader>
             <CardContent>
-              Создавай задачи с описанием, приоритетом, дедлайном и привязкой к проекту. Меняй статус в один клик.
+              Создавай задачи с описанием, приоритетом, дедлайном и привязкой к
+              проекту. Меняй статус в один клик.
             </CardContent>
           </Card>
 
@@ -73,7 +80,8 @@ export default function LandingPage() {
               <CardTitle>📁 Проекты</CardTitle>
             </CardHeader>
             <CardContent>
-              Группируй задачи по проектам. Смотри, сколько задач в каждом и сколько уже сделано.
+              Группируй задачи по проектам. Смотри, сколько задач в каждом и
+              сколько уже сделано.
             </CardContent>
           </Card>
 
@@ -82,7 +90,8 @@ export default function LandingPage() {
               <CardTitle>📊 Статистика</CardTitle>
             </CardHeader>
             <CardContent>
-              Красивая диаграмма показывает распределение задач по статусам: TODO, в работе, готово.
+              Красивая диаграмма показывает распределение задач по статусам:
+              TODO, в работе, готово.
             </CardContent>
           </Card>
 
@@ -91,7 +100,8 @@ export default function LandingPage() {
               <CardTitle>🔍 Фильтры и поиск</CardTitle>
             </CardHeader>
             <CardContent>
-              Находи нужные задачи за секунду — фильтруй по статусу, приоритету, проекту и ищи по названию.
+              Находи нужные задачи за секунду — фильтруй по статусу, приоритету,
+              проекту и ищи по названию.
             </CardContent>
           </Card>
 
@@ -100,7 +110,8 @@ export default function LandingPage() {
               <CardTitle>🌙 Тёмная тема</CardTitle>
             </CardHeader>
             <CardContent>
-              Переключайся между светлой и тёмной темой — интерфейс подстраивается мгновенно.
+              Переключайся между светлой и тёмной темой — интерфейс
+              подстраивается мгновенно.
             </CardContent>
           </Card>
 
@@ -109,22 +120,39 @@ export default function LandingPage() {
               <CardTitle>🔐 Безопасность</CardTitle>
             </CardHeader>
             <CardContent>
-              JWT-авторизация, bcrypt-хеширование паролей и защита API. Твои данные в безопасности.
+              JWT-авторизация, bcrypt-хеширование паролей и защита API. Твои
+              данные в безопасности.
             </CardContent>
           </Card>
         </div>
       </section>
-      
+
       {/* SCREENSHOTS */}
       <section className="p-[60px_30px] max-w-[1200px] mx-auto">
         <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
           📸 Как это выглядит
         </h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
-          <img src="/screenshots/dashboard.png" alt="Дашборд" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
-          <img src="/screenshots/create-task.png" alt="Создание задачи" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
-          <img src="/screenshots/stats.png" alt="Статистика" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
-          <img src="/screenshots/dark-theme.png" alt="Тёмная тема" className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"/>
+          <img
+            src="/screenshots/dashboard.png"
+            alt="Дашборд"
+            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
+          />
+          <img
+            src="/screenshots/create-task.png"
+            alt="Создание задачи"
+            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
+          />
+          <img
+            src="/screenshots/stats.png"
+            alt="Статистика"
+            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
+          />
+          <img
+            src="/screenshots/dark-theme.png"
+            alt="Тёмная тема"
+            className="w-full rounded-[12px] border-[1px] border-solid border-[var(--border)]"
+          />
         </div>
       </section>
 
@@ -137,12 +165,24 @@ export default function LandingPage() {
 
           <div className="flex flex-wrap gap-3 justify-center">
             {[
-              "Next.js 16", "TypeScript", "PostgreSQL", "Prisma 7",
-              "Tailwind CSS", "shadcn/ui", "JWT + bcrypt", "Vercel",
-              "Docker", "Recharts", "Zod", "Telegram Bot"
+              "Next.js 16",
+              "TypeScript",
+              "PostgreSQL",
+              "Prisma 7",
+              "Tailwind CSS",
+              "shadcn/ui",
+              "JWT + bcrypt",
+              "Vercel",
+              "Docker",
+              "Recharts",
+              "Zod",
+              "Telegram Bot",
             ].map((tech) => (
-              <span key={tech} className="p-[8px_16px]  bg-[var(--background)] border-[1px] border-solid border-[var(--border)] 
-                    rounded-[20px] text-[14px] font-medium">
+              <span
+                key={tech}
+                className="p-[8px_16px]  bg-[var(--background)] border-[1px] border-solid border-[var(--border)] 
+                    rounded-[20px] text-[14px] font-medium"
+              >
                 {tech}
               </span>
             ))}
@@ -169,9 +209,16 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer > <p> TaskTracker © 2026 · Сделано с ❤️ на Next.js ·{" "}
-          <a href="https://github.com/changemaind90/task-trecker2026-vibe-coded_human-"
-            target="_blank" rel="noopener noreferrer" className="text-[#6366f1] underline"
+      <footer>
+        {" "}
+        <p>
+          {" "}
+          TaskTracker © 2026 · Сделано с ❤️ на Next.js ·{" "}
+          <a
+            href="https://github.com/changemaind90/task-trecker2026-vibe-coded_human-"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#6366f1] underline"
           >
             GitHub
           </a>
