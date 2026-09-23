@@ -22,7 +22,7 @@ export default function LandingPage() {
           <ThemeToggle />
         </div>
         <h1 className="text-[clamp(32px,6vw,64px)] font-bold mb-5 leading-[1.1]">
-          TaskFlow — твой <span style={{ color: "#6366f1" }}>умный</span>{" "}
+          TaskTracker — ваш <span style={{ color: "#6366f1" }}>умный</span>{" "}
           менеджер задач
         </h1>
         <p className="text-[clamp(16px,2vw,20px)] max-w-[700px] mx-auto mb-10 text-[var(--muted-foreground)]">
@@ -166,16 +166,22 @@ export default function LandingPage() {
           <div className="flex flex-wrap gap-3 justify-center">
             {[
               "Next.js 16",
+              "React 19",
               "TypeScript",
-              "PostgreSQL",
-              "Prisma 7",
-              "Tailwind CSS",
+              "Tailwind CSS 4",
               "shadcn/ui",
-              "JWT + bcrypt",
-              "Vercel",
-              "Docker",
-              "Recharts",
+              "React Query",
               "Zod",
+              "Prisma 7",
+              "PostgreSQL",
+              "Neon",
+              "JWT + bcrypt",
+              "sonner",
+              "framer-motion",
+              "Vitest",
+              "GitHub Actions",
+              "Docker",
+              "Vercel",
               "Telegram Bot",
             ].map((tech) => (
               <span
@@ -209,20 +215,85 @@ export default function LandingPage() {
       </section>
 
       {/* FOOTER */}
-      <footer>
-        {" "}
-        <p>
-          {" "}
-          TaskTracker © 2026 · Сделано с ❤️ на Next.js ·{" "}
-          <a
-            href="https://github.com/changemaind90/task-trecker2026-vibe-coded_human-"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#6366f1] underline"
-          >
-            GitHub
-          </a>
-        </p>
+      <footer className="mt-20 border-t border-border/50 backdrop-blur-xl bg-white/40 dark:bg-black/20">
+        <div className="max-w-6xl mx-auto px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            {/* Левая — бренд */}
+            <div>
+              <a
+                href="#"
+                className="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent"
+              >
+                TaskTracker
+              </a>
+              <p className="text-sm text-muted-foreground mt-3">
+                Умный менеджер задач для продуктивных людей
+              </p>
+            </div>
+
+            {/* Центр — навигация */}
+            <div>
+              <h4 className="font-semibold mb-3">Навигация</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    ↑ Наверх
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/login"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Войти
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/register"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Регистрация
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Правая — контакты */}
+            <div>
+              <h4 className="font-semibold mb-3">Контакты</h4>
+              <ul className="space-y-2 text-sm">
+                <li>
+                  <a
+                    href="https://t.me/Roman_4udo"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <span className="text-lg">💬</span> Telegram: @Roman_4udo
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/changemaind90"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    <span className="text-lg">🐙</span> GitHub: changemaind90
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-6 border-t border-border/50 text-center text-xs text-muted-foreground">
+            © 2026 TaskTracker · Сделано с ❤️ на Next.js
+          </div>
+        </div>
       </footer>
     </div>
   );

@@ -15,6 +15,7 @@ import EditTaskDialog from "@/components/EditTaskDialog";
 import { useTasks, type Task } from "@/hooks/useTasks";
 import { useProjects } from "@/hooks/useProjects";
 import ConfirmDialog from "@/components/ConfirmDialog";
+import { motion } from "framer-motion";
 
 export default function DashboardPage() {
   const [filterStatus, setFilterStatus] = useState("");
@@ -155,8 +156,14 @@ export default function DashboardPage() {
             </thead>
 
             <tbody>
-              {filteredTasks.map((task) => (
-                <tr key={task.id} className="border-b border-border">
+              {filteredTasks.map((task, index) => (
+                <motion.tr
+                  key={task.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, delay: index * 0.03 }}
+                  className="border-b border-border"
+                >
                   <td className="px-3 py-2.5 align-top">
                     <div className="font-medium">{task.title}</div>
                   </td>
@@ -269,7 +276,7 @@ export default function DashboardPage() {
                       </Button>
                     </div>
                   </td>
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
           </table>

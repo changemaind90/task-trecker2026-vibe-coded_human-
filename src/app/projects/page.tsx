@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import ConfirmDialog from "@/components/ConfirmDialog";
 import { useProjects } from "@/hooks/useProjects";
-import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 export default function ProjectsPage() {
   const router = useRouter();
@@ -91,10 +91,16 @@ export default function ProjectsPage() {
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
           />
-          <Input
+          <textarea
             placeholder="Описание"
             value={newDesc}
-            onChange={(e) => setNewDesc(e.target.value)}
+            onChange={(e) => {
+              setNewDesc(e.target.value);
+              e.target.style.height = "auto";
+              e.target.style.height = e.target.scrollHeight + "px";
+            }}
+            rows={2}
+            className="w-full p-3 rounded-md border border-border bg-transparent resize-none min-h-[60px] overflow-hidden font-sans"
           />
           <Button onClick={handleCreate} disabled={isCreating}>
             {isCreating ? (
@@ -171,10 +177,16 @@ export default function ProjectsPage() {
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
             />
-            <Input
+            <textarea
               placeholder="Описание"
-              value={editDesc}
-              onChange={(e) => setEditDesc(e.target.value)}
+              value={newDesc}
+              onChange={(e) => {
+                setNewDesc(e.target.value);
+                e.target.style.height = "auto";
+                e.target.style.height = e.target.scrollHeight + "px";
+              }}
+              rows={2}
+              className="w-full p-3 rounded-md border border-border bg-transparent resize-none min-h-[60px] overflow-hidden font-sans"
             />
           </div>
           <DialogFooter>

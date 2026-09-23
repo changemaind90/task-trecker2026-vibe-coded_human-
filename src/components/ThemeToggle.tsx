@@ -15,8 +15,8 @@ export default function ThemeToggle() {
   return (
     <Button
       variant="outline"
-      size="sm"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className="cursor-pointer border border-border hover:bg-accent rounded-full w-12 h-12 p-0 text-xl"
     >
       {theme === "dark" ? "☀️" : "🌙"}
     </Button>
