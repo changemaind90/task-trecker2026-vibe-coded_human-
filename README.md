@@ -93,7 +93,7 @@ cd task-trecker2026-vibe-coded_human-
 pnpm install
 cp .env.example .env  # заполни DATABASE_URL и JWT_SECRET
 pnpm exec prisma migrate dev --name init
-pnpm dev
+pnpm dev```
 
 ## 🐳 Запуск через Docker
 
