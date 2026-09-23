@@ -17,7 +17,7 @@ export default function LandingPage() {
   return (
     <div className="w-full">
       {/* HERO */}
-      <section className="p-[80px_30px_60px] text-center bg-[linear-gradient(135deg,var(--background)_0%,var(--muted)_100%)]">
+      <section className="relative p-[80px_30px_60px] text-center">
         <div className="absolute top-5 right-5">
           <ThemeToggle />
         </div>
@@ -33,7 +33,10 @@ export default function LandingPage() {
         <div className="flex gap-3.75 justify-center flex-wrap">
           {isLoggedIn ? (
             <Link href="/dashboard">
-              <Button size="lg" className="text-base px-8 py-3">
+              <Button
+                size="lg"
+                className="text-base px-8 py-3 cursor-pointer hover:scale-105 transition-transform"
+              >
                 🚀 Перейти к задачам
               </Button>
             </Link>
@@ -61,7 +64,7 @@ export default function LandingPage() {
       {/* FEATURES */}
       <section className="p-[60px_30px] max-w-[1200px] mx-auto">
         <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
-          ✨ Что умеет TaskFlow
+          ✨ Что умеет TaskTracker
         </h2>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-5">
@@ -132,7 +135,7 @@ export default function LandingPage() {
         <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
           📸 Как это выглядит
         </h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <img
             src="/screenshots/dashboard.png"
             alt="Дашборд"
@@ -157,7 +160,7 @@ export default function LandingPage() {
       </section>
 
       {/* TECH STACK */}
-      <section className="p-[60px_30px] bg-[var(--muted)]">
+      <section className="p-[60px_30px] backdrop-blur-sm bg-white/20 dark:bg-white/5 border-y border-white/20 dark:border-white/10">
         <div className="max-w-[1200px] mx-auto">
           <h2 className="text-[clamp(24px,4vw,40px)] text-center mb-10">
             🛠️ Технологии
@@ -205,9 +208,21 @@ export default function LandingPage() {
           Регистрация занимает 10 секунд. Бесплатно. Без карты.
         </p>
 
-        {!isLoggedIn && (
+        {isLoggedIn ? (
+          <Link href="/dashboard">
+            <Button
+              size="lg"
+              className="text-base px-8 py-3 cursor-pointer hover:scale-105 transition-transform"
+            >
+              🚀 Перейти к задачам
+            </Button>
+          </Link>
+        ) : (
           <Link href="/register">
-            <Button size="lg" className="text-base px-8 py-3">
+            <Button
+              size="lg"
+              className="text-base px-8 py-3 cursor-pointer hover:scale-105 transition-transform"
+            >
               Создать аккаунт
             </Button>
           </Link>
@@ -240,7 +255,7 @@ export default function LandingPage() {
                     href="#"
                     className="hover:text-foreground transition-colors"
                   >
-                    ↑ Наверх
+                    Наверх
                   </a>
                 </li>
                 <li>

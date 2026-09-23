@@ -1,7 +1,6 @@
 "use client";
 
 import { Pie, PieChart, Cell, ResponsiveContainer, Tooltip } from "recharts";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -28,70 +27,67 @@ export default function StatsPieChart({
   ];
 
   return (
-    <Card className="bg-transparent border-0 shadow-none backdrop-blur-0">
-      <CardHeader>
-        <CardTitle>Статусы задач</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <ResponsiveContainer width="100%" height={200}>
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="value"
-              nameKey="name"
-              innerRadius={50}
-              outerRadius={80}
-              animationDuration={800}
-              animationEasing="ease-in-out"
-              style={{ outline: "none" }}
-            >
-              {data.map((entry, i) => (
-                <Cell
-                  key={i}
-                  fill={entry.color}
-                  style={{ outline: "none", cursor: "pointer" }}
-                />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={{
-                background: isDark
-                  ? "rgba(20, 20, 30, 0.95)"
-                  : "rgba(255, 255, 255, 0.95)",
-                border: isDark
-                  ? "2px solid rgba(255, 255, 255, 0.3)"
-                  : "2px solid rgba(0, 0, 0, 0.2)",
-                borderRadius: 10,
-                padding: "10px 14px",
-                fontSize: "14px",
-                fontWeight: 500,
-                color: isDark ? "#fff" : "#000",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-              }}
-              itemStyle={{ color: isDark ? "#fff" : "#000" }}
-              labelStyle={{ color: isDark ? "#fff" : "#000", fontWeight: 600 }}
-              formatter={(value, name) => [
-                `${value ?? 0} задач`,
-                name as string,
-              ]}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+    <div className="w-full">
+      <h3 className="text-lg font-semibold mb-3 text-center">Статусы задач</h3>
 
-        <div className="flex justify-center gap-4 mt-3 flex-wrap">
-          {data.map((entry) => (
-            <div key={entry.name} className="flex items-center gap-1.5 text-sm">
-              <span
-                className="w-3 h-3 rounded-full inline-block"
-                style={{ background: entry.color }}
+      <ResponsiveContainer width="100%" height={200}>
+        <PieChart>
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            innerRadius={50}
+            outerRadius={80}
+            animationDuration={800}
+            animationEasing="ease-in-out"
+            style={{ outline: "none" }}
+          >
+            {data.map((entry, i) => (
+              <Cell
+                key={i}
+                fill={entry.color}
+                style={{ outline: "none", cursor: "pointer" }}
               />
-              <span>
-                {entry.name}: <strong>{entry.value}</strong>
-              </span>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+            ))}
+          </Pie>
+          <Tooltip
+            contentStyle={{
+              background: isDark
+                ? "rgba(20, 20, 30, 0.95)"
+                : "rgba(255, 255, 255, 0.95)",
+              border: isDark
+                ? "2px solid rgba(255, 255, 255, 0.3)"
+                : "2px solid rgba(0, 0, 0, 0.2)",
+              borderRadius: 10,
+              padding: "10px 14px",
+              fontSize: "14px",
+              fontWeight: 500,
+              color: isDark ? "#fff" : "#000",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+            }}
+            itemStyle={{ color: isDark ? "#fff" : "#000" }}
+            labelStyle={{ color: isDark ? "#fff" : "#000", fontWeight: 600 }}
+            formatter={(value, name) => [`${value ?? 0} задач`, name as string]}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+
+      <div className="flex justify-center gap-4 mt-3 flex-wrap">
+        {data.map((entry) => (
+          <div
+            key={entry.name}
+            className="mb-4 flex items-center gap-1.5 text-sm"
+          >
+            <span
+              className="w-3 h-3 rounded-full inline-block"
+              style={{ background: entry.color }}
+            />
+            <span>
+              {entry.name}: <strong>{entry.value}</strong>
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

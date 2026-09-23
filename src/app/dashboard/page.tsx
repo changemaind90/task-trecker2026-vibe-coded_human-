@@ -10,12 +10,12 @@ import {
 } from "@/components/ui/select";
 import StatsPieChart from "@/components/StatsPieChart";
 import CreateTaskDialog from "@/components/CreateTaskDialog";
-import TaskFilters from "@/components/TaskFilters";
 import EditTaskDialog from "@/components/EditTaskDialog";
 import { useTasks, type Task } from "@/hooks/useTasks";
 import { useProjects } from "@/hooks/useProjects";
 import ConfirmDialog from "@/components/ConfirmDialog";
 import { motion } from "framer-motion";
+import FilterDialog from "@/components/FilterDialog";
 
 export default function DashboardPage() {
   const [filterStatus, setFilterStatus] = useState("");
@@ -27,6 +27,7 @@ export default function DashboardPage() {
   const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
 
   const { projects } = useProjects();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const {
     tasks,
     isLoading: loading,
@@ -80,29 +81,24 @@ export default function DashboardPage() {
 
   return (
     <div className="w-full px-8 py-5">
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-2.5 mb-5">
-        <StatsPieChart
-          todo={stats.todo}
-          inProgress={stats.inProgress}
-          done={stats.done}
-        />
-      </div>
-      <Button className="mb-5" onClick={() => setIsCreateDialogOpen(true)}>
-        ➕ Создать задачу
-      </Button>
-      <TaskFilters
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        filterStatus={filterStatus}
-        setFilterStatus={setFilterStatus}
-        filterPriority={filterPriority}
-        setFilterPriority={setFilterPriority}
-        filterProject={filterProject}
-        setFilterProject={setFilterProject}
-        projects={projects}
+      <StatsPieChart
+        todo={stats.todo}
+        inProgress={stats.inProgress}
+        done={stats.done}
       />
-      <div className="flex justify-center items-center mb-4">
-        <h1>Мои задачи</h1>
+      <div className="flex gap-3 justify-center mb-5 flex-wrap">
+        <Button onClick={() => setIsCreateDialogOpen(true)}>
+          ➕ Создать задачу
+        </Button>
+        <Button variant="outline" onClick={() => setIsFilterOpen(true)}>
+          🔍 Фильтры
+          {(filterStatus && filterStatus !== "all") ||
+          (filterPriority && filterPriority !== "all") ||
+          (filterProject && filterProject !== "all") ||
+          searchQuery
+            ? " •"
+            : ""}
+        </Button>
       </div>
       {filteredTasks.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
@@ -282,6 +278,25 @@ export default function DashboardPage() {
           </table>
         </div>
       )}
+      <FilterDialog
+        open={isFilterOpen}
+        onOpenChange={setIsFilterOpen}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+        filterPriority={filterPriority}
+        setFilterPriority={setFilterPriority}
+        filterProject={filterProject}
+        setFilterProject={setFilterProject}
+        projects={projects}
+        onReset={() => {
+          setFilterStatus("");
+          setFilterPriority("");
+          setFilterProject("");
+          setSearchQuery("");
+        }}
+      />
       <CreateTaskDialog
         open={isCreateDialogOpen}
         onOpenChange={setIsCreateDialogOpen}
