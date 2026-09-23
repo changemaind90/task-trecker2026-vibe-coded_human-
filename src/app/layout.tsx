@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
@@ -23,12 +22,28 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TaskTracker — Менеджер задач",
     description: "(Пет-проект) Управляй задачами и проектами",
-    images: ["/og-image.png"],
+    url: "https://task-trecker2026-vibe-human.vercel.app",
+    siteName: "TaskTracker",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 629,
+        alt: "TaskTracker — менеджер задач",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.png"],
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 629,
+        alt: "TaskTracker — менеджер задач",
+      },
+    ],
   },
 };
 
