@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import AppFooter from "@/components/AppFooter";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Providers>
             <Navbar />
             <main className="animate-page-in flex-1">{children}</main>
+            <AppFooter />
           </Providers>
         </ThemeProvider>
       </body>
