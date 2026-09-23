@@ -23,7 +23,7 @@
 
 ## 📋 О проекте
 
-**TaskFlow** — это полнофункциональное веб-приложение для управления задачами, разработанное с использованием современного стека технологий. Проект создавался с фокусом на:
+**TaskTracker** — это полнофункциональное веб-приложение для управления задачами, разработанное с использованием современного стека технологий. Проект создавался с фокусом на:
 
 - 🎯 **Чистую архитектуру** — разделение логики (DAL, DTO, Zod-схемы)
 - 🔐 **Безопасную авторизацию** — JWT + bcrypt
@@ -87,10 +87,13 @@
 
 ## 🚀 Быстрый старт
 
-### 1️⃣ Клонируй репозиторий
 ```bash
-git clone https://github.com/yourusername/taskflow.git
-cd taskflow
+git clone https://github.com/changemaind90/task-trecker2026-vibe-coded_human-.git
+cd task-trecker2026-vibe-coded_human-
+pnpm install
+cp .env.example .env  # заполни DATABASE_URL и JWT_SECRET
+pnpm exec prisma migrate dev --name init
+pnpm dev
 
 ## 🐳 Запуск через Docker
 

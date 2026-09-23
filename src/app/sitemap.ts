@@ -1,9 +1,12 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://task-trecker2026-vibe-human.vercel.app";
+  const now = new Date();
+
   return [
-    { url: "https://task-trecker2026-vibe-human-25j7jzn8y-changemaind90.vercel.app/", lastModified: new Date(), priority: 1 },
-    { url: "https://task-trecker2026-vibe-human-25j7jzn8y-changemaind90.vercel.app//login", lastModified: new Date(), priority: 0.5 },
-    { url: "https://task-trecker2026-vibe-human-25j7jzn8y-changemaind90.vercel.app//register", lastModified: new Date(), priority: 0.5 },
+    { url: baseUrl, lastModified: now, priority: 1 },
+    { url: `${baseUrl}/login`, lastModified: now, priority: 0.5 },
+    { url: `${baseUrl}/register`, lastModified: now, priority: 0.5 },
   ];
 }
