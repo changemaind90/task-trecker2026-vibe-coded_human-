@@ -1,6 +1,7 @@
   "use client";
 
   import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+  import { toast } from "sonner";
 
   export type Task = {
     id: string;
@@ -66,25 +67,32 @@
       mutationFn: createTask,
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
+        toast.success("Задача создана");
       },
+      onError: (error: Error) => {
+        toast.error(error.message || "Ошибка создания задачи");
+      },    
     });
-
-
-    // PUT — обновление задачи
+ 
     const updateMutation = useMutation({
       mutationFn: ({ id, data }: { id: string; data: Partial<Task> }) =>
         updateTask(id, data),
       onSuccess: () => {
-        // После успеха — перезапрашиваем список
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
       },
+      onError: (error: Error) => {
+        toast.error(error.message || "Ошибка обновления задачи");
+      },
     });
-
-    // DELETE — удаление
+ 
     const deleteMutation = useMutation({
       mutationFn: deleteTask,
       onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      toast.success("Задача удалена");
+      },
+      onError: (error: Error) => {
+        toast.error(error.message || "Ошибка удаления задачи");
       },
     });
 
