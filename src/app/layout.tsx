@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import AppFooter from "@/components/AppFooter";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -67,6 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Navbar />
             <main className="animate-page-in flex-1">{children}</main>
             <AppFooter />
+            <Toaster />
           </Providers>
         </ThemeProvider>
       </body>
