@@ -137,6 +137,9 @@ export default function DashboardPage() {
                   Приоритет
                 </th>
                 <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
+                  Дедлайн
+                </th>
+                <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
                   Создана
                 </th>
                 <th className="px-3 py-2.5 border-b-2 border-border font-semibold text-left">
@@ -241,6 +244,17 @@ export default function DashboardPage() {
                     </Select>
                   </td>
                   <td className="px-3 py-2.5 align-top">
+                    {task.deadline
+                      ? new Date(task.deadline).toLocaleString("ru-RU", {
+                          day: "2-digit",
+                          month: "2-digit",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : "—"}
+                  </td>
+                  <td className="px-3 py-2.5 align-top">
                     {new Date(task.createdAt).toLocaleDateString("ru-RU")}
                   </td>
                   <td className="px-3 py-2.5 align-top">
@@ -261,14 +275,14 @@ export default function DashboardPage() {
                         size="sm"
                         onClick={() => setEditingTask(task)}
                       >
-                        ✏️ Редактировать
+                        ✏️
                       </Button>
                       <Button
                         variant="destructive"
                         size="sm"
                         onClick={() => setDeleteTaskId(task.id)}
                       >
-                        🗑️ Удалить
+                        🗑️
                       </Button>
                     </div>
                   </td>

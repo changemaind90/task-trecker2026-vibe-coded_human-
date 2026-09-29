@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { CreateTaskSchema } from "@/lib/schemas/task";
+import { sendTelegramMessage } from "@/lib/telegram";
 
 export async function GET(request: NextRequest) {
   try {
@@ -83,6 +84,24 @@ export async function POST(request: NextRequest) {
       data: taskData,
       include: { project: true },
     });
+
+    if (deadline) {
+      const user = await prisma.user.findUnique({
+        where: { id: payload.userId },
+        select: { telegramChatId: true },
+      });
+
+      if (user?.telegramChatId) {
+        try {
+          await sendTelegramMessage(
+            user.telegramChatId,
+            `📌 Новая задача с дедлайном:\n<b>${title}</b>\nДедлайн: ${new Date(deadline).toLocaleString("ru-RU")}`,
+          );
+        } catch (err) {
+          console.error("Ошибка отправки в Telegram:", err);
+        }
+      }
+    }
 
     return NextResponse.json(task, { status: 201 });
   } catch (error) {

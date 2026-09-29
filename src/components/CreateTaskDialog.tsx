@@ -38,6 +38,7 @@ export default function CreateTaskDialog({
   const [priority, setPriority] = useState("MEDIUM");
   const [projectId, setProjectId] = useState("none");
   const [isCreating, setIsCreating] = useState(false);
+  const [deadline, setDeadline] = useState("");
 
   const createTask = async () => {
     if (!title.trim()) return;
@@ -56,6 +57,7 @@ export default function CreateTaskDialog({
         status,
         priority,
         projectId: projectId === "none" ? null : projectId,
+        deadline: deadline ? new Date(deadline).toISOString() : null,
       }),
     });
 
@@ -67,6 +69,7 @@ export default function CreateTaskDialog({
       setStatus("TODO");
       setPriority("MEDIUM");
       setProjectId("none");
+      setDeadline("");
       onOpenChange(false);
     }
     setIsCreating(false);
@@ -121,7 +124,6 @@ export default function CreateTaskDialog({
                 <SelectItem value="HIGH">🔴 Высокий</SelectItem>
               </SelectContent>
             </Select>
-
             <Select
               value={projectId}
               onValueChange={(v) => setProjectId(v ?? "none")}
@@ -142,6 +144,12 @@ export default function CreateTaskDialog({
                   </SelectItem>
                 ))}
               </SelectContent>
+              <input
+                type="datetime-local"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+                className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
+              />
             </Select>
           </div>
           <textarea

@@ -16,6 +16,7 @@ type Task = {
   id: string;
   title: string;
   description: string | null;
+  deadline: string | null;
 };
 
 type Props = {
@@ -28,12 +29,13 @@ export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [isSaving, setIsSaving] = useState(false);
+  const [deadline, setDeadline] = useState("");
 
-  // Заполняем поля при открытии
   useEffect(() => {
     if (task) {
       setTitle(task.title);
       setDescription(task.description || "");
+      setDeadline(task.deadline ? task.deadline.slice(0, 16) : "");
     }
   }, [task]);
 
@@ -48,7 +50,7 @@ export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ title, description }),
+      body: JSON.stringify({ title, description, deadline }),
     });
 
     if (res.ok) {
@@ -86,6 +88,12 @@ export default function EditTaskDialog({ task, onClose, onUpdated }: Props) {
             onChange={(e) => setDescription(e.target.value)}
             rows={3}
             className="w-full p-[10px] rounded-[6px] border border-[#ccc] resize-y min-h-[80px] font-[inherit] bg-transparent"
+          />
+          <input
+            type="datetime-local"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
           />
         </div>
         <DialogFooter>
