@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { toast } from "sonner";
+import { exportTasksToCsv } from "@/lib/export-csv";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -82,6 +84,20 @@ export default function DashboardPage() {
           searchQuery
             ? " •"
             : ""}
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            if (filteredTasks.length === 0) {
+              toast.error("Нет задач для экспорта");
+              return;
+            }
+            exportTasksToCsv(filteredTasks);
+            toast.success(`Экспортировано ${filteredTasks.length} задач`);
+          }}
+          className="cursor-pointer"
+        >
+          📥 Экспорт в CSV
         </Button>
       </div>
       {filteredTasks.length === 0 ? (
