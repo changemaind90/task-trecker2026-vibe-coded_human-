@@ -4,6 +4,15 @@ import { verifyToken } from "@/lib/auth";
 import { CreateTaskSchema } from "@/lib/schemas/task";
 import { sendTelegramMessage } from "@/lib/telegram";
 
+/**
+ * Получить все задачи пользователя
+ * @description Возвращает список задач текущего пользователя
+ * @auth bearer
+ * @response 200:TaskArrayResponse:Список задач
+ * @response 401:ErrorResponse:Не авторизован
+ * @openapi
+ */
+
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");
@@ -33,6 +42,17 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+/**
+ * Создать задачу
+ * @description Создаёт новую задачу с валидацией через Zod
+ * @auth bearer
+ * @body CreateTaskSchema
+ * @response 201:TaskResponse:Задача создана
+ * @response 400:ErrorResponse:Неверные данные
+ * @response 401:ErrorResponse:Не авторизован
+ * @openapi
+ */
 
 export async function POST(request: NextRequest) {
   try {

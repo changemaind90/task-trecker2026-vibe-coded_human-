@@ -3,6 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { UpdateTaskSchema } from "@/lib/schemas/task";
 
+/**
+ * @path {string} id - ID задачи
+ */
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },

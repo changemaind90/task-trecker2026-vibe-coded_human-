@@ -1,0 +1,2989 @@
+{
+  "baseDocumentFile": "F:\\code\\REACT\\task-manager2026\\.openapi-gen\\cache\\base-openapi-b40474caaa107f8f0653470ef0454aed0f731eafcb2fe1c866d42421142abe72.json",
+  "cacheVersion": 2,
+  "configPath": "F:\\code\\REACT\\task-manager2026\\openapi-gen.config.ts",
+  "diagnostics": [
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"SuccessResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "SuccessResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"ErrorResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "ErrorResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /projects/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\projects\\[id]\\route.ts",
+      "routePath": "/projects/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "inferred-body",
+      "severity": "info",
+      "message": "Inferred request body schema from handler validation: UpdateProjectSchema",
+      "routePath": "/projects/{id}",
+      "metadata": {
+        "schemaName": "UpdateProjectSchema"
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /projects/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\projects\\[id]\\route.ts",
+      "routePath": "/projects/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"ProjectArrayResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "ProjectArrayResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"ProjectResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "ProjectResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /tasks/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\tasks\\[id]\\route.ts",
+      "routePath": "/tasks/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "inferred-body",
+      "severity": "info",
+      "message": "Inferred request body schema from handler validation: UpdateTaskSchema",
+      "routePath": "/tasks/{id}",
+      "metadata": {
+        "schemaName": "UpdateTaskSchema"
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /tasks/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\tasks\\[id]\\route.ts",
+      "routePath": "/tasks/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"TaskArrayResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "TaskArrayResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"TaskResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "TaskResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    }
+  ],
+  "fingerprint": "b40474caaa107f8f0653470ef0454aed0f731eafcb2fe1c866d42421142abe72",
+  "inputCount": 76,
+  "inputs": {
+    "F:\\code\\REACT\\task-manager2026\\openapi-gen.config.ts": {
+      "hash": "e2197e8d4dc65ff321837a346dd76dfeb94f396ddecc645b98b119a0b818ba2f",
+      "mtimeMs": 1790679060179.5188,
+      "size": 2473
+    },
+    "F:\\code\\REACT\\task-manager2026\\package.json": {
+      "hash": "d1c56def98fafbc5149202448ec09e89ff6792ba09480b587cfc961e0ed68aa2",
+      "mtimeMs": 1790679062352.386,
+      "size": 1895
+    },
+    "F:\\code\\REACT\\task-manager2026\\pnpm-lock.yaml": {
+      "hash": "e03f1c9543604ec91835f61e135f063765716ce817ac6db0ad4061ecd0617b06",
+      "mtimeMs": 1790679062292.7312,
+      "size": 346198
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api-docs\\page.tsx": {
+      "hash": "5f5bf109ca468b28799ae74fe1f7209f715bf5067928ca29c947563f94290028",
+      "mtimeMs": 1790679060191.3347,
+      "size": 335
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api-docs\\route.ts": {
+      "hash": "7a88eaf4a97eabf5a41a0408445cd72cea326b66ab566e7d3d3bf6d7dcb0afad",
+      "mtimeMs": 1790678667112.802,
+      "size": 109
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts": {
+      "hash": "09d655d99514a0efc88634dbcac7fc5b8b018e34badca775db2473bc276fa150",
+      "mtimeMs": 1790678854353.76,
+      "size": 2083
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\register\\route.ts": {
+      "hash": "c3b04a3664721bab5c6fb3a2b476222297302cb125d38d8e41adf709e6722e16",
+      "mtimeMs": 1790678833455.0476,
+      "size": 2559
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\cron\\route.ts": {
+      "hash": "34763ec6c10f3f062a1ec928231b9bedeef42e34454d327ce599a63f362ff49c",
+      "mtimeMs": 1790597204221.9397,
+      "size": 1171
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\projects\\[id]\\route.ts": {
+      "hash": "5c4cf5406a62e1999c42628db33e45b8eefce55ac10fe488e1d810014b508268",
+      "mtimeMs": 1790167524356.7192,
+      "size": 2725
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\projects\\route.ts": {
+      "hash": "6f02cfe766e71ec6dbc7e9d31430fd331031f53d84ec52a91549408139f8763a",
+      "mtimeMs": 1790678982144.751,
+      "size": 2831
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\tasks\\[id]\\route.ts": {
+      "hash": "20fa026d03eea9d6a6bb1200c0ff70891b6d719218981fd4b2fbf9ea72f03753",
+      "mtimeMs": 1790167524372.5774,
+      "size": 3658
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\tasks\\route.ts": {
+      "hash": "96b42e8d38f5d005ea76b8c3a13a5a00c21f71e2819dac4167d5c9b22d669dc9",
+      "mtimeMs": 1790678893721.9187,
+      "size": 3948
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\telegram\\webhook\\route.ts": {
+      "hash": "bc37ace194abb62f856a2e5ac2206f144de071f0772dd480ee32beb676f81172",
+      "mtimeMs": 1790167524389.2576,
+      "size": 1335
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\dashboard\\error.tsx": {
+      "hash": "4ec1400278128c993b77e1d87757659bfe3460f22a7acb09541850edb48757e0",
+      "mtimeMs": 1790167524389.2576,
+      "size": 644
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\dashboard\\layout.tsx": {
+      "hash": "2425c4b0ff3a9e866932472c7e20f503ac122e4f95e1e4b35cef65d537e1022e",
+      "mtimeMs": 1790167524389.2576,
+      "size": 322
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\dashboard\\loading.tsx": {
+      "hash": "c75d8bcae22927c7b9833c1c15a7b49f83961573b05a2dd6d71042e500c7b915",
+      "mtimeMs": 1790167524405.9055,
+      "size": 617
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\dashboard\\page.tsx": {
+      "hash": "736d47137eaa81232decc7d19ebcf4a797e08b3af6c3c1b8187f0e2bb89ff2cf",
+      "mtimeMs": 1790676407830.2876,
+      "size": 12651
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\error.tsx": {
+      "hash": "35bbb8e1c75571f547f88dcc49a41a35fafe672590e206b08cd5bdfa6feb2996",
+      "mtimeMs": 1790167524429.823,
+      "size": 1210
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\global-error.tsx": {
+      "hash": "91771fa4b3832e0d057c8d7f2fa731b74c0f126e39e5b32a31002c9f1e90cdb0",
+      "mtimeMs": 1790167524439.138,
+      "size": 1420
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\layout.tsx": {
+      "hash": "ec296d87c12302d6776be2b4430b3933a02fec8133e3943823c0b660bc108029",
+      "mtimeMs": 1790192300120.011,
+      "size": 2153
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\login\\layout.tsx": {
+      "hash": "63dec3aa8293411d9644fc01207e260c60ccce647905525586da8161b24ba028",
+      "mtimeMs": 1790186201979.1433,
+      "size": 275
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\login\\page.tsx": {
+      "hash": "dd2f1b0e084e0d22496a484128a1f0bccf68b505db9dd3f96852f840a9a02c57",
+      "mtimeMs": 1790177186359.4556,
+      "size": 2761
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\page.tsx": {
+      "hash": "013878fc891ab88c9fe349c15f1b239dba371a93e010147fa485d4afbcc573a0",
+      "mtimeMs": 1790190841547.5823,
+      "size": 12908
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\projects\\layout.tsx": {
+      "hash": "588260a2f7d1610f3a66d7ac6871fe3d8dbf4ec9939f9159a6bbae4565ccacf4",
+      "mtimeMs": 1790167524556.0203,
+      "size": 318
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\projects\\loading.tsx": {
+      "hash": "c75d8bcae22927c7b9833c1c15a7b49f83961573b05a2dd6d71042e500c7b915",
+      "mtimeMs": 1790167524563.3528,
+      "size": 617
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\projects\\page.tsx": {
+      "hash": "d6af638a5edb7563e73541446aed9f6a24dff9ebd56bb4fe8ec3e6c876dd1e61",
+      "mtimeMs": 1790677370045.8762,
+      "size": 4184
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\register\\layout.tsx": {
+      "hash": "875fbc112de3d39f00f9ee3ff7c0ad31f44b9b286da1f14971c56ca208512c51",
+      "mtimeMs": 1790167524572.8267,
+      "size": 309
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\register\\page.tsx": {
+      "hash": "3a79da98f879c9110da00f9d5732a77c9ac25593f298b0b30d059e69365a5642",
+      "mtimeMs": 1790177322662.4045,
+      "size": 4132
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\sitemap.ts": {
+      "hash": "33288209c5e2221ccdcf92f63e7a614417af6a8e30b97bb44f8eedddfc7877e6",
+      "mtimeMs": 1790167524587.4639,
+      "size": 407
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\stats\\layout.tsx": {
+      "hash": "b979a3d6033136f6200b4c8e319384db4ee7dd57c98b1039ca88a0863cb4b307",
+      "mtimeMs": 1790673854226.9382,
+      "size": 338
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\app\\stats\\page.tsx": {
+      "hash": "17a1bcf7204816dc5f029fb39c31ce15272c892d3389402d3f6584bc90f87f50",
+      "mtimeMs": 1790673904625.5442,
+      "size": 2184
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\AppFooter.tsx": {
+      "hash": "2dd46fea1be27a15ad48aed190f526988a9e9436fd440bdfbf24f8d928ce6f24",
+      "mtimeMs": 1790191934796.7415,
+      "size": 1786
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\AuthButton.tsx": {
+      "hash": "69860ddcac0dea1cff8f70c99c4b53f4de40588237fa15d8a16b130656033f1c",
+      "mtimeMs": 1790175865461.2053,
+      "size": 807
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ConfirmDialog.tsx": {
+      "hash": "3e48b8e4a3985fc720ace382932662459b542984f781aa070fc3b98b77cff0fe",
+      "mtimeMs": 1790167524589.3147,
+      "size": 1273
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\CreateTaskDialog.tsx": {
+      "hash": "2d7ee4cb93c49472b3120bebb4b2392fc1ab8e21f73fb01cf58ef8b1e85e4775",
+      "mtimeMs": 1790676839650.363,
+      "size": 6247
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\EditTaskDialog.tsx": {
+      "hash": "88f94224a856f68d85eb69fb8022a590954716184fb402bdfab5c320c08ba170",
+      "mtimeMs": 1790671343646.9045,
+      "size": 3352
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\FilterDialog.tsx": {
+      "hash": "5dc582df46d1763b0fe3bc1abc7913a724ce2297ad8246d4697f26a196d028e6",
+      "mtimeMs": 1790177407449.5845,
+      "size": 4560
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\Navbar.tsx": {
+      "hash": "7a6c1db04475b602cfe70a43b4466483a7f4c50cacf101e46541aae6c4d18323",
+      "mtimeMs": 1790673770468.5747,
+      "size": 1402
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\NavButton.tsx": {
+      "hash": "a6a5e05bd18eee367458b0ea35eac750749fb584943837b86ff5341eb7cd0695",
+      "mtimeMs": 1790178111093.3184,
+      "size": 814
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ProjectFormDialog.tsx": {
+      "hash": "7baa82d9e16d80281b925d4fd6e47c7e91c2353f32d1bcc5ccfc93ea7fe36bee",
+      "mtimeMs": 1790173133230.66,
+      "size": 2866
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\Providers.tsx": {
+      "hash": "22473f5a445d967f3671a4b3758dfd2861cf10792a137257daba58772ba94c5e",
+      "mtimeMs": 1790167524620.8267,
+      "size": 816
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\StatsPieChart.tsx": {
+      "hash": "9cda1fb83697ad08d11be02ff10abdc68fd0dc102456f6c0c2434aa1cb23be21",
+      "mtimeMs": 1790178610345.868,
+      "size": 2814
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ThemeToggle.tsx": {
+      "hash": "7aa16ecb2bd4d40ec7fa5151602bfa1d1871273bb05c69e8e60855501dd76365",
+      "mtimeMs": 1790178138674.692,
+      "size": 646
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\alert-dialog.tsx": {
+      "hash": "5cc8c79b9d7104e0a821e99c1008e5585ab0139fe215f098cee47a3947a4ee55",
+      "mtimeMs": 1790173696038.0762,
+      "size": 5369
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\button.tsx": {
+      "hash": "979b0f177ab0956c98c9f6ef25616e95d9c84821a97fcdbd4be74486ea3710a4",
+      "mtimeMs": 1790167524639.8342,
+      "size": 3220
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\card.tsx": {
+      "hash": "b940b5d0b2ef7ccdc60c25fe56c10188effb172a00f28bb0f0a7b18bd57e5154",
+      "mtimeMs": 1790167524656.151,
+      "size": 2717
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\chart.tsx": {
+      "hash": "3e7194445a73e3df2f22362fe48e2d8bb22c847f97a525ee2f0b738620540cb3",
+      "mtimeMs": 1790167524672.833,
+      "size": 10571
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\dialog.tsx": {
+      "hash": "c9b04824ecf8df8e4392cdaacadc89767932be3a1f9b29bf7c16c417db8a8d0b",
+      "mtimeMs": 1790173578073.333,
+      "size": 4224
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\input.tsx": {
+      "hash": "0dd0fa6b61740be76aa26cbeac5f5372196e569ea3d65421e56e6f8fc0234263",
+      "mtimeMs": 1790167524690.0361,
+      "size": 1036
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\select.tsx": {
+      "hash": "e1dca47b31f09242b659109b6f2775e71418abea3e7266de0ac7e83e614eea33",
+      "mtimeMs": 1790167524690.0361,
+      "size": 6690
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\components\\ui\\sonner.tsx": {
+      "hash": "e5a4353ae37d33324fb0be0970fbefb7178c01d73fc7b010c3efcb6db80758e3",
+      "mtimeMs": 1790167524704.1206,
+      "size": 1135
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\hooks\\useProjects.ts": {
+      "hash": "5313f9860abb66d0b3ec73845356e05b917c4425a221a1daf37d39c0ce27979b",
+      "mtimeMs": 1790167524705.4626,
+      "size": 3133
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\hooks\\useTasks.ts": {
+      "hash": "f56fc3869830265a0073bbb0835442cf6e8edc053301aad29a25364e540fbcf6",
+      "mtimeMs": 1790673200538.8804,
+      "size": 3400
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\__mocks__\\prisma.ts": {
+      "hash": "a6ce54f4fa65a5f1b624aea63e36cb07652b44062d59a30bde205465a0a30cc6",
+      "mtimeMs": 1790167524722.4055,
+      "size": 398
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\auth.ts": {
+      "hash": "bdd8efa62e00b81f3b7d9e498bc450d4423e23aaa2fe5ca2c232626264fca8b2",
+      "mtimeMs": 1790167524722.4055,
+      "size": 658
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\data\\project\\project.dal.ts": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtimeMs": 1788851387523.3357,
+      "size": 0
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\data\\project\\project.dto.ts": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtimeMs": 1788852233127.312,
+      "size": 0
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\data\\task\\task.dal.ts": {
+      "hash": "569c6ee18fcc2c050c68d82ec22fbb0c35ffcbd168c82df0bcb6ab7a79c2a2db",
+      "mtimeMs": 1790167524722.4055,
+      "size": 812
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\data\\task\\task.dto.ts": {
+      "hash": "c0bbc58b11f4d4fde8e0a51b6245f50cdce5d8a4c61547eda76beb486fc181c7",
+      "mtimeMs": 1790167524740.4895,
+      "size": 308
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\data\\user\\user.dal.ts": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtimeMs": 1788851343533.7214,
+      "size": 0
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\data\\user\\user.dto.ts": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtimeMs": 1788851351256.401,
+      "size": 0
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\env.ts": {
+      "hash": "8fa03e439aa2cfe5d10249a1fbba7192652ab98757ae684cc9fde6b31484d38f",
+      "mtimeMs": 1790167524740.4895,
+      "size": 1025
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\mailer.ts": {
+      "hash": "c9da91ea04097b22fc60089b532b34cd8b98503d5f7ff473faaca35514efe6e6",
+      "mtimeMs": 1790167524740.4895,
+      "size": 1054
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\prisma.ts": {
+      "hash": "9b8bc164bb5609d5184b13d6c733148e2c71c6053c9ca0a16e51ea30c00b7016",
+      "mtimeMs": 1790167524756.0046,
+      "size": 460
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\rate-limit.ts": {
+      "hash": "97098b27a9c6132857e53e08630494c11cd6d3a7faebcac813e14eb0d62dfe78",
+      "mtimeMs": 1790167524756.0046,
+      "size": 1388
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\auth.ts": {
+      "hash": "430e26e326640ed8e1381d08b5b954e3251ab3208870d9b561001d26fa44444a",
+      "mtimeMs": 1790167524756.0046,
+      "size": 793
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\base.ts": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtimeMs": 1788853405136.0403,
+      "size": 0
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\project.ts": {
+      "hash": "1f2dbd4e0115d16c1a728a3814884d511228be87e0c83dcfbeb54be49af0234f",
+      "mtimeMs": 1790167524772.6729,
+      "size": 271
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\task.ts": {
+      "hash": "8c796a4384933efe6887565836d464da31b4b1e065a6d8bc4bd6166742fd90c7",
+      "mtimeMs": 1790167524772.6729,
+      "size": 550
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\user.ts": {
+      "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtimeMs": 1788853418782.333,
+      "size": 0
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\telegram.ts": {
+      "hash": "95222ba16c9aaa23dfcebdff1f032bc94556f42f5fb91e8339fd07f83abacbc4",
+      "mtimeMs": 1790354228489.7532,
+      "size": 497
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\lib\\utils.ts": {
+      "hash": "55bbdc94cef3e0c8a8bba386e94f97228dd2c967fe61466fc565378890550c08",
+      "mtimeMs": 1790167524772.6729,
+      "size": 25
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\tests\\api\\auth.test.ts": {
+      "hash": "210294e56358bb106cd61a396033530c837797b67b8f8933421e1973de391bec",
+      "mtimeMs": 1790167524772.6729,
+      "size": 640
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\tests\\dal\\task.dal.test.ts": {
+      "hash": "9610832eec7dbb68d082901096cef6a7eb873e7770a2f5ba5002aaf2a33a0c28",
+      "mtimeMs": 1790167524789.458,
+      "size": 1335
+    },
+    "F:\\code\\REACT\\task-manager2026\\src\\tests\\schemas\\task.test.ts": {
+      "hash": "fd8159e7aeff4f1cd2eea36a5fbcb5bdcaf25372a9a0d47ceac771eba4a8e6c4",
+      "mtimeMs": 1790167524789.458,
+      "size": 2585
+    },
+    "F:\\code\\REACT\\task-manager2026\\tsconfig.json": {
+      "hash": "5c51df4c59f4510d8c7dadf07a5c32132228826a3b331da5e286207b4df7ef9c",
+      "mtimeMs": 1788795034934.5862,
+      "size": 670
+    }
+  },
+  "outputFile": "F:\\code\\REACT\\task-manager2026\\public\\openapi.json",
+  "performance": {
+    "prepareTemplateMs": 0.11329999999998108,
+    "loadCustomFragmentsMs": 0.0003999999999564352,
+    "prepareDocumentMs": 0.11369999999993752,
+    "scanRouteFilesMs": 0.6573000000000206,
+    "deriveRoutePathMs": 0.3302999999997951,
+    "filterRouteCandidatesMs": 0.02840000000054488,
+    "sourcePrecheckMs": 0.9713000000006105,
+    "readRouteFilesMs": 0.5814000000002011,
+    "parseRouteFilesMs": 3.680000000000348,
+    "analyzeRouteFilesMs": 12.007099999999355,
+    "typescriptResponseInferenceMs": 310.19979999999987,
+    "processRouteFilesMs": 326.32020000000006,
+    "registerRouteMs": 2349.8119000000015,
+    "getSchemaContentMs": 5.739200000000153,
+    "createRequestParamsMs": 0.11630000000059226,
+    "createRequestBodyMs": 0,
+    "processResponsesMs": 2341.6517,
+    "createResponseSchemaMs": 0,
+    "buildOperationsMs": 2352.9693,
+    "sortAndMergePathsMs": 0.7291000000000167,
+    "buildPathsMs": 0.7291000000000167,
+    "defaultComponentsAndErrorsMs": 0.19509999999991123,
+    "mergeSchemasMs": 0.21070000000008804,
+    "zodPreScanMs": 126.71809999999999,
+    "zodPreprocessMs": 15.773299999999892,
+    "zodConvertMs": 24.43510000000066,
+    "finalizeDocumentMs": 5.6182999999996355,
+    "totalMs": 2831.5051999999996,
+    "scanRoutesMs": 2679.9468
+  },
+  "routeFragments": {
+    "src\\app\\api\\auth\\login\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/auth/login\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [
+        {
+          "code": "schema-not-found",
+          "severity": "warning",
+          "message": "No TypeScript or Zod schema definition found for \"SuccessResponse\"; emitting an empty schema.",
+          "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+          "metadata": {
+            "typeName": "SuccessResponse",
+            "contextFile": null,
+            "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+          }
+        },
+        {
+          "code": "schema-not-found",
+          "severity": "warning",
+          "message": "No TypeScript or Zod schema definition found for \"ErrorResponse\"; emitting an empty schema.",
+          "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+          "metadata": {
+            "typeName": "ErrorResponse",
+            "contextFile": null,
+            "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+          }
+        }
+      ],
+      "internalSchemas": {},
+      "mtimeMs": 1790678854353.76,
+      "paths": {
+        "/auth/login": {
+          "post": {
+            "operationId": "post-auth-login",
+            "summary": "Вход в аккаунт",
+            "description": "Проверяет email и пароль, возвращает JWT-токен",
+            "tags": [
+              "Auth"
+            ],
+            "parameters": [],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/LoginSchema"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Токен и данные пользователя",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Неверный email или пароль",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "429": {
+                "description": "Слишком много попыток",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [
+        "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\auth.ts"
+      ],
+      "schemas": {
+        "SuccessResponse": {},
+        "ErrorResponse": {}
+      },
+      "size": 2083,
+      "tags": {
+        "Auth": {
+          "name": "Auth"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\auth\\register\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/auth/register\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [],
+      "internalSchemas": {},
+      "mtimeMs": 1790678833455.0476,
+      "paths": {
+        "/auth/register": {
+          "post": {
+            "operationId": "post-auth-register",
+            "summary": "Регистрация нового пользователя",
+            "description": "Создаёт аккаунт и возвращает ссылку для подтверждения через Telegram",
+            "tags": [
+              "Auth"
+            ],
+            "parameters": [],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/RegisterSchema"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "Пользователь создан",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Неверные данные или пользователь уже существует",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [
+        "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\auth.ts"
+      ],
+      "schemas": {},
+      "size": 2559,
+      "tags": {
+        "Auth": {
+          "name": "Auth"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\cron\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/cron\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [],
+      "internalSchemas": {},
+      "mtimeMs": 1790597204221.9397,
+      "paths": {
+        "/cron": {
+          "get": {
+            "operationId": "get-cron",
+            "summary": "",
+            "description": "",
+            "tags": [
+              "Cron"
+            ],
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "sent": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "sent"
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [],
+      "schemas": {},
+      "size": 1171,
+      "tags": {
+        "Cron": {
+          "name": "Cron"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\projects\\[id]\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/projects/{id}\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [
+        {
+          "code": "missing-path-params-type",
+          "severity": "warning",
+          "message": "Route /projects/{id} contains path parameters id but no @path type is defined.",
+          "filePath": "src\\app\\api\\projects\\[id]\\route.ts",
+          "routePath": "/projects/{id}",
+          "metadata": {
+            "pathParams": [
+              "id"
+            ],
+            "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+          }
+        },
+        {
+          "code": "inferred-body",
+          "severity": "info",
+          "message": "Inferred request body schema from handler validation: UpdateProjectSchema",
+          "routePath": "/projects/{id}",
+          "metadata": {
+            "schemaName": "UpdateProjectSchema"
+          }
+        },
+        {
+          "code": "missing-path-params-type",
+          "severity": "warning",
+          "message": "Route /projects/{id} contains path parameters id but no @path type is defined.",
+          "filePath": "src\\app\\api\\projects\\[id]\\route.ts",
+          "routePath": "/projects/{id}",
+          "metadata": {
+            "pathParams": [
+              "id"
+            ],
+            "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+          }
+        }
+      ],
+      "internalSchemas": {},
+      "mtimeMs": 1790167524356.7192,
+      "paths": {
+        "/projects/{id}": {
+          "put": {
+            "operationId": "put-projects-{id}",
+            "summary": "",
+            "description": "",
+            "tags": [
+              "Projects"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "123",
+                "description": "Path parameter: id"
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UpdateProjectSchema"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ]
+                        },
+                        "updatedAt": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ]
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "userId": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "description",
+                        "userId"
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          },
+          "delete": {
+            "operationId": "delete-projects-{id}",
+            "summary": "",
+            "description": "",
+            "tags": [
+              "Projects"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "123",
+                "description": "Path parameter: id"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "message"
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [
+        "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\project.ts"
+      ],
+      "schemas": {
+        "UpdateProjectSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "size": 2725,
+      "tags": {
+        "Projects": {
+          "name": "Projects"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\projects\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/projects\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [
+        {
+          "code": "schema-not-found",
+          "severity": "warning",
+          "message": "No TypeScript or Zod schema definition found for \"ProjectArrayResponse\"; emitting an empty schema.",
+          "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+          "metadata": {
+            "typeName": "ProjectArrayResponse",
+            "contextFile": null,
+            "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+          }
+        },
+        {
+          "code": "schema-not-found",
+          "severity": "warning",
+          "message": "No TypeScript or Zod schema definition found for \"ProjectResponse\"; emitting an empty schema.",
+          "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+          "metadata": {
+            "typeName": "ProjectResponse",
+            "contextFile": null,
+            "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+          }
+        }
+      ],
+      "internalSchemas": {},
+      "mtimeMs": 1790678982144.751,
+      "paths": {
+        "/projects": {
+          "get": {
+            "operationId": "get-projects",
+            "summary": "Получить все проекты пользователя",
+            "description": "Возвращает список проектов с количеством задач",
+            "tags": [
+              "Projects"
+            ],
+            "parameters": [],
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Список проектов",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProjectArrayResponse"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Не авторизован",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          },
+          "post": {
+            "operationId": "post-projects",
+            "summary": "Создать проект",
+            "description": "Создаёт новый проект",
+            "tags": [
+              "Projects"
+            ],
+            "parameters": [],
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateProjectSchema"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "Проект создан",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ProjectResponse"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Неверные данные",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [
+        "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\project.ts"
+      ],
+      "schemas": {
+        "ProjectArrayResponse": {},
+        "ProjectResponse": {}
+      },
+      "size": 2831,
+      "tags": {
+        "Projects": {
+          "name": "Projects"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\tasks\\[id]\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/tasks/{id}\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [
+        {
+          "code": "missing-path-params-type",
+          "severity": "warning",
+          "message": "Route /tasks/{id} contains path parameters id but no @path type is defined.",
+          "filePath": "src\\app\\api\\tasks\\[id]\\route.ts",
+          "routePath": "/tasks/{id}",
+          "metadata": {
+            "pathParams": [
+              "id"
+            ],
+            "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+          }
+        },
+        {
+          "code": "inferred-body",
+          "severity": "info",
+          "message": "Inferred request body schema from handler validation: UpdateTaskSchema",
+          "routePath": "/tasks/{id}",
+          "metadata": {
+            "schemaName": "UpdateTaskSchema"
+          }
+        },
+        {
+          "code": "missing-path-params-type",
+          "severity": "warning",
+          "message": "Route /tasks/{id} contains path parameters id but no @path type is defined.",
+          "filePath": "src\\app\\api\\tasks\\[id]\\route.ts",
+          "routePath": "/tasks/{id}",
+          "metadata": {
+            "pathParams": [
+              "id"
+            ],
+            "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+          }
+        }
+      ],
+      "internalSchemas": {},
+      "mtimeMs": 1790167524372.5774,
+      "paths": {
+        "/tasks/{id}": {
+          "put": {
+            "operationId": "put-tasks-{id}",
+            "summary": "",
+            "description": "",
+            "tags": [
+              "Tasks"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "123",
+                "description": "Path parameter: id"
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/UpdateTaskSchema"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ]
+                        },
+                        "updatedAt": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ]
+                        },
+                        "title": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "priority": {
+                          "type": "string"
+                        },
+                        "deadline": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ],
+                          "nullable": true
+                        },
+                        "startedAt": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ],
+                          "nullable": true
+                        },
+                        "completedAt": {
+                          "type": "object",
+                          "properties": {
+                            "toString": {
+                              "type": "object"
+                            },
+                            "toDateString": {
+                              "type": "object"
+                            },
+                            "toTimeString": {
+                              "type": "object"
+                            },
+                            "toLocaleString": {
+                              "type": "object"
+                            },
+                            "toLocaleDateString": {
+                              "type": "object"
+                            },
+                            "toLocaleTimeString": {
+                              "type": "object"
+                            },
+                            "valueOf": {
+                              "type": "object"
+                            },
+                            "getTime": {
+                              "type": "object"
+                            },
+                            "getFullYear": {
+                              "type": "object"
+                            },
+                            "getUTCFullYear": {
+                              "type": "object"
+                            },
+                            "getMonth": {
+                              "type": "object"
+                            },
+                            "getUTCMonth": {
+                              "type": "object"
+                            },
+                            "getDate": {
+                              "type": "object"
+                            },
+                            "getUTCDate": {
+                              "type": "object"
+                            },
+                            "getDay": {
+                              "type": "object"
+                            },
+                            "getUTCDay": {
+                              "type": "object"
+                            },
+                            "getHours": {
+                              "type": "object"
+                            },
+                            "getUTCHours": {
+                              "type": "object"
+                            },
+                            "getMinutes": {
+                              "type": "object"
+                            },
+                            "getUTCMinutes": {
+                              "type": "object"
+                            },
+                            "getSeconds": {
+                              "type": "object"
+                            },
+                            "getUTCSeconds": {
+                              "type": "object"
+                            },
+                            "getMilliseconds": {
+                              "type": "object"
+                            },
+                            "getUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "getTimezoneOffset": {
+                              "type": "object"
+                            },
+                            "setTime": {
+                              "type": "object"
+                            },
+                            "setMilliseconds": {
+                              "type": "object"
+                            },
+                            "setUTCMilliseconds": {
+                              "type": "object"
+                            },
+                            "setSeconds": {
+                              "type": "object"
+                            },
+                            "setUTCSeconds": {
+                              "type": "object"
+                            },
+                            "setMinutes": {
+                              "type": "object"
+                            },
+                            "setUTCMinutes": {
+                              "type": "object"
+                            },
+                            "setHours": {
+                              "type": "object"
+                            },
+                            "setUTCHours": {
+                              "type": "object"
+                            },
+                            "setDate": {
+                              "type": "object"
+                            },
+                            "setUTCDate": {
+                              "type": "object"
+                            },
+                            "setMonth": {
+                              "type": "object"
+                            },
+                            "setUTCMonth": {
+                              "type": "object"
+                            },
+                            "setFullYear": {
+                              "type": "object"
+                            },
+                            "setUTCFullYear": {
+                              "type": "object"
+                            },
+                            "toUTCString": {
+                              "type": "object"
+                            },
+                            "toISOString": {
+                              "type": "object"
+                            },
+                            "toJSON": {
+                              "type": "object"
+                            },
+                            "__@toPrimitive@565": {
+                              "type": "object"
+                            }
+                          },
+                          "required": [
+                            "toString",
+                            "toDateString",
+                            "toTimeString",
+                            "toLocaleString",
+                            "toLocaleDateString",
+                            "toLocaleTimeString",
+                            "valueOf",
+                            "getTime",
+                            "getFullYear",
+                            "getUTCFullYear",
+                            "getMonth",
+                            "getUTCMonth",
+                            "getDate",
+                            "getUTCDate",
+                            "getDay",
+                            "getUTCDay",
+                            "getHours",
+                            "getUTCHours",
+                            "getMinutes",
+                            "getUTCMinutes",
+                            "getSeconds",
+                            "getUTCSeconds",
+                            "getMilliseconds",
+                            "getUTCMilliseconds",
+                            "getTimezoneOffset",
+                            "setTime",
+                            "setMilliseconds",
+                            "setUTCMilliseconds",
+                            "setSeconds",
+                            "setUTCSeconds",
+                            "setMinutes",
+                            "setUTCMinutes",
+                            "setHours",
+                            "setUTCHours",
+                            "setDate",
+                            "setUTCDate",
+                            "setMonth",
+                            "setUTCMonth",
+                            "setFullYear",
+                            "setUTCFullYear",
+                            "toUTCString",
+                            "toISOString",
+                            "toJSON",
+                            "__@toPrimitive@565"
+                          ],
+                          "nullable": true
+                        },
+                        "projectId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "userId": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status",
+                        "id",
+                        "createdAt",
+                        "updatedAt",
+                        "title",
+                        "description",
+                        "priority",
+                        "deadline",
+                        "startedAt",
+                        "completedAt",
+                        "projectId",
+                        "userId"
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          },
+          "delete": {
+            "operationId": "delete-tasks-{id}",
+            "summary": "",
+            "description": "",
+            "tags": [
+              "Tasks"
+            ],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "123",
+                "description": "Path parameter: id"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "message"
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [
+        "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\task.ts"
+      ],
+      "schemas": {
+        "UpdateTaskSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "TODO",
+                "IN_PROGRESS",
+                "DONE"
+              ],
+              "default": "TODO"
+            },
+            "priority": {
+              "type": "string",
+              "enum": [
+                "LOW",
+                "MEDIUM",
+                "HIGH"
+              ],
+              "default": "MEDIUM"
+            },
+            "deadline": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            },
+            "projectId": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        }
+      },
+      "size": 3658,
+      "tags": {
+        "Tasks": {
+          "name": "Tasks"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\tasks\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/tasks\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [
+        {
+          "code": "schema-not-found",
+          "severity": "warning",
+          "message": "No TypeScript or Zod schema definition found for \"TaskArrayResponse\"; emitting an empty schema.",
+          "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+          "metadata": {
+            "typeName": "TaskArrayResponse",
+            "contextFile": null,
+            "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+          }
+        },
+        {
+          "code": "schema-not-found",
+          "severity": "warning",
+          "message": "No TypeScript or Zod schema definition found for \"TaskResponse\"; emitting an empty schema.",
+          "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+          "metadata": {
+            "typeName": "TaskResponse",
+            "contextFile": null,
+            "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+          }
+        }
+      ],
+      "internalSchemas": {},
+      "mtimeMs": 1790678893721.9187,
+      "paths": {
+        "/tasks": {
+          "get": {
+            "operationId": "get-tasks",
+            "summary": "Получить все задачи пользователя",
+            "description": "Возвращает список задач текущего пользователя",
+            "tags": [
+              "Tasks"
+            ],
+            "parameters": [],
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Список задач",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/TaskArrayResponse"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "401": {
+                "description": "Не авторизован",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          },
+          "post": {
+            "operationId": "post-tasks",
+            "summary": "Создать задачу",
+            "description": "Создаёт новую задачу с валидацией через Zod",
+            "tags": [
+              "Tasks"
+            ],
+            "parameters": [],
+            "security": [
+              {
+                "BearerAuth": []
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CreateTaskSchema"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "201": {
+                "description": "Задача создана",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/TaskResponse"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Неверные данные",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Не авторизован",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "$ref": "#/components/schemas/ErrorResponse"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [
+        "F:\\code\\REACT\\task-manager2026\\src\\lib\\schemas\\task.ts"
+      ],
+      "schemas": {
+        "TaskArrayResponse": {},
+        "TaskResponse": {}
+      },
+      "size": 3948,
+      "tags": {
+        "Tasks": {
+          "name": "Tasks"
+        }
+      },
+      "webhooks": {}
+    },
+    "src\\app\\api\\telegram\\webhook\\route.ts": {
+      "cacheKey": "{\"authPresets\":{\"bearer\":\"BearerAuth\",\"basic\":\"BasicAuth\",\"apikey\":\"ApiKeyAuth\"},\"defaultResponseSet\":\"common\",\"errorConfig\":{\"template\":{\"type\":\"object\",\"properties\":{\"error\":{\"type\":\"string\",\"example\":\"{{ERROR_MESSAGE}}\"},\"code\":{\"type\":\"string\",\"example\":\"{{ERROR_CODE}}\"}}},\"codes\":{\"400\":{\"description\":\"Bad Request\",\"variables\":{\"ERROR_MESSAGE\":\"Invalid request parameters\",\"ERROR_CODE\":\"BAD_REQUEST\"}},\"401\":{\"description\":\"Unauthorized\",\"variables\":{\"ERROR_MESSAGE\":\"Authentication required\",\"ERROR_CODE\":\"UNAUTHORIZED\"}},\"403\":{\"description\":\"Forbidden\",\"variables\":{\"ERROR_MESSAGE\":\"Access denied\",\"ERROR_CODE\":\"FORBIDDEN\"}},\"404\":{\"description\":\"Not Found\",\"variables\":{\"ERROR_MESSAGE\":\"Resource not found\",\"ERROR_CODE\":\"NOT_FOUND\"}},\"409\":{\"description\":\"Conflict\",\"variables\":{\"ERROR_MESSAGE\":\"Resource already exists\",\"ERROR_CODE\":\"CONFLICT\"}},\"500\":{\"description\":\"Internal Server Error\",\"variables\":{\"ERROR_MESSAGE\":\"An unexpected error occurred\",\"ERROR_CODE\":\"INTERNAL_ERROR\"}}}},\"excludeSchemas\":[],\"framework\":{\"kind\":\"nextjs\",\"router\":\"app\"},\"ignoreRoutes\":[],\"includeOpenApiRoutes\":false,\"openapiVersion\":\"3.0\",\"responseSets\":{\"common\":[\"400\",\"500\"],\"auth\":[\"400\",\"401\",\"403\",\"500\"],\"public\":[\"400\",\"500\"]},\"routePath\":\"/telegram/webhook\",\"schemaBackends\":[\"zod\"],\"schemaFiles\":[]}",
+      "diagnostics": [],
+      "internalSchemas": {},
+      "mtimeMs": 1790167524389.2576,
+      "paths": {
+        "/telegram/webhook": {
+          "post": {
+            "operationId": "post-telegram-webhook",
+            "summary": "",
+            "description": "",
+            "tags": [
+              "Telegram"
+            ],
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "ok": {
+                          "type": "boolean",
+                          "enum": [
+                            true
+                          ]
+                        }
+                      },
+                      "required": [
+                        "ok"
+                      ]
+                    }
+                  }
+                }
+              },
+              "400": {
+                "$ref": "#/components/responses/400"
+              },
+              "500": {
+                "$ref": "#/components/responses/500"
+              }
+            }
+          }
+        }
+      },
+      "schemaDependencies": [],
+      "schemas": {},
+      "size": 1335,
+      "tags": {
+        "Telegram": {
+          "name": "Telegram"
+        }
+      },
+      "webhooks": {}
+    }
+  },
+  "updatedAt": "2026-09-29T10:53:06.224Z"
+}

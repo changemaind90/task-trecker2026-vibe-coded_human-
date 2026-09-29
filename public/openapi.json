@@ -1,0 +1,2476 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0",
+    "description": "This is the OpenAPI specification for your project."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local development server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "CreateProjectSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CreateTaskSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "TODO",
+              "IN_PROGRESS",
+              "DONE"
+            ],
+            "default": "TODO"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "default": "MEDIUM"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "title",
+          "status",
+          "priority"
+        ]
+      },
+      "EnvSchema": {
+        "type": "object",
+        "properties": {
+          "DATABASE_URL": {
+            "type": "string",
+            "minLength": 1
+          },
+          "JWT_SECRET": {
+            "type": "string",
+            "minLength": 10
+          },
+          "TELEGRAM_BOT_TOKEN": {
+            "type": "string"
+          },
+          "NEXT_PUBLIC_TELEGRAM_BOT_USERNAME": {
+            "type": "string"
+          },
+          "NODE_ENV": {
+            "type": "string",
+            "enum": [
+              "development",
+              "production",
+              "test"
+            ],
+            "default": "development"
+          }
+        },
+        "required": [
+          "DATABASE_URL",
+          "JWT_SECRET",
+          "NODE_ENV"
+        ]
+      },
+      "ErrorResponse": {},
+      "LoginSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "ProjectArrayResponse": {},
+      "ProjectResponse": {},
+      "RegisterSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "SuccessResponse": {},
+      "TaskArrayResponse": {},
+      "TaskResponse": {},
+      "TaskSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "TODO",
+              "IN_PROGRESS",
+              "DONE"
+            ],
+            "default": "TODO"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "default": "MEDIUM"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "projectId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "status",
+          "priority"
+        ]
+      },
+      "UpdateProjectSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateTaskSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "TODO",
+              "IN_PROGRESS",
+              "DONE"
+            ],
+            "default": "TODO"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ],
+            "default": "MEDIUM"
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "responses": {
+      "400": {
+        "description": "Bad Request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Invalid request parameters"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "400"
+                }
+              }
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Authentication required"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "401"
+                }
+              }
+            }
+          }
+        }
+      },
+      "403": {
+        "description": "Forbidden",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Access denied"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "403"
+                }
+              }
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "Not Found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Resource not found"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "404"
+                }
+              }
+            }
+          }
+        }
+      },
+      "409": {
+        "description": "Conflict",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Resource already exists"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "409"
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "Internal Server Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "An unexpected error occurred"
+                },
+                "code": {
+                  "type": "string",
+                  "example": "500"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "operationId": "post-auth-login",
+        "summary": "Вход в аккаунт",
+        "description": "Проверяет email и пароль, возвращает JWT-токен",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Токен и данные пользователя",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Неверный email или пароль",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Слишком много попыток",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "operationId": "post-auth-register",
+        "summary": "Регистрация нового пользователя",
+        "description": "Создаёт аккаунт и возвращает ссылку для подтверждения через Telegram",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Пользователь создан",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные данные или пользователь уже существует",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/cron": {
+      "get": {
+        "operationId": "get-cron",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Cron"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sent": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "sent"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "get-projects",
+        "summary": "Получить все проекты пользователя",
+        "description": "Возвращает список проектов с количеством задач",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список проектов",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectArrayResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Не авторизован",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-projects",
+        "summary": "Создать проект",
+        "description": "Создаёт новый проект",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateProjectSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Проект создан",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные данные",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "put": {
+        "operationId": "put-projects-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123",
+            "description": "Path parameter: id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProjectSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ]
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ]
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "userId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "description",
+                    "userId"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-projects-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123",
+            "description": "Path parameter: id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "operationId": "get-tasks",
+        "summary": "Получить все задачи пользователя",
+        "description": "Возвращает список задач текущего пользователя",
+        "tags": [
+          "Tasks"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Список задач",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskArrayResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Не авторизован",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-tasks",
+        "summary": "Создать задачу",
+        "description": "Создаёт новую задачу с валидацией через Zod",
+        "tags": [
+          "Tasks"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTaskSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Задача создана",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Неверные данные",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Не авторизован",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "put": {
+        "operationId": "put-tasks-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Tasks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123",
+            "description": "Path parameter: id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ]
+                    },
+                    "updatedAt": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ]
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "deadline": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ],
+                      "nullable": true
+                    },
+                    "startedAt": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ],
+                      "nullable": true
+                    },
+                    "completedAt": {
+                      "type": "object",
+                      "properties": {
+                        "toString": {
+                          "type": "object"
+                        },
+                        "toDateString": {
+                          "type": "object"
+                        },
+                        "toTimeString": {
+                          "type": "object"
+                        },
+                        "toLocaleString": {
+                          "type": "object"
+                        },
+                        "toLocaleDateString": {
+                          "type": "object"
+                        },
+                        "toLocaleTimeString": {
+                          "type": "object"
+                        },
+                        "valueOf": {
+                          "type": "object"
+                        },
+                        "getTime": {
+                          "type": "object"
+                        },
+                        "getFullYear": {
+                          "type": "object"
+                        },
+                        "getUTCFullYear": {
+                          "type": "object"
+                        },
+                        "getMonth": {
+                          "type": "object"
+                        },
+                        "getUTCMonth": {
+                          "type": "object"
+                        },
+                        "getDate": {
+                          "type": "object"
+                        },
+                        "getUTCDate": {
+                          "type": "object"
+                        },
+                        "getDay": {
+                          "type": "object"
+                        },
+                        "getUTCDay": {
+                          "type": "object"
+                        },
+                        "getHours": {
+                          "type": "object"
+                        },
+                        "getUTCHours": {
+                          "type": "object"
+                        },
+                        "getMinutes": {
+                          "type": "object"
+                        },
+                        "getUTCMinutes": {
+                          "type": "object"
+                        },
+                        "getSeconds": {
+                          "type": "object"
+                        },
+                        "getUTCSeconds": {
+                          "type": "object"
+                        },
+                        "getMilliseconds": {
+                          "type": "object"
+                        },
+                        "getUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "getTimezoneOffset": {
+                          "type": "object"
+                        },
+                        "setTime": {
+                          "type": "object"
+                        },
+                        "setMilliseconds": {
+                          "type": "object"
+                        },
+                        "setUTCMilliseconds": {
+                          "type": "object"
+                        },
+                        "setSeconds": {
+                          "type": "object"
+                        },
+                        "setUTCSeconds": {
+                          "type": "object"
+                        },
+                        "setMinutes": {
+                          "type": "object"
+                        },
+                        "setUTCMinutes": {
+                          "type": "object"
+                        },
+                        "setHours": {
+                          "type": "object"
+                        },
+                        "setUTCHours": {
+                          "type": "object"
+                        },
+                        "setDate": {
+                          "type": "object"
+                        },
+                        "setUTCDate": {
+                          "type": "object"
+                        },
+                        "setMonth": {
+                          "type": "object"
+                        },
+                        "setUTCMonth": {
+                          "type": "object"
+                        },
+                        "setFullYear": {
+                          "type": "object"
+                        },
+                        "setUTCFullYear": {
+                          "type": "object"
+                        },
+                        "toUTCString": {
+                          "type": "object"
+                        },
+                        "toISOString": {
+                          "type": "object"
+                        },
+                        "toJSON": {
+                          "type": "object"
+                        },
+                        "__@toPrimitive@565": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "toString",
+                        "toDateString",
+                        "toTimeString",
+                        "toLocaleString",
+                        "toLocaleDateString",
+                        "toLocaleTimeString",
+                        "valueOf",
+                        "getTime",
+                        "getFullYear",
+                        "getUTCFullYear",
+                        "getMonth",
+                        "getUTCMonth",
+                        "getDate",
+                        "getUTCDate",
+                        "getDay",
+                        "getUTCDay",
+                        "getHours",
+                        "getUTCHours",
+                        "getMinutes",
+                        "getUTCMinutes",
+                        "getSeconds",
+                        "getUTCSeconds",
+                        "getMilliseconds",
+                        "getUTCMilliseconds",
+                        "getTimezoneOffset",
+                        "setTime",
+                        "setMilliseconds",
+                        "setUTCMilliseconds",
+                        "setSeconds",
+                        "setUTCSeconds",
+                        "setMinutes",
+                        "setUTCMinutes",
+                        "setHours",
+                        "setUTCHours",
+                        "setDate",
+                        "setUTCDate",
+                        "setMonth",
+                        "setUTCMonth",
+                        "setFullYear",
+                        "setUTCFullYear",
+                        "toUTCString",
+                        "toISOString",
+                        "toJSON",
+                        "__@toPrimitive@565"
+                      ],
+                      "nullable": true
+                    },
+                    "projectId": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "userId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "id",
+                    "createdAt",
+                    "updatedAt",
+                    "title",
+                    "description",
+                    "priority",
+                    "deadline",
+                    "startedAt",
+                    "completedAt",
+                    "projectId",
+                    "userId"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-tasks-{id}",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Tasks"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "123",
+            "description": "Path parameter: id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/telegram/webhook": {
+      "post": {
+        "operationId": "post-telegram-webhook",
+        "summary": "",
+        "description": "",
+        "tags": [
+          "Telegram"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    }
+                  },
+                  "required": [
+                    "ok"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Cron"
+    },
+    {
+      "name": "Projects"
+    },
+    {
+      "name": "Tasks"
+    },
+    {
+      "name": "Telegram"
+    }
+  ]
+}

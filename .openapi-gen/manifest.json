@@ -1,0 +1,173 @@
+{
+  "configPath": "F:\\code\\REACT\\task-manager2026\\openapi-gen.config.ts",
+  "outputFile": "F:\\code\\REACT\\task-manager2026\\public\\openapi.json",
+  "diagnostics": [
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"SuccessResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "SuccessResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"ErrorResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "ErrorResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /projects/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\projects\\[id]\\route.ts",
+      "routePath": "/projects/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "inferred-body",
+      "severity": "info",
+      "message": "Inferred request body schema from handler validation: UpdateProjectSchema",
+      "routePath": "/projects/{id}",
+      "metadata": {
+        "schemaName": "UpdateProjectSchema"
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /projects/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\projects\\[id]\\route.ts",
+      "routePath": "/projects/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"ProjectArrayResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "ProjectArrayResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"ProjectResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "ProjectResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /tasks/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\tasks\\[id]\\route.ts",
+      "routePath": "/tasks/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "inferred-body",
+      "severity": "info",
+      "message": "Inferred request body schema from handler validation: UpdateTaskSchema",
+      "routePath": "/tasks/{id}",
+      "metadata": {
+        "schemaName": "UpdateTaskSchema"
+      }
+    },
+    {
+      "code": "missing-path-params-type",
+      "severity": "warning",
+      "message": "Route /tasks/{id} contains path parameters id but no @path type is defined.",
+      "filePath": "src\\app\\api\\tasks\\[id]\\route.ts",
+      "routePath": "/tasks/{id}",
+      "metadata": {
+        "pathParams": [
+          "id"
+        ],
+        "suggestedFix": "Add @path <SchemaName>, validate context.params in the handler, or export matching <paramName>Schema helpers."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"TaskArrayResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "TaskArrayResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    },
+    {
+      "code": "schema-not-found",
+      "severity": "warning",
+      "message": "No TypeScript or Zod schema definition found for \"TaskResponse\"; emitting an empty schema.",
+      "filePath": "F:\\code\\REACT\\task-manager2026\\src\\app\\api\\auth\\login\\route.ts",
+      "metadata": {
+        "typeName": "TaskResponse",
+        "contextFile": null,
+        "suggestedFix": "Add the type to schemaDir, export it from an indexed schema file, or reference an explicit @response/@body/@params schema."
+      }
+    }
+  ],
+  "performance": {
+    "prepareTemplateMs": 0.11329999999998108,
+    "loadCustomFragmentsMs": 0.0003999999999564352,
+    "prepareDocumentMs": 0.11369999999993752,
+    "scanRouteFilesMs": 0.6573000000000206,
+    "deriveRoutePathMs": 0.3302999999997951,
+    "filterRouteCandidatesMs": 0.02840000000054488,
+    "sourcePrecheckMs": 0.9713000000006105,
+    "readRouteFilesMs": 0.5814000000002011,
+    "parseRouteFilesMs": 3.680000000000348,
+    "analyzeRouteFilesMs": 12.007099999999355,
+    "typescriptResponseInferenceMs": 310.19979999999987,
+    "processRouteFilesMs": 326.32020000000006,
+    "registerRouteMs": 2349.8119000000015,
+    "getSchemaContentMs": 5.739200000000153,
+    "createRequestParamsMs": 0.11630000000059226,
+    "createRequestBodyMs": 0,
+    "processResponsesMs": 2341.6517,
+    "createResponseSchemaMs": 0,
+    "buildOperationsMs": 2352.9693,
+    "sortAndMergePathsMs": 0.7291000000000167,
+    "buildPathsMs": 0.7291000000000167,
+    "defaultComponentsAndErrorsMs": 0.19509999999991123,
+    "mergeSchemasMs": 0.21070000000008804,
+    "zodPreScanMs": 126.71809999999999,
+    "zodPreprocessMs": 15.773299999999892,
+    "zodConvertMs": 24.43510000000066,
+    "finalizeDocumentMs": 5.6182999999996355,
+    "totalMs": 2831.5051999999996,
+    "scanRoutesMs": 2679.9468
+  }
+}

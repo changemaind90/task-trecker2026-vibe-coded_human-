@@ -4,6 +4,15 @@ import { hashPassword } from "@/lib/auth";
 import { RegisterSchema } from "@/lib/schemas/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
+/**
+ * Регистрация нового пользователя
+ * @description Создаёт аккаунт и возвращает ссылку для подтверждения через Telegram
+ * @body RegisterSchema
+ * @response 201:SuccessResponse:Пользователь создан
+ * @response 400:ErrorResponse:Неверные данные или пользователь уже существует
+ * @openapi
+ */
+
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for") || "unknown";

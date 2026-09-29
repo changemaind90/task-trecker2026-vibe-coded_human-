@@ -3,6 +3,16 @@ import { prisma } from "@/lib/prisma";
 import { verifyPassword, generateToken } from "@/lib/auth";
 import { rateLimit } from "@/lib/rate-limit";
 
+/**
+ * Вход в аккаунт
+ * @description Проверяет email и пароль, возвращает JWT-токен
+ * @body LoginSchema
+ * @response 200:SuccessResponse:Токен и данные пользователя
+ * @response 401:ErrorResponse:Неверный email или пароль
+ * @response 429:ErrorResponse:Слишком много попыток
+ * @openapi
+ */
+
 export async function POST(request: Request) {
   try {
     const ip = request.headers.get("x-forwarded-for") || "unknown";

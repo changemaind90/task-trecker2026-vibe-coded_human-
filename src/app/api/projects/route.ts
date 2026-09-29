@@ -3,6 +3,15 @@ import { prisma } from "@/lib/prisma";
 import { verifyToken } from "@/lib/auth";
 import { CreateProjectSchema } from "@/lib/schemas/project";
 
+/**
+ * Получить все проекты пользователя
+ * @description Возвращает список проектов с количеством задач
+ * @auth bearer
+ * @response 200:ProjectArrayResponse:Список проектов
+ * @response 401:ErrorResponse:Не авторизован
+ * @openapi
+ */
+
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");
@@ -28,6 +37,17 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+
+/**
+ * Создать проект
+ * @description Создаёт новый проект
+ * @auth bearer
+ * @body CreateProjectSchema
+ * @response 201:ProjectResponse:Проект создан
+ * @response 400:ErrorResponse:Неверные данные
+ * @openapi
+ */
+
 export async function POST(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");

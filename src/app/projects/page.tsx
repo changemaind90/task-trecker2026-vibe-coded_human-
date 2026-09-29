@@ -28,8 +28,8 @@ export default function ProjectsPage() {
   if (isLoading) return <div>Загрузка...</div>;
 
   return (
-    <div className="max-w-[800px] mx-auto p-5">
-      <div className="flex justify-between mb-5">
+    <div className="max-w-[1200px] mx-auto p-5">
+      <div className="flex justify-center mb-5">
         <h1>Проекты</h1>
       </div>
 
@@ -65,14 +65,14 @@ export default function ProjectsPage() {
                     size="sm"
                     onClick={() => setEditingProject(project)}
                   >
-                    ✏️ Редактировать
+                    ✏️
                   </Button>
                   <Button
                     variant="destructive"
                     size="sm"
                     onClick={() => setDeleteProjectId(project.id)}
                   >
-                    🗑️ Удалить
+                    🗑️
                   </Button>
                 </div>
               </CardContent>
