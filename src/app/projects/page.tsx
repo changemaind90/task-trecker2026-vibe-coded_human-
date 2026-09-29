@@ -31,9 +31,6 @@ export default function ProjectsPage() {
     <div className="max-w-[800px] mx-auto p-5">
       <div className="flex justify-between mb-5">
         <h1>Проекты</h1>
-        <Button variant="outline" onClick={() => router.push("/dashboard")}>
-          ← К задачам
-        </Button>
       </div>
 
       <Button className="mb-5" onClick={() => setCreateOpen(true)}>
