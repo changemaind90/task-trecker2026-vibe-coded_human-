@@ -69,8 +69,6 @@ async function deleteTask(id: string) {
 
 export function useTasks() {
   const queryClient = useQueryClient();
-
-  // GET — список задач
   const tasksQuery = useQuery({
     queryKey: ["tasks"],
     queryFn: fetchTasks,

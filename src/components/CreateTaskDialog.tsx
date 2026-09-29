@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 import {
   Dialog,
   DialogContent,
@@ -64,6 +65,7 @@ export default function CreateTaskDialog({
     if (res.ok) {
       const newTask = await res.json();
       onCreated(newTask);
+      toast.success("Задача создана");
       setTitle("");
       setDescription("");
       setStatus("TODO");
@@ -144,13 +146,18 @@ export default function CreateTaskDialog({
                   </SelectItem>
                 ))}
               </SelectContent>
+            </Select>
+            <div className="flex flex-col gap-1">
+              <label className="text-xs text-muted-foreground">
+                Дедлайн (опционально)
+              </label>
               <input
                 type="datetime-local"
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
                 className="w-full rounded-md border border-border bg-transparent px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6366f1]"
               />
-            </Select>
+            </div>
           </div>
           <textarea
             placeholder="Описание"

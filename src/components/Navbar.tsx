@@ -19,6 +19,7 @@ export default function Navbar() {
 
       {/* Центральная часть */}
       <div className="flex items-center gap-4 justify-center">
+        <NavButton label="Статистика" icon="📊" href="/stats" />
         <NavButton label="Задачи" icon="📋" href="/dashboard" />
         <NavButton label="Проекты" icon="📁" href="/projects" />
         <ThemeToggle />

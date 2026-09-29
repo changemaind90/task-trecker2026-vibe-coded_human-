@@ -8,7 +8,6 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
-import StatsPieChart from "@/components/StatsPieChart";
 import CreateTaskDialog from "@/components/CreateTaskDialog";
 import EditTaskDialog from "@/components/EditTaskDialog";
 import { useTasks, type Task } from "@/hooks/useTasks";
@@ -66,26 +65,11 @@ export default function DashboardPage() {
     });
   }, [tasks, filterStatus, filterPriority, filterProject, searchQuery]);
 
-  const stats = {
-    total: tasks.length,
-    todo: tasks.filter((t) => t.status === "TODO").length,
-    inProgress: tasks.filter((t) => t.status === "IN_PROGRESS").length,
-    done: tasks.filter((t) => t.status === "DONE").length,
-    highPriority: tasks.filter(
-      (t) => t.priority === "HIGH" && t.status !== "DONE",
-    ).length,
-  };
-
   if (loading) return <div>Загрузка...</div>;
   if (error) return <div className="text-red">Ошибка: {error.message}</div>;
 
   return (
     <div className="w-full px-8 py-5">
-      <StatsPieChart
-        todo={stats.todo}
-        inProgress={stats.inProgress}
-        done={stats.done}
-      />
       <div className="flex gap-3 justify-center mb-5 flex-wrap">
         <Button onClick={() => setIsCreateDialogOpen(true)}>
           ➕ Создать задачу
@@ -160,7 +144,7 @@ export default function DashboardPage() {
                   key={task.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: index * 0.03 }}
+                  transition={{ duration: 0.5, delay: index * 0.03 }}
                   className="border-b border-border"
                 >
                   <td className="px-3 py-2.5 align-top">
