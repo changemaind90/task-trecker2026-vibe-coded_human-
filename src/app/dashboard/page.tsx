@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
 import { exportTasksToCsv } from "@/lib/export-csv";
+import ImportTasksDialog from "@/components/ImportTasksDialog";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -26,6 +27,7 @@ export default function DashboardPage() {
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [deleteTaskId, setDeleteTaskId] = useState<string | null>(null);
+  const [isImportOpen, setIsImportOpen] = useState(false);
 
   const { projects } = useProjects();
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -73,10 +75,17 @@ export default function DashboardPage() {
   return (
     <div className="w-full px-8 py-5">
       <div className="flex gap-3 justify-center mb-5 flex-wrap">
-        <Button onClick={() => setIsCreateDialogOpen(true)}>
+        <Button
+          onClick={() => setIsCreateDialogOpen(true)}
+          className="cursor-pointer"
+        >
           ➕ Создать задачу
         </Button>
-        <Button variant="outline" onClick={() => setIsFilterOpen(true)}>
+        <Button
+          className="cursor-pointer"
+          variant="outline"
+          onClick={() => setIsFilterOpen(true)}
+        >
           🔍 Фильтры
           {(filterStatus && filterStatus !== "all") ||
           (filterPriority && filterPriority !== "all") ||
@@ -98,6 +107,13 @@ export default function DashboardPage() {
           className="cursor-pointer"
         >
           📥 Экспорт в CSV
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => setIsImportOpen(true)}
+          className="cursor-pointer"
+        >
+          📤 Импорт CSV
         </Button>
       </div>
       {filteredTasks.length === 0 ? (
@@ -310,6 +326,11 @@ export default function DashboardPage() {
           setFilterProject("");
           setSearchQuery("");
         }}
+      />
+      <ImportTasksDialog
+        open={isImportOpen}
+        onOpenChange={setIsImportOpen}
+        onImported={() => refetch()}
       />
       <CreateTaskDialog
         open={isCreateDialogOpen}

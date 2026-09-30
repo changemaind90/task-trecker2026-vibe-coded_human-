@@ -43,7 +43,7 @@
     startedAt   DateTime?
     updatedAt   DateTime @updatedAt
     completedAt DateTime?
-
+    importBatchId String?
     projectId   String?
     project     Project? @relation(fields: [projectId], references: [id], onDelete: SetNull)
     userId      String
