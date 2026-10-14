@@ -52,12 +52,11 @@ function DialogContent({
       <DialogOverlay />
       <DialogPrimitive.Popup
         data-slot="dialog-content"
-        className="fixed top-1/2 left-1/2 z-50 grid w-full 
-                   max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl 
-                   backdrop-blur-2xl bg-white/80 dark:bg-white/5 border border-white/40 
-                   dark:border-white/10 p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 
-                   duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 
-                   data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-"
+        className="fixed top-1/2 left-1/2 z-50 grid w-full max-w-[80vw] -translate-x-1/2 -translate-y-1/2 
+        gap-4 rounded-xl backdrop-blur-3xl bg-white/95 dark:bg-[rgba(20,20,30,0.95)] border border-white/40
+        dark:border-white/10 p-4 text-sm text-popover-foreground ring-1 ring-foreground/10 duration-100 
+        outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out 
+        data-closed:fade-out-0 data-closed:zoom-out-"
         {...props}
       >
         {children}

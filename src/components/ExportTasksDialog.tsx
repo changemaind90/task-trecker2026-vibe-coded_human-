@@ -79,7 +79,7 @@ export default function ExportTasksDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-3xl  max-h-[90vh] flex flex-col">
+      <DialogContent className="max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Экспорт задач в CSV</DialogTitle>
         </DialogHeader>

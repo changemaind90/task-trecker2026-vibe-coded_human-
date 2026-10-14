@@ -160,7 +160,7 @@ export default function ImportTasksDialog({
         onOpenChange(v);
       }}
     >
-      <DialogContent className="sm:max-w-3xl">
+      <DialogContent className="max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>
             {step === "upload" ? "Импорт задач из CSV" : "Предпросмотр импорта"}
