@@ -193,3 +193,12 @@
 .animate-spin-custom {
   animation: spin 0.8s linear infinite;
 }
+
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

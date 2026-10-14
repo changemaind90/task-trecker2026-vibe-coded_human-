@@ -79,12 +79,12 @@ export default function ExportTasksDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-3xl">
+      <DialogContent className="sm:max-w-3xl  max-h-[90vh] flex flex-col">
         <DialogHeader>
           <DialogTitle>Экспорт задач в CSV</DialogTitle>
         </DialogHeader>
 
-        <div className="flex flex-col gap-4 py-2">
+        <div className="flex flex-col gap-4 py-2 flex-1 overflow-hidden">
           {/* Статистика */}
           <div className="flex gap-4 text-sm flex-wrap">
             <div>
