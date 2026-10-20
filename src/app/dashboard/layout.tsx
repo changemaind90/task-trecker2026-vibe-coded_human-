@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Мои задачи — TaskFlow",
-  description: "Управляй своими задачами в TaskFlow",
+  title: "Мои задачи — TaskTracker",
+  description: "Управляй своими задачами в TaskTracker",
 };
 
 export default function DashboardLayout({

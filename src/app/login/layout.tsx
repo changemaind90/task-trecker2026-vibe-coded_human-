@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Вход — TaskFlow",
-  description: "Войдите в TaskFlow",
+  title: "Вход — TaskTracker",
+  description: "Войдите в TaskTracker",
 };
 
 export default function LoginLayout({

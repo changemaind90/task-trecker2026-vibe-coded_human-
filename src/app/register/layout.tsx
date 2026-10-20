@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Регистрация — TaskFlow",
-  description: "Создайте аккаунт в TaskFlow",
+  title: "Регистрация — TaskTracker",
+  description: "Создайте аккаунт в TaskTracker",
 };
 
 export default function RegisterLayout({

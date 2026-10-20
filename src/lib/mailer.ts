@@ -8,9 +8,9 @@ export async function sendVerificationEmail(email: string, token: string) {
   const { data, error } = await resend.emails.send({
     from: "TaskTracker2026 <onboarding@resend.dev>",
     to: [email],
-    subject: "Подтвердите регистрацию в TaskFlow",
+    subject: "Подтвердите регистрацию в TaskTracker",
     html: `
-      <h2>Добро пожаловать в TaskFlow!</h2>
+      <h2>Добро пожаловать в TaskTracker!</h2>
       <p>Нажмите на кнопку ниже, чтобы подтвердить email:</p>
       <a href="${url}" style="display:inline-block;padding:12px 24px;background:#000;color:#fff;text-decoration:none;border-radius:6px;">Подтвердить email</a>
       <p>Если вы не регистрировались — просто проигнорируйте это письмо.</p>
