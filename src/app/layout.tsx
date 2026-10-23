@@ -6,6 +6,7 @@ import Providers from "@/components/Providers";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import AppFooter from "@/components/AppFooter";
 import { Toaster } from "@/components/ui/sonner";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Toaster />
           </Providers>
         </ThemeProvider>
+        <GoogleAnalytics gaId="G-XXXXXXXXXX" /> {/* Замени на свой ID */}
       </body>
     </html>
   );
